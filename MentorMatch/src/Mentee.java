@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import com.googlecode.objectify.annotation.*;
 
 
-@Unindex @Entity
+@Cache @Unindex @Entity
 public class Mentee {
 	
-	private String FirstName, LastName;
+	private String FirstName, LastName, Biography, Classification;
+	private int ZipCode;
 	@Id private String Email;
 	@Index private ArrayList <String> Interests, Majors, Current_Courses, Past_Courses;
-	OfyService ofy;
 	
 	public Mentee(String email)
 	{
@@ -17,7 +17,7 @@ public class Mentee {
 	}
 	
 	public static void LogIn()
-	{
+	{		
 		
 	}
 	

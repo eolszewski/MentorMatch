@@ -1,6 +1,8 @@
+import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.EntitySubclass;
+import com.googlecode.objectify.annotation.Unindex;
 
-@EntitySubclass
+@Cache @Unindex @EntitySubclass
 public class Message {
 
 }
