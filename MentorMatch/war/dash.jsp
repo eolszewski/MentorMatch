@@ -1,5 +1,7 @@
-<!DOCTYPE html>
+
+<!DOCTYPE jsp>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
             <title>MentorMatch - Home</title>
@@ -72,11 +74,14 @@
                                         
                                         <!-- Main hero unit for a primary marketing message or call to action -->
                                         <div class="span6">
-                                        
+                                        <% int i = 0;
+											if (i == 1) { %>
                                         	<div class="hero-unit">
                                             	<h2>Schedule</h2>
                                             </div>
-                                            
+                                           
+                                           <% } %>
+                                           
                                          	<div class="hero-unit">
                                             	<h2>Notifications</h2>
                                             </div>   
@@ -84,10 +89,21 @@
                                         </div>
                                         
                                         <div class="span3">
-                                        	<div class="well nav-stacked">
-                                        		<ul class="nav nav-tabs nav-stacked">
-                                            		<li>Match1</li>
-                                                    <li>Match2</li>
+                                        	<div class="tabbable tabs-right">
+                                        		<ul class="nav nav-tabs nav-stacked" style="width:100%;">
+                                                	<li class="nav-header">Suggested Matches</li>
+                                            		<li><a href="#">
+                                                    <h4>Asad Malik</h4>
+                                                    <img src="img/SampleProfileImage.jpeg" class="img-polaroid" style="height:inherit; width:80px;">
+                                                    
+                                                    <br/>Electrical Engineering
+                                                    <br/>4th Year</a></li>
+                                                    <li><a href="#">
+                                                    <h4>Sunny Olszewski</h4>
+                                                    	Electrical Engineering
+                                                    <br/>3rd Year</a></li>
+                                                    <li><a href="#">Suggestion 3</a></li>
+                                                    <li><a href="#">Suggestion 4</a></li>
 												</ul>
                                                </div>
                                         </div>
