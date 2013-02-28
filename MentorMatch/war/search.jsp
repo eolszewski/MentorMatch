@@ -74,10 +74,10 @@
                                         
                                         <!-- Main hero unit for a primary marketing message or call to action -->
                                         <div class="span8">
-                                        	<div class="well">
+                                        	<div class="well" style="height:50px;">
                                                 <form class="navbar-search pull-left">
-   												 <input type="text" class="search-query" placeholder="Search" style="height:40px;width:300px;">
-    											<input type="submit" value="Go" class="btn btn-primary">
+   												 <input type="text" class="search-query" placeholder="Search" style="height:50px;width:300px;">
+    											<input type="submit" value="Go" class="btn btn-large btn-primary">
                                                 </form>
                                              
                                             </div>

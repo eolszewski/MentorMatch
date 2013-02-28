@@ -64,62 +64,45 @@
                                             <div class="tabbable tabs-left">
                                                 <ul class="nav nav-tabs">
                                                     <li class="nav-header">Sidebar</li>
-                                                    <li class="active"><a href="dash.jsp">Dashboard</a></li>
+                                                    <li><a href="dash.jsp">Dashboard</a></li>
                                                     <li><a href="search.jsp">Find Mentors</a></li>
                                                     <li><a href="relationships.jsp">Relationships</a></li>
-                                                    <li><a href="profile.jsp">My Profile</a></li>
+                                                    <li class="active"><a href="profile.jsp">My Profile</a></li>
                                                 </ul>
                                             </div><!--/.well -->
                                         </div><!--/span-->
                                         
                                         <!-- Main hero unit for a primary marketing message or call to action -->
-                                        <div class="span6">
+                                        <div class="span8">
                                         	<div class="well">
-                                            	<h3><center>Notification Center</center></h3>
-                                            	<div class="tabbable tabs-right">
-                                        		    <ul class="nav nav-pills nav-stacked">
-                                                    	<li class="active"><a href="#">Brad Stewart has sent you a message</a></li>
-                                                        <li><a href="#">Andrew Liu has replied to your message</a></li>
-                                                        <li><a href="#"></a></li>
-
-    												</ul>
-                                               </div>
+                                                   <form>
+    												<fieldset>
+    												<legend>My Profile</legend>
+    													<label>First Name</label>
+   													 	<input type="text" placeholder="Type something…">
+                                                        <br/>
+                                                        <label>Last Name</label>
+   													 	<input type="text" placeholder="Type something…">
+                                                        <br/>
+                                                        <label>Email</label>
+   													 	<input type="text" placeholder="Type something…">
+                                                        <br/>
+                                                        <label>Password</label>
+   													 	<input type="password" placeholder="Password">
+                                                        <br/>
+                                                        
+    												
+    												
+    											<button type="submit" class="btn">Submit</button>
+    													</fieldset>
+    												</form>
                                             </div>
                                            
-                                         	<div class="hero-unit">
-                                            	<h3>Message from Brad Stewart</h3>
-                                                Fuck you nigga. I ain't tryna mentor your bitch ass.
-                                                <br/><br/>
-                                            	<button class="btn btn-large btn-primary" type="button">Reply</button>
-                                            </div>   
+                                         	
                                             
                                         </div>
                                         
-                                        <div class="span3">
-                                        	<div class="tabbable tabs-right">
-                                            	<h4>Suggested Matches</h4>
-                                        		<ul class="nav nav-tabs nav-stacked" style="width:100%;">
-                                            		<li><a href="#">
-                                                    <h4>Asad Malik</h4>
-                                                    <img src="img/SampleProfileImage.jpeg" class="img-polaroid" style="height:inherit; width:80px;">
-                                                    
-                                                    <br/>Electrical Engineering
-                                                    <br/>4th Year</a></li>
-                                                    <li><a href="#">
-                                                    <h4>Sunny Olszewski</h4>
-                                                    	Electrical Engineering
-                                                    <br/>3rd Year</a></li>
-                                                    <li><a href="#">
-                                                    <h4>Adnan Aziz</h4>
-                                                    	Computer Science
-                                                    <br/>3rd Year</a></li>
-                                                    <li><a href="#">
-                                                    <h4>Andrew Liu</h4>
-                                                    	Fine Arts
-                                                    <br/>12th Year</a></li>
-												</ul>
-                                               </div>
-                                        </div>
+                                        
                                         
                                         <!-- Example row of columns -->
                                         <div class="row">
