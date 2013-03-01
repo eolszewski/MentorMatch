@@ -1,43 +1,68 @@
 <%@include file="master.jsp" %>
-        
-        <div style="margin:0 auto;width:75%;text-align:left">
-                
-                <FORM action="http://mentormatch.com/register_asad" method="post">
-                    <p>
-                    <LABEL  for="Email"><b>Email Address:</b> </LABEL>
-                    <INPUT  type="text" id="email"><BR>
-                        <LABEL for="First Name"><b>First Name:</b> </LABEL>
-                        <INPUT type="text" id="firstName"><BR>
-                            <LABEL for="First Name"><b>Last Name:</b> </LABEL>
-                            <INPUT type="text" id="lastName"><BR>
-                                <LABEL for="Password"><b>Password: </b></LABEL>
-                                <INPUT type="password" id="pwd"><BR>
-                                <LABEL for="major"><b>Major: </b></LABEL>
-                                <INPUT type="text" id="major"><BR>
-                                    <LABEL for="classification"><b>Classification: <b></LABEL>
-                                    <INPUT type="text" id="classification"><BR>
-                       
-                            </P>
-                             <p><a class="btn" href="#">Register &raquo;</a></p>
-                            </FORM>
-            
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="span4">
-                    <h2>What We Do</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-                <div class="span4">
-                    <h2>Mentors</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-                <div class="span4">
-                    <h2>Mentees</h2>
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-            </div>
-            
-<%@include file="footer.jsp" %> 
+                                    <title>MentorMatch - Registration</title>
+                                    
+											<script type="text/javascript">
+											 
+											 	function addMajor() {
+													var major = document.getElementById('majors').value;
+													alert(major);
+														
+												}
+											 	 /* 
+												var subjects = ['PHP'];
+												$(function(){
+													  $('.majors').typeahead({
+														 items:4,
+														 source: subjects
+													  });
+												 });
+												 
+												 $(document).ready(function(){
+													alert("fuck");
+												});
+												*/
+											</script>                                     
+
+                                    <div class="container">
+                                    
+                                   
+                                    
+                                        <div class="span11">
+                                        	<div class="well">
+                                                   <form autocomplete="off">
+    												<fieldset>
+    												<legend><h3>Registration</h3></legend>
+                                                    	<label>Email</label>
+   													 	<input type="text" placeholder="Type something…">
+                                                        <br/>
+                                                        <label>Password</label>
+   													 	<input type="password" placeholder="Password">
+                                                        <br/>
+    													<label>First Name</label>
+   													 	<input type="text" placeholder="Type something…">
+                                                        <br/>
+                                                        <label>Last Name</label>
+   													 	<input type="text" placeholder="Type something…">
+                                                        <br/>
+                                                        <label>Major(s)</label>
+                                                        <div class="input-append">
+                                                          <input id="majors" type="text" data-provide="typeahead">
+                                                          <button class="btn" type="button" onClick="addMajor()">Add</button>
+                                                        </div> 
+                                                        <table class="table table-hover">
+                                                         
+                                                        </table>
+                                                                                                            
+    											<br/><button type="submit" class="btn">Submit</button>
+    													</fieldset>
+    												</form>
+                                            </div>
+                                             
+                                           
+                                         	
+                                            
+                                        </div>
+                                        
+                                        
+                                        
+<%@include file="footer.jsp" %>   
