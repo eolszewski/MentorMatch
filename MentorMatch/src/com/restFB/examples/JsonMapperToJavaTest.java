@@ -38,7 +38,7 @@ import org.junit.Test;
 import com.restfb.Facebook;
 import com.restfb.JsonMapper;
 import com.restfb.JsonMapper.JsonMappingCompleted;
-import com.restfb.JsonMapperToJavaTest.Story.StoryTag;
+//import com.restfb.JsonMapperToJavaTest.Story.StoryTag;
 import com.restfb.exception.FacebookJsonMappingException;
 import com.restfb.json.JsonObject;
 import com.restfb.types.NamedFacebookType;
@@ -289,10 +289,10 @@ public class JsonMapperToJavaTest extends AbstractJsonMapperTests {
 
     for (Iterator<?> i = story.storyTags.keys(); i.hasNext();) {
       String fieldName = (String) i.next();
-      List<StoryTag> storyTags = jsonMapper.toJavaList(story.storyTags.getString(fieldName), StoryTag.class);
+      //List<StoryTag> storyTags = jsonMapper.toJavaList(story.storyTags.getString(fieldName), StoryTag.class);
 
-      for (StoryTag storyTag : storyTags)
-        actualStoryTagIds.add(storyTag.id);
+      //for (StoryTag storyTag : storyTags)
+      //  actualStoryTagIds.add(storyTag.id);
     }
 
     assertEquals(expectedStoryTagIds, actualStoryTagIds);
