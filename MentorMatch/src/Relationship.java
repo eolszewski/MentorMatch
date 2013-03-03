@@ -5,11 +5,11 @@ import com.googlecode.objectify.annotation.Parent;
 import com.googlecode.objectify.annotation.Unindex;
 
 @Cache @Unindex @Entity
-public class Relationships {
+public class Relationship {
 	
 	@Parent Key<Mentee> mentee;
 	
-	public Relationships()
+	public Relationship()
 	{
 		
 	}

@@ -8,7 +8,6 @@ public class OfyService {
     static {
         factory().register(Mentee.class);        
         factory().register(Mentor.class);
-        factory().register(Interaction.class);
         factory().register(Message.class);
     }
     
