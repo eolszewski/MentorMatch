@@ -9,6 +9,7 @@ public class OfyService {
         factory().register(Mentee.class);        
         factory().register(Mentor.class);
         factory().register(Message.class);
+        factory().register(Search.class);
     }
     
 	public static Objectify ofy() {
