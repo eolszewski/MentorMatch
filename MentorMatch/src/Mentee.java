@@ -7,7 +7,7 @@ import com.googlecode.objectify.annotation.*;
 public class Mentee {
 	
 	private String FirstName, LastName, Biography, Classification;
-	private int ZipCode;
+	@Index private int ZipCode;
 	@Id private String Email;
 	@Index private ArrayList <String> Interests, Majors, Current_Courses, Past_Courses;
 	
