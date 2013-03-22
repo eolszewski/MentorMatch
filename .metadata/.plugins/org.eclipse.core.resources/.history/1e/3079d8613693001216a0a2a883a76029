@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
-		<servlet-name>Login</servlet-name>
+		<servlet-name>MentorMatch</servlet-name>
 		<servlet-class>com.MentorMatch.Alpha.LogInServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>Register</servlet-name>
+		<servlet-name>MentorMatch</servlet-name>
 		<servlet-class>Entities.RegisterServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Register</servlet-name>
-		<url-pattern>/Register</url-pattern>
+		<servlet-name>MentorMatch</servlet-name>
+		<url-pattern>/mentormatch</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>home.jsp</welcome-file>
