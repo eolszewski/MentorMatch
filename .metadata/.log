@@ -318,3 +318,6 @@ Binding(CTRL+SHIFT+ARROW_RIGHT,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.jdt.ui.javaEditorScope,,cocoa,system)
+
+!ENTRY com.google.gwt.eclipse.core 2 0 2013-03-22 14:17:55.941
+!MESSAGE Could not check whether the launch configuration "MentorMatch" needs the -XstartOnFirstThread argument, assuming it does
