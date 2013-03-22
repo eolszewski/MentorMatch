@@ -51,13 +51,44 @@
                                                             <input name="password" class="span2" type="password" placeholder="Password">
                                                                 <button type="submit" class="btn">Sign in</button>
                                                                 </form>
-                                                                
+                                                                <span 
+                                                                    class="g-signin"
+                                                                    id="g-signin"
+                                                                    data-callback="signinCallback"
+                                                                    data-clientid="996517486385.apps.googleusercontent.com"
+                                                                    data-cookiepolicy="single_host_origin"
+                                                                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                                                                    data-scope="https://www.googleapis.com/auth/plus.login">
+                                                                  </span>
                                                                   
                                                 </div><!--/.nav-collapse -->
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    
-                                    
-                                    
+                                    <script type="text/javascript">
+			  (function() {
+			   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			   po.src = 'https://apis.google.com/js/client:plusone.js';
+			   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			 })();
+			 
+			 function signinCallback(authResult) {
+				  if (authResult['access_token']) {
+					// Successfully authorized
+					// Hide the sign-in button now that the user is authorized, for example:
+					document.getElementById('g-signin').setAttribute('style', 'display: none');
+					alert("woohoo shit works!");
+					
+					
+				  } else if (authResult['error']) {
+					// There was an error.
+					// Possible error codes:
+					//   "access_denied" - User denied access to your app
+					//   "immediate_failed" - Could not automatially log in the user
+					// console.log('There was an error: ' + authResult['error']);
+					alert("fuck you, give me access");
+					
+				  }
+				}
+			</script>
