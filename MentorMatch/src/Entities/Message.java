@@ -1,3 +1,4 @@
+package Entities;
 import java.util.Date;
 
 import com.googlecode.objectify.Key;

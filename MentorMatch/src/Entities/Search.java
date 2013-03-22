@@ -1,3 +1,4 @@
+package Entities;
 import java.util.ArrayList;
 
 import com.googlecode.objectify.Key;
