@@ -7,7 +7,18 @@
                 <h1>MentorMatch</h1>
                 <p>MentorMatch marketing shit. Register Today!</p>
                 <p>
-                <a href="register.jsp" class="btn btn-primary btn-large">Register with Gmail &raquo;</a>
+                
+                <!--
+                <span
+                    class="g-signin"
+                    id="g-signin"
+                    data-callback="signinCallback"
+                    data-clientid="996517486385.apps.googleusercontent.com"
+                    data-cookiepolicy="single_host_origin"
+                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                    data-scope="https://www.googleapis.com/auth/plus.login">
+                  </span>
+                  -->
                 </p>
             </div>
             
@@ -29,5 +40,7 @@
                     <p><a class="btn" href="#">View details &raquo;</a></p>
                 </div>
             </div>
+            
+            
             
 <%@include file="footer.jsp" %>   

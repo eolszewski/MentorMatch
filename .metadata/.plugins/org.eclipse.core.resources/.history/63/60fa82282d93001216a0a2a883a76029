@@ -5,10 +5,10 @@ import javax.servlet.http.*;
 
 @SuppressWarnings("serial")
 public class LogInServlet extends HttpServlet {
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/plain");
-		resp.getWriter().println(req.getParameter("email"));
-		resp.getWriter().println(req.getParameter("password"));
+		resp.getWriter().println(req.getAttribute("email"));
+		resp.getWriter().println(req.getAttribute("password"));
 	}
 }
