@@ -321,3 +321,6 @@ Binding(CTRL+SHIFT+ARROW_RIGHT,
 
 !ENTRY com.google.gwt.eclipse.core 2 0 2013-03-22 14:17:55.941
 !MESSAGE Could not check whether the launch configuration "MentorMatch" needs the -XstartOnFirstThread argument, assuming it does
+
+!ENTRY com.google.gwt.eclipse.core 2 0 2013-03-22 14:53:47.569
+!MESSAGE Could not check whether the launch configuration "MentorMatch" needs the -XstartOnFirstThread argument, assuming it does
