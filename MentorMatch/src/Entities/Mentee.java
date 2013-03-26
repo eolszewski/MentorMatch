@@ -17,6 +17,7 @@ public class Mentee {
 	ArrayList <Relationship> Relastionships;
 	Search search;
 	
+	private Mentee() {};
 	public Mentee(String email) { this.Email = email; }	
 	public boolean LogInEmail() { return true; }
 	public boolean LogOutEmail() { return true; }
