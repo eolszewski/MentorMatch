@@ -17,6 +17,7 @@ import com.googlecode.objectify.ObjectifyService;
 
 @SuppressWarnings("serial")
 public class RegisterServlet extends HttpServlet {
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		doPost(req,resp);
@@ -34,12 +35,7 @@ public class RegisterServlet extends HttpServlet {
 		newUser.setFirstName(request.getParameter("FirstName")).setLastName(request.getParameter("LastName"));
 		OfyService.ofy().save().entity(newUser).now();
 		//// This will return the Cat
-		//Animal fetched = OfyService.ofy().load().type(Mentee.class).id(email.id).get();
-
-		// This query will produce three objects, the Animal, Mammal, and Cat
-		//Query<Animal> all = ofy().load().type(Animal.class);
-
-		// This query will produce the Mammal and Cat
-		//Query<Mammal> mammals = ofy().load().type(Mammal.class);
+		//Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(email.id).get();
+;
 	}
 }

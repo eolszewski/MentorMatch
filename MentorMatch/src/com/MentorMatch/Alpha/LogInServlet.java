@@ -13,12 +13,13 @@ import Entities.OfyService;
 public class LogInServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		boolean access;
+		boolean access = false;
 		resp.setContentType("text/plain");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(email).get();
 		if(fetched.getPassword().equals(password))
 			access = true;
+		System.out.println(access);
 	}
 }
