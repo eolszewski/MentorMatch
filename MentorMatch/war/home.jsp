@@ -7,8 +7,8 @@
                 <h1>MentorMatch</h1>
                 <p>You've met your match.</p>
                 <p>
+                <button type="button" id = "register" class="btn btn-large btn-primary" onclick="window.location = '/register.jsp'">Register</button>
                 
-                <button type="button" class="btn btn-large btn-primary">Register</button>
                 <!--
                 <span
                     class="g-signin"
