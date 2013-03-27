@@ -1,4 +1,4 @@
-package com.MentorMatch.Alpha;
+package Servlets;
 
 public class MainDashboard {
 	

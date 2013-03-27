@@ -1,4 +1,4 @@
-package com.MentorMatch.Alpha;
+package Servlets;
 
 import java.io.IOException;
 
@@ -17,9 +17,19 @@ public class LogInServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
+
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(email).get();
-		if(fetched.getPassword().equals(password))
-			access = true;
-		System.out.println(access);
+		if(fetched != null)
+		{
+			if(fetched.getPassword().equals(password))
+			{
+				access = true;
+				resp.getWriter().println("Logged in!");
+			}
+			else
+				resp.getWriter().println("Invalid username / password");
+		}
+		else
+			resp.getWriter().println("Account does not exist");
 	}
 }

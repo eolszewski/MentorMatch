@@ -15,11 +15,10 @@ public class Mentee {
 	@Index private ArrayList <String> Interests, Current_Courses, Past_Courses;
 	List<String> Majors;
 	private ArrayList <Message> Messages;
-	ArrayList <Relationship> Relastionships;
-	Search search;
+	ArrayList <Relationship> Relationships;
 	
 	protected Mentee() {};
-	public Mentee(String email) { this.Email = email; }	
+	public Mentee(String email, String password) { this.Email = email; this.password = password; }	
 	public boolean LogInEmail() { return true; }
 	public boolean LogOutEmail() { return true; }
 	public boolean LogInFacebook() { return true; }
@@ -42,8 +41,9 @@ public class Mentee {
 	}
 	public ArrayList <String> SearchMatches(ArrayList <String> arguments)
 	{
-		Search search = new Search(arguments);
-		return search.PerformSearch();
+		//Search search = new Search(arguments);
+		//return search.PerformSearch();
+		return new ArrayList<String>(0);
 	}
 	public String getFirstName() { return FirstName; }
 	public Mentee setFirstName(String firstName) { FirstName = firstName; return this;}

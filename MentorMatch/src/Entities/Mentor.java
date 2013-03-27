@@ -9,8 +9,8 @@ public class Mentor extends Mentee {
 	private Mentor() { 
 		super();
 	}
-	public Mentor(String email) {
-		super(email);
+	public Mentor(String email, String password) {
+		super(email, password);
 		// TODO Auto-generated constructor stub
 	}
 

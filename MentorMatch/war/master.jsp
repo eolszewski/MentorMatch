@@ -46,12 +46,12 @@
                                                             </ul>
                                                         </li>
                                                     </ul>
-                                                    <form class="navbar-form pull-right" method="post" action="mentormatch">
+                                                    <form class="navbar-form pull-right" method="post" action="/login">
                                                         <input name="email" class="span2" type="text" placeholder="Email">
                                                             <input name="password" class="span2" type="password" placeholder="Password">
                                                                 <button type="submit" class="btn">Sign in</button>
                                                                 </form>
-                                                                <span 
+                                                               <!-- <span 
                                                                     class="g-signin"
                                                                     id="g-signin"
                                                                     data-callback="signinCallback"
@@ -60,7 +60,7 @@
                                                                     data-requestvisibleactions="http://schemas.google.com/AddActivity"
                                                                     data-scope="https://www.googleapis.com/auth/plus.login">
                                                                   </span>
-                                                                  
+                                                                  -->
                                                 </div><!--/.nav-collapse -->
                                             </div>
                                         </div>

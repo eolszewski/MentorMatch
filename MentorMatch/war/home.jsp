@@ -5,9 +5,10 @@
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
                 <h1>MentorMatch</h1>
-                <p>MentorMatch marketing shit. Register Today!</p>
+                <p>You've met your match.</p>
                 <p>
                 
+                <button type="button" class="btn btn-large btn-primary">Register</button>
                 <!--
                 <span
                     class="g-signin"
