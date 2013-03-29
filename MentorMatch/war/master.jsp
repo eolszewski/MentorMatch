@@ -46,11 +46,13 @@
                                                             </ul>
                                                         </li>
                                                     </ul>
-                                                    <form class="navbar-form pull-right" method="post" action="/login">
-                                                        <input name="email" class="span2" type="text" placeholder="Email">
-                                                            <input name="password" class="span2" type="password" placeholder="Password">
-                                                                <button type="submit" class="btn">Sign in</button>
-                                                                </form>
+                                                   
+                                                    
+                                                    <div id="loginDiv">
+                                                   
+                                                    </div>
+                                                                
+                                                                
                                                                <!-- <span 
                                                                     class="g-signin"
                                                                     id="g-signin"
@@ -66,7 +68,7 @@
                                         </div>
                                     </div>
                                     
-                                    <script type="text/javascript">
+             <script type="text/javascript">
 			  (function() {
 			   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
 			   po.src = 'https://apis.google.com/js/client:plusone.js';
@@ -92,3 +94,77 @@
 				  }
 				}
 			</script>
+			
+<script>
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+  {
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+function setCookie(c_name,value,exdays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+}
+
+function checkCookie()
+{
+var username=getCookie("username");
+if (username!=null && username!="")
+  {
+  alert("Welcome again " + username);
+  }
+else 
+  {
+  username=prompt("Please enter your name:","");
+  if (username!=null && username!="")
+    {
+    setCookie("username",username,365);
+    }
+  }
+}
+</script>
+
+<script>
+var theData;
+
+$(document).ready( function() {
+	$.post('/home.jsp', getMentee(data));
+});
+
+function getMentee(mentee)
+{
+	var theObject = JSON.parse(theData);
+	alert(theObject);
+}
+
+
+
+
+if (1)
+{
+	document.getElementById("loginDiv").innerHTML='<form name="login" class="navbar-form pull-right" method="post" action="/login">' +
+    '<input name="email" class="span2" type="text" placeholder="Email"> ' +
+	'<input name="password" class="span2" type="password" placeholder="Password">' +
+    '<button type="submit" class="btn">Sign in</button>' +
+    '</form>';
+}
+else
+{
+	document.getElementById("loginDiv").innerHTML='<h4>Welcome, Asshole</h4>';
+}
+
+
+</script>
