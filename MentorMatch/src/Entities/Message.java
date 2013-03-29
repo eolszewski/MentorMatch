@@ -12,7 +12,7 @@ import com.googlecode.objectify.annotation.Unindex;
 public class Message {
 	
 	@Parent Key<Mentee> mentee;
-	@Id String email;
+	@Id String email; // I think the ID should be left as a Long because you can have more than one message
 	private String Subject, Body, To, From;
 	private boolean Request;
 	private String Status;
@@ -21,6 +21,15 @@ public class Message {
 	public Message()
 	{
 		Status = "Pending";
+	}
+	
+	public void createMessage(String sub, String body, String from, String to){
+		
+		Subject = sub;
+		Body = body;
+		To = to;
+		From = from;
+		
 	}
 
 	public void sendMessage() {
