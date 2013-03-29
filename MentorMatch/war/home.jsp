@@ -1,5 +1,10 @@
 <%@include file="master.jsp" %>
         
+        <script>
+		var theData = ${jsonString};
+		</script>
+		<body onload="init(theData);">
+		
         <div class="container">
             
             <!-- Main hero unit for a primary marketing message or call to action -->
