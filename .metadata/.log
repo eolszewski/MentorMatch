@@ -609,3 +609,6 @@ java.lang.OutOfMemoryError: Requested array size exceeds VM limit
 
 !ENTRY com.google.gwt.eclipse.core 2 0 2013-03-29 15:25:17.962
 !MESSAGE Could not check whether the launch configuration "MentorMatch" needs the -XstartOnFirstThread argument, assuming it does
+
+!ENTRY com.google.gwt.eclipse.core 2 0 2013-03-29 16:27:42.352
+!MESSAGE Could not check whether the launch configuration "MentorMatch" needs the -XstartOnFirstThread argument, assuming it does
