@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import Entities.Mentee;
 import Entities.OfyService;
 
@@ -18,7 +19,7 @@ import com.google.gson.Gson;
 public class LogInServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		resp.setContentType("text/plain");
+		resp.setContentType("text/json");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		Gson gson = new Gson();

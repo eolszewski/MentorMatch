@@ -1,6 +1,6 @@
 <!DOCTYPE jsp>
 <html lang="en">
-
+<script src="http://code.jquery.com/jquery-latest.pack.js"></script>
     <head>
         <meta charset="utf-8">
             
@@ -52,48 +52,12 @@
                                                    
                                                     </div>
                                                                 
-                                                                
-                                                               <!-- <span 
-                                                                    class="g-signin"
-                                                                    id="g-signin"
-                                                                    data-callback="signinCallback"
-                                                                    data-clientid="996517486385.apps.googleusercontent.com"
-                                                                    data-cookiepolicy="single_host_origin"
-                                                                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                                                                    data-scope="https://www.googleapis.com/auth/plus.login">
-                                                                  </span>
-                                                                  -->
+                                                               
                                                 </div><!--/.nav-collapse -->
                                             </div>
                                         </div>
                                     </div>
                                     
-             <script type="text/javascript">
-			  (function() {
-			   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			   po.src = 'https://apis.google.com/js/client:plusone.js';
-			   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-			 })();
-			 
-			 function signinCallback(authResult) {
-				  if (authResult['access_token']) {
-					// Successfully authorized
-					// Hide the sign-in button now that the user is authorized, for example:
-					document.getElementById('g-signin').setAttribute('style', 'display: none');
-					alert("woohoo shit works!");
-					
-					
-				  } else if (authResult['error']) {
-					// There was an error.
-					// Possible error codes:
-					//   "access_denied" - User denied access to your app
-					//   "immediate_failed" - Could not automatially log in the user
-					// console.log('There was an error: ' + authResult['error']);
-					alert("fuck you, give me access");
-					
-				  }
-				}
-			</script>
 			
 <script>
 function getCookie(c_name)
@@ -138,27 +102,29 @@ else
 </script>
 
 <script>
-var theData;
 
-$(document).ready( function() {
-	$.post('/home.jsp', getMentee(data));
-});
 
-function getMentee(mentee)
-{
-	var theObject = JSON.parse(theData);
-	alert(theObject);
+function submitForm(thisObj, thisEvent) {
+
+	var email = $('#email').val();
+	var password = $('#password').val();
+	var jsonObj = new Object();
+	var jsonData = JSON.stringify(jsonObj);
+	
+	$.post('/login', jsonData, function(data){
+		alert("success");
+	});
+	
+	   return false;  // prevents the page from refreshing before JSON is read from server response
 }
-
-
 
 
 if (1)
 {
 	document.getElementById("loginDiv").innerHTML='<form name="login" class="navbar-form pull-right" method="post" action="/login">' +
-    '<input name="email" class="span2" type="text" placeholder="Email"> ' +
-	'<input name="password" class="span2" type="password" placeholder="Password">' +
-    '<button type="submit" class="btn">Sign in</button>' +
+    '<input id="email" class="span2" type="text" placeholder="Email"> ' +
+	'<input id="password" class="span2" type="password" placeholder="Password">' +
+    '<input type="submit" class="btn" name="submit" value="Login" onclick="return submitForm(this, event);">' +
     '</form>';
 }
 else
