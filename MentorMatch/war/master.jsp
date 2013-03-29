@@ -83,22 +83,6 @@ var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCStri
 document.cookie=c_name + "=" + c_value;
 }
 
-function checkCookie()
-{
-var username=getCookie("username");
-if (username!=null && username!="")
-  {
-  alert("Welcome again " + username);
-  }
-else 
-  {
-  username=prompt("Please enter your name:","");
-  if (username!=null && username!="")
-    {
-    setCookie("username",username,365);
-    }
-  }
-}
 </script>
 
 <script>
@@ -109,10 +93,18 @@ function submitForm(thisObj, thisEvent) {
 	var email = $('#email').val();
 	var password = $('#password').val();
 	var jsonObj = new Object();
+	jsonObj.email = email;
+	jsonObj.password = password;
 	var jsonData = JSON.stringify(jsonObj);
+	alert(jsonData);
+	
+	setCookie('username', 'asshole', 1);
+	setCookie('firstName', 'Asshole', 1);
 	
 	$.post('/login', jsonData, function(data){
-		alert("success");
+		setCookie('username', 'asshole', 1);
+		setCookie('firstName', 'Asshole', 1);
+		
 	});
 	
 	   return false;  // prevents the page from refreshing before JSON is read from server response
@@ -129,7 +121,8 @@ if (1)
 }
 else
 {
-	document.getElementById("loginDiv").innerHTML='<h4>Welcome, Asshole</h4>';
+	var firstName = getCookie('firstName');
+	document.getElementById("loginDiv").innerHTML='<h4>Welcome, ' + firstName + '</h4>';
 }
 
 
