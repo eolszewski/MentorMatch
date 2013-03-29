@@ -82,6 +82,19 @@
                                                           <input id="pastcourses" type="text" data-provide="typeahead">
                                                           <button class="btn" type="button" onClick="addPastCourse()">Add</button>
                                                         </div> 
+                                                        <textarea id="alltext"></textarea>
+														<ol onclick="addText(event)">
+														<li>Hello</li>
+														<li>World</li>
+														<li>Earthlings</li>
+														</ol>
+
+														<script>
+														function addText(event) {
+													    var targ = event.target || event.srcElement;
+													    document.getElementById("alltext").value += targ.textContent || targ.innerText;
+														}
+														</script>
                                                         <table class="table table-hover">
                                                          
                                                         </table>

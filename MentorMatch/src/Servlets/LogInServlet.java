@@ -21,20 +21,26 @@ public class LogInServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
+		Gson gson = new Gson();
 
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(email).get();
 		if(fetched != null)
 		{
 			if(fetched.getPassword().equals(password))
 			{
-				Gson gson = new Gson();
 				req.setAttribute("jsonString", gson.toJson(fetched).toString());
 				resp.sendRedirect(req.getHeader("referer"));
 			}
 			else
-				resp.getWriter().println("Invalid username / password");
+			{
+				req.setAttribute("jsonString", "password");
+				resp.sendRedirect(req.getHeader("referer"));
+			}
 		}
 		else
-			resp.getWriter().println("Account does not exist");
+		{
+			req.setAttribute("jsonString", "password");
+			resp.sendRedirect(req.getHeader("referer"));
+		}
 	}
 }
