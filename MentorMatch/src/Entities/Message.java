@@ -1,6 +1,8 @@
 package Entities;
 import java.util.Date;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import com.google.gson.Gson;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
@@ -30,9 +32,23 @@ public class Message {
 		To = to;
 		From = from;
 		
+		
 	}
-
+	
 	public void sendMessage() {
 		this.TimeStamp = new Date();
 	}
+	
+	public String toJson() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
+	}
+	
+	public static Message fromJson(String json) {
+		Gson gson = new Gson();
+		return gson.fromJson(json, Message.class);
+		
+	}
+
+	
 }
