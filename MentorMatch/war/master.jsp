@@ -141,7 +141,7 @@ if (getCookie('email') == null)
     '<input id="email" class="span2" type="text" placeholder="Email"> ' +
 	'<input id="password" class="span2" type="password" placeholder="Password">' +
     '<input type="submit" class="btn" name="submit" value="Login" onclick="return submitForm(this, event);">' +
-    '</form>';
+    '</form>'; q
 }
 else
 {
