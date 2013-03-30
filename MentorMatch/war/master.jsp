@@ -82,13 +82,19 @@ function getCookie(name) {
 }
 
 function eraseCookie(name) {
-	createCookie(name,"",-1);
+	setCookie(name,null,-1);
 }
 
 </script>
 
 <script>
-
+/*
+$(document).ready(function(){
+	eraseCookie('email');
+	eraseCookie('firstName');
+	
+});
+*/
 
 function submitForm(thisObj, thisEvent) {
 
@@ -98,12 +104,12 @@ function submitForm(thisObj, thisEvent) {
 	jsonObj.email = email;
 	jsonObj.password = password;
 	var jsonData = JSON.stringify(jsonObj);
-	alert(jsonData);
 	
 	//setCookie('email', 'asshole', 1);
 	//setCookie('firstName', 'Asshole', 1);
 	
-	$.post('/login', jsonData, function(data){
+	$.post("login", {json:jsonData}, function(data){
+		alert('fuck');
 		var obj = $.parseJSON(data);
 		if (obj.Email === null)
 		{
@@ -120,7 +126,7 @@ function submitForm(thisObj, thisEvent) {
 			return true;
 		}
 		
-	});
+	}, 'json');
 	
 	return false;  // prevents the page from refreshing before JSON is read from server response
 }

@@ -23,7 +23,9 @@ public class LogInServlet extends HttpServlet {
 		String json = req.getParameter("json");
 		Gson gson = new Gson();
 		Mentee temp = gson.fromJson(json, Mentee.class);
-
+		
+		
+		
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
 		if(fetched != null)
 		{
