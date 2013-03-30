@@ -5,15 +5,16 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+/*
+import org.json.simple.*;
+import org.json.simple.parser.*;
+*/
 import Entities.Mentee;
 import Entities.OfyService;
 
 import com.google.gson.Gson;
-
-/*
-import com.google.appengine.labs.repackaged.org.json.JSONObject;
-import com.google.gwt.json.client.JSONValue;*/
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @SuppressWarnings("serial")
 public class LogInServlet extends HttpServlet {
@@ -21,17 +22,11 @@ public class LogInServlet extends HttpServlet {
 			throws IOException {
 		resp.setContentType("text/json");
 		Gson gson = new Gson();
-<<<<<<< HEAD
 
-		Mentee temp = gson.fromJson(json, Mentee.class);
-=======
-		/*String json = req.getParameter("json");
-		Gson gson = new Gson();
-		System.out.println(j);
-		Mentee temp = gson.fromJson(json, Mentee.class);*/
-		Mentee temp = new Mentee(req.getParameter("email"), req.getParameter("password"));
-		System.out.println(temp.getEmail());
->>>>>>> Changing sevlet
+		JsonParser jsonParser = new JsonParser();
+		JsonObject jo = (JsonObject)jsonParser.parse(req.getParameter("json"));
+		
+		Mentee temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", ""));
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
 
 		if(fetched != null)
@@ -39,7 +34,6 @@ public class LogInServlet extends HttpServlet {
 			if(fetched.getPassword().equals(temp.getPassword()))
 			{
 				resp.getWriter().println(gson.toJson(fetched).toString());
-				//req.setAttribute("json", gson.toJson(fetched).toString());
 			}
 			else
 			{
@@ -50,7 +44,6 @@ public class LogInServlet extends HttpServlet {
 		else
 		{
 			fetched = new Mentee("null", "null");
-			System.out.println(gson.toJson(fetched).toString());
 			resp.getWriter().println(gson.toJson(fetched).toString());
 		}
 		resp.sendRedirect(req.getHeader("referer"));
