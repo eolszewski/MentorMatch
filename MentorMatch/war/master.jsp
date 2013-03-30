@@ -88,6 +88,7 @@ function eraseCookie(name) {
 </script>
 
 <script>
+
 /*
 $(document).ready(function(){
 	eraseCookie('email');
@@ -105,11 +106,13 @@ function submitForm(thisObj, thisEvent) {
 	jsonObj.password = password;
 	var jsonData = JSON.stringify(jsonObj);
 	
+	alert(jsonData);
+	
 	//setCookie('email', 'asshole', 1);
 	//setCookie('firstName', 'Asshole', 1);
 	
-	$.post("login", jsonData, function(data){
-		alert('fuck');
+	$.post("login", {json: jsonData}, function(data){
+		alert('success');
 		var obj = $.parseJSON(data);
 		if (obj.Email === 'null')
 		{
