@@ -23,10 +23,8 @@ public class LogInServlet extends HttpServlet {
 		String json = req.getParameter("json");
 		Gson gson = new Gson();
 		Mentee temp = gson.fromJson(json, Mentee.class);
-		
-		
-		
-		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
+		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getPassword()).get();
+
 		if(fetched != null)
 		{
 			if(fetched.getPassword().equals(temp.getPassword()))
@@ -36,16 +34,15 @@ public class LogInServlet extends HttpServlet {
 			}
 			else
 			{
-				fetched.setPassword(null);
+				fetched.setPassword("null");
 				resp.getWriter().println(gson.toJson(fetched).toString());
-				//req.setAttribute("json", gson.toJson(fetched));
 			}
 		}
 		else
 		{
-			fetched.setEmail(null);
+			fetched = new Mentee("null", "null");
+			System.out.println(gson.toJson(fetched).toString());
 			resp.getWriter().println(gson.toJson(fetched).toString());
-			//req.setAttribute("json", fetched);
 		}
 		resp.sendRedirect(req.getHeader("referer"));
 		resp.getWriter().flush();
