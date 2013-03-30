@@ -60,27 +60,29 @@
                                     
 			
 <script>
-function getCookie(c_name)
-{
-var i,x,y,ARRcookies=document.cookie.split(";");
-for (i=0;i<ARRcookies.length;i++)
-  {
-  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
-  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
-  x=x.replace(/^\s+|\s+$/g,"");
-  if (x==c_name)
-    {
-    return unescape(y);
-    }
-  }
+function setCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
 }
 
-function setCookie(c_name,value,exdays)
-{
-var exdate=new Date();
-exdate.setDate(exdate.getDate() + exdays);
-var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-document.cookie=c_name + "=" + c_value;
+function getCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
 }
 
 </script>
@@ -98,20 +100,33 @@ function submitForm(thisObj, thisEvent) {
 	var jsonData = JSON.stringify(jsonObj);
 	alert(jsonData);
 	
-	setCookie('username', 'asshole', 1);
-	setCookie('firstName', 'Asshole', 1);
+	//setCookie('email', 'asshole', 1);
+	//setCookie('firstName', 'Asshole', 1);
 	
 	$.post('/login', jsonData, function(data){
-		setCookie('username', 'asshole', 1);
-		setCookie('firstName', 'Asshole', 1);
+		var obj = $.parseJSON(data);
+		if (obj.Email === null)
+		{
+			alert("email is fucking wrong");	
+		}
+		else if (obj.Password === null)
+		{
+			alert("password is fucking wrong");
+		}
+		else
+		{
+			setCookie('email', obj.Email, 1);
+			setCookie('firstName', obj.FirstName, 1);
+			return true;
+		}
 		
 	});
 	
-	   return false;  // prevents the page from refreshing before JSON is read from server response
+	return false;  // prevents the page from refreshing before JSON is read from server response
 }
 
-
-if (1)
+//displays login bar if not logged in
+if (getCookie('email') == null)
 {
 	document.getElementById("loginDiv").innerHTML='<form name="login" class="navbar-form pull-right" method="post" action="/login">' +
     '<input id="email" class="span2" type="text" placeholder="Email"> ' +
