@@ -108,7 +108,7 @@ function submitForm(thisObj, thisEvent) {
 	//setCookie('email', 'asshole', 1);
 	//setCookie('firstName', 'Asshole', 1);
 	
-	$.post("login", {json:jsonData}, function(data){
+	$.post("login", jsonData, function(data){
 		alert('fuck');
 		var obj = $.parseJSON(data);
 		if (obj.Email === 'null')
@@ -132,7 +132,7 @@ function submitForm(thisObj, thisEvent) {
 }
 
 //displays login bar if not logged in
-if (getCookie('email') != null)
+if (getCookie('email') == null)
 {
 	document.getElementById("loginDiv").innerHTML='<form name="login" class="navbar-form pull-right" method="post" action="/login">' +
     '<input id="email" class="span2" type="text" placeholder="Email"> ' +

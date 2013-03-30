@@ -21,22 +21,11 @@ public class LogInServlet extends HttpServlet {
 			throws IOException {
 		resp.setContentType("text/json");
 		String json = req.getParameter("json");
-		System.out.println("3");
 		Gson gson = new Gson();
-<<<<<<< HEAD
-		Mentee temp = gson.fromJson(json, Mentee.class);
-		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getPassword()).get();
 
-=======
-		
 		Mentee temp = gson.fromJson(json, Mentee.class);
-		System.out.println("4");
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
-		System.out.println("5");
-		System.out.println(json);
-		System.out.println(temp);
-		
->>>>>>> started logout stuff
+
 		if(fetched != null)
 		{
 			if(fetched.getPassword().equals(temp.getPassword()))
