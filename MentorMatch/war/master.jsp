@@ -111,13 +111,10 @@ function submitForm(thisObj, thisEvent) {
 	//setCookie('email', 'asshole', 1);
 	//setCookie('firstName', 'Asshole', 1);
 	
-<<<<<<< HEAD
+
 	$.post("login", {json: jsonData}, function(data){
 		alert('success');
-=======
-	$.post("login", {json : jsonData}, function(data){
-		alert('fuck');
->>>>>>> GSON Restructuring
+
 		var obj = $.parseJSON(data);
 		if (obj.Email === 'null')
 		{
