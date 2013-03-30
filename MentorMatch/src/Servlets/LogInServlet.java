@@ -20,10 +20,18 @@ public class LogInServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/json");
-		String json = req.getParameter("json");
 		Gson gson = new Gson();
+<<<<<<< HEAD
 
 		Mentee temp = gson.fromJson(json, Mentee.class);
+=======
+		/*String json = req.getParameter("json");
+		Gson gson = new Gson();
+		System.out.println(j);
+		Mentee temp = gson.fromJson(json, Mentee.class);*/
+		Mentee temp = new Mentee(req.getParameter("email"), req.getParameter("password"));
+		System.out.println(temp.getEmail());
+>>>>>>> Changing sevlet
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
 
 		if(fetched != null)
