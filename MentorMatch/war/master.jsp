@@ -35,7 +35,7 @@
                                                         <li><a href="#contact">Contact</a></li>
                                                         <li class="dropdown">
                                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                                            <ul class="dropdown-menu">
+                                                            <ul id="ddl" class="dropdown-menu">
                                                                 <li><a href="#">Action</a></li>
                                                                 <li><a href="#">Another action</a></li>
                                                                 <li><a href="#">Something else here</a></li>
@@ -111,11 +111,11 @@ function submitForm(thisObj, thisEvent) {
 	$.post("login", {json:jsonData}, function(data){
 		alert('fuck');
 		var obj = $.parseJSON(data);
-		if (obj.Email === null)
+		if (obj.Email === 'null')
 		{
 			alert("email is fucking wrong");	
 		}
-		else if (obj.Password === null)
+		else if (obj.Password === 'null')
 		{
 			alert("password is fucking wrong");
 		}
@@ -132,7 +132,7 @@ function submitForm(thisObj, thisEvent) {
 }
 
 //displays login bar if not logged in
-if (getCookie('email') == null)
+if (getCookie('email') != null)
 {
 	document.getElementById("loginDiv").innerHTML='<form name="login" class="navbar-form pull-right" method="post" action="/login">' +
     '<input id="email" class="span2" type="text" placeholder="Email"> ' +
@@ -143,8 +143,10 @@ if (getCookie('email') == null)
 else
 {
 	var firstName = getCookie('firstName');
-	document.getElementById("loginDiv").innerHTML='<h4>Welcome, ' + firstName + '</h4>';
+	document.getElementById("loginDiv").innerHTML='<h4 class="pull-right">Welcome, ' + firstName + '</h4>';
+	$('#ddl').html('<li><a id = "logout">Logout</a></li>');
 }
 
+$('#logout').click();
 
 </script>
