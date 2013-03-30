@@ -31,19 +31,24 @@ public class LogInServlet extends HttpServlet {
 		{
 			if(fetched.getPassword().equals(temp.getPassword()))
 			{
-				req.setAttribute("json", gson.toJson(fetched).toString());
+				resp.getWriter().println(gson.toJson(fetched).toString());
+				//req.setAttribute("json", gson.toJson(fetched).toString());
 			}
 			else
 			{
 				fetched.setPassword(null);
-				req.setAttribute("json", gson.toJson(fetched));
+				resp.getWriter().println(gson.toJson(fetched).toString());
+				//req.setAttribute("json", gson.toJson(fetched));
 			}
 		}
 		else
 		{
 			fetched.setEmail(null);
-			req.setAttribute("json", fetched);
+			resp.getWriter().println(gson.toJson(fetched).toString());
+			//req.setAttribute("json", fetched);
 		}
 		resp.sendRedirect(req.getHeader("referer"));
+		resp.getWriter().flush();
+		resp.getWriter().close();
 	}
 }
