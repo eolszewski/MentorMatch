@@ -29,25 +29,11 @@ public class LogInServlet extends HttpServlet {
 		Mentee temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", ""));
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
 		
-
-
-		if(fetched != null)
-		{
-			if(fetched.getPassword().equals(temp.getPassword()))
-			{
-				//resp.getWriter().println(gson.toJson(fetched).toString());
-			}
-			else
-			{
-				fetched.setPassword("null");
-				//resp.getWriter().println(gson.toJson(fetched).toString());
-			}
-		}
+		if(fetched != null && fetched.getEmail() != null) {
+			if(!fetched.getPassword().equals(temp.getPassword()))
+				fetched.setPassword("null"); }
 		else
-		{
 			fetched = new Mentee("null", "null");
-			//resp.getWriter().println(gson.toJson(fetched).toString());
-		}
 		
 		resp.setContentType("application/json");
 		resp.getWriter().write(gson.toJson(fetched).toString());
