@@ -9,17 +9,7 @@
                 <p>
                 <button type="button" id = "register" class="btn btn-large btn-primary" onclick="window.location = '/register.jsp'">Register</button>
                 
-                <!--
-                <span
-                    class="g-signin"
-                    id="g-signin"
-                    data-callback="signinCallback"
-                    data-clientid="996517486385.apps.googleusercontent.com"
-                    data-cookiepolicy="single_host_origin"
-                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                    data-scope="https://www.googleapis.com/auth/plus.login">
-                  </span>
-                  -->
+             
                 </p>
             </div>
             

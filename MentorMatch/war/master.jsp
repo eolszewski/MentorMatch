@@ -106,21 +106,16 @@ function submitForm(thisObj, thisEvent) {
 	jsonObj.password = password;
 	var jsonData = JSON.stringify(jsonObj);
 	
-	//setCookie('email', 'asshole', 1);
-	//setCookie('firstName', 'Asshole', 1);
-	
 
 	$.post("login", {json: jsonData}, function(data){
-		alert('success');
-
-		var obj = $.parseJSON(data);
-		if (obj.Email === 'null')
+		
+		if (data.Email === 'null')
 		{
-			alert("email is fucking wrong");	
+			alert("Sorry, we don't have an account associated with the email address you entered.");	
 		}
-		else if (obj.Password === 'null')
+		else if (data.Password === 'null')
 		{
-			alert("password is fucking wrong");
+			alert("The password you entered is incorrect.");
 		}
 		else
 		{
@@ -128,10 +123,9 @@ function submitForm(thisObj, thisEvent) {
 			setCookie('firstName', obj.FirstName, 1);
 			return true;
 		}
-		
+	
 	}, 'json');
 	
-	alert("finished");
 	
 	return false;  // prevents the page from refreshing before JSON is read from server response
 }
@@ -143,7 +137,7 @@ if (getCookie('email') == null)
     '<input id="email" class="span2" type="text" placeholder="Email"> ' +
 	'<input id="password" class="span2" type="password" placeholder="Password">' +
     '<input type="submit" class="btn" name="submit" value="Login" onclick="return submitForm(this, event);">' +
-    '</form>'; q
+    '</form>'; 
 }
 else
 {

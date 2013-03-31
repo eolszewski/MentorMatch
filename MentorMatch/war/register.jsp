@@ -8,17 +8,17 @@
 													alert(major + " added");
 														
 												}
-												function addMajor() {
+												function addInterest() {
 													var interest = document.getElementById('interests').value;
 													alert(interest + " added");
 														
 												}
-												function addMajor() {
+												function addCurrentCourse() {
 													var currentcourse = document.getElementById('currentcourses').value;
 													alert(currentcourse + " added");
 														
 												}
-												function addMajor() {
+												function addPastCourse() {
 													var pastcourse = document.getElementById('pastcourses').value;
 													alert(pastcourse + " added");
 														
@@ -66,7 +66,9 @@
                                                         <div class="input-append">
                                                           <input id="majors" type="text" data-provide="typeahead">
                                                           <button class="btn" type="button" onClick="addMajor()">Add</button>
-                                                        </div> 
+                                                        </div>
+                                                        <br/>
+                                                        <textarea id="selectedMajors"></textarea>
                                                         <label>Interests</label>
                                                         <div class="input-append">
                                                           <input id="interests" type="text" data-provide="typeahead">

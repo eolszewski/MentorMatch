@@ -21,8 +21,6 @@ public class LogInServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		
-		System.out.println("1");
-		resp.setContentType("text/json");
 		Gson gson = new Gson();
 
 		JsonParser jsonParser = new JsonParser();
@@ -30,26 +28,28 @@ public class LogInServlet extends HttpServlet {
 		
 		Mentee temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", ""));
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
+		
+
 
 		if(fetched != null)
 		{
 			if(fetched.getPassword().equals(temp.getPassword()))
 			{
-				resp.getWriter().println(gson.toJson(fetched).toString());
+				//resp.getWriter().println(gson.toJson(fetched).toString());
 			}
 			else
 			{
 				fetched.setPassword("null");
-				resp.getWriter().println(gson.toJson(fetched).toString());
+				//resp.getWriter().println(gson.toJson(fetched).toString());
 			}
 		}
 		else
 		{
 			fetched = new Mentee("null", "null");
-			resp.getWriter().println(gson.toJson(fetched).toString());
+			//resp.getWriter().println(gson.toJson(fetched).toString());
 		}
-		resp.sendRedirect(req.getHeader("referer"));
-		resp.getWriter().flush();
-		resp.getWriter().close();
+		
+		resp.setContentType("application/json");
+		resp.getWriter().write(gson.toJson(fetched).toString());
 	}
 }
