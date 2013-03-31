@@ -20,6 +20,8 @@ import com.google.gson.JsonParser;
 public class LogInServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		
+		System.out.println("1");
 		resp.setContentType("text/json");
 		Gson gson = new Gson();
 

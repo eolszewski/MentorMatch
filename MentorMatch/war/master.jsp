@@ -106,8 +106,6 @@ function submitForm(thisObj, thisEvent) {
 	jsonObj.password = password;
 	var jsonData = JSON.stringify(jsonObj);
 	
-	alert(jsonData);
-	
 	//setCookie('email', 'asshole', 1);
 	//setCookie('firstName', 'Asshole', 1);
 	
@@ -132,6 +130,8 @@ function submitForm(thisObj, thisEvent) {
 		}
 		
 	}, 'json');
+	
+	alert("finished");
 	
 	return false;  // prevents the page from refreshing before JSON is read from server response
 }
