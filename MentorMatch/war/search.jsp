@@ -16,10 +16,23 @@
                                         
                                         <!-- Main hero unit for a primary marketing message or call to action -->
                                         <div class="span8">
-                                        	<div class="well" style="height:50px;">
+                                        	<div class="well" style="height:100px;">
                                                 <form class="navbar-search pull-left">
-   												 <input type="text" class="search-query" placeholder="Search" style="height:50px;width:300px;">
-    											<input type="submit" value="Go" class="btn btn-large btn-primary">
+   							
+   												 <label class="checkbox inline">
+												  <input type="checkbox" id="optionsMajor" value="true" checked>
+												  Major
+												</label>
+												<label class="checkbox inline">
+												  <input type="checkbox" id="optionsHometown" value="true">
+												  Hometown
+												</label>
+												<label class="checkbox inline">
+												  <input type="checkbox" id="optionsActivities" value="true">
+												  Activities
+												</label>
+    											<input type="submit" value="Go" class="btn btn-large btn-primary" onClick="findMentors()">
+
                                                 </form>
                                              
                                             </div>
@@ -52,6 +65,34 @@
                                             </div>   
                                             
                                         </div>
+                                        
+   <script>
+   function findMentors(thisObj, thisEvent) {
+	   
+	    var email = $('#email').val();
+
+		var major = $('#optionsMajor').val();
+		var hometown = $('#optionsHometown').val();
+		var activities = $('#optionsActivities').val();
+		
+		var jsonObj = new Object();
+		jsonObj.email = email;
+		jsonObj.major = major;
+		jsonObj.hometown = hometown;
+		jsonObj.activities = activities;
+		var jsonData = JSON.stringify(jsonObj);
+		
+
+		$.post("search", {json: jsonData}, function(data){
+			
+			// Display the data as required.
+		
+		}, 'json');
+		
+		
+		return false;  // prevents the page from refreshing before JSON is read from server response
+	}
+   </script>
                                         
                                         
                                         

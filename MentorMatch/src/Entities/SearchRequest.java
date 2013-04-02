@@ -24,7 +24,7 @@ public class SearchRequest {
 		return gson.toJson(this);
 	}
 	
-	public static SearchRequest fromJson(String json) {
+	public SearchRequest fromJson(String json) {
 		Gson gson = new Gson();
 		return gson.fromJson(json, SearchRequest.class);
 		
@@ -44,6 +44,14 @@ public class SearchRequest {
 
 	public void setMajors(ArrayList<String> majors) {
 		this.majors = majors;
+	}
+
+	public String getHometown() {
+		return hometown;
+	}
+
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
 	}
 
 }

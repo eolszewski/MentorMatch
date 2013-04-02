@@ -12,6 +12,11 @@ public class Search {
 	public static SearchResult performSearch( SearchRequest sr) {
 		//TODO: alter order based on user input
 		Query<Mentee> q = ofy().load().type(Mentee.class).filter("major in", sr.getMajors() );
+		
+		if ( sr.getHometown() != null ) {
+			q = q.filter("hometown in", sr.getHometown() );
+		}
+		
 		if ( sr.getActivities() != null ) {
 			q = q.filter("activities in", sr.getActivities() );
 		}		
