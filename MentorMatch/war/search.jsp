@@ -16,22 +16,29 @@
                                         
                                         <!-- Main hero unit for a primary marketing message or call to action -->
                                         <div class="span8">
-                                        	<div class="well" style="height:100px;">
-                                                <form class="navbar-search pull-left">
-   							
+                                        	<div id="search-div" class="well" style="height:100px;">
+                                                <form id="search-form" class="navbar-search pull-left" action="/search">
+   													
    												 <label class="checkbox inline">
-												  <input type="checkbox" id="optionsMajor" value="true" checked>
+												  <input type="checkbox" name="search-options-majors" value="majors" >
 												  Major
 												</label>
 												<label class="checkbox inline">
-												  <input type="checkbox" id="optionsHometown" value="true">
-												  Hometown
+												  <input type="checkbox" id="search-options-zipcode" value="zipcode" >
+												  Zipcode
 												</label>
 												<label class="checkbox inline">
-												  <input type="checkbox" id="optionsActivities" value="true">
-												  Activities
+												  <input type="checkbox" name="search-options-interests" value="interests" >
+												  Interests
 												</label>
-    											<input type="submit" value="Go" class="btn btn-large btn-primary" onClick="findMentors()">
+												<label class="checkbox inline">
+												  <input type="checkbox" name="search-options-classes" value="classes" >
+												  Classes
+												</label>
+												<p>
+												<br/>
+    											<input type="submit" value="Go" class="btn btn-large btn-primary" />
+    											</p>
 
                                                 </form>
                                              
@@ -40,60 +47,57 @@
                                          	<div>
                                             	<h3>Search Results <small>for weed</small></h3>
                                                 <div class="tabbable tabs-right">
-                                        		<ul class="nav nav-tabs nav-stacked" style="width:100%;">
+                                        		<ul class="nav nav-tabs nav-stacked" id="search-result" style="width:100%;">
                                             		<li><a href="#">
-                                                    <h4>Asad Malik</h4>
-                                                    <img src="img/SampleProfileImage.jpeg" class="img-polaroid" style="height:inherit; width:150px;">                                                   
-                                                    <br/> 
-                                                    <br/><strong>Major(s): </strong>Electrical Engineering	
-                                                    <br/><strong>Interests:</strong> smoking weed, playing raquetball
-                                                    </a>
+                                                    	<h4>Asad Malik</h4>
+                                                    	<img src="img/SampleProfileImage.jpeg" class="img-polaroid" style="height:inherit; width:150px;">                                                   
+                                                    	<br/> 
+                                                    	<br/><strong>Major(s): </strong>Electrical Engineering	
+                                                    	<br/><strong>Interests:</strong> smoking weed, playing raquetball
+                                                    	</a>
                                                     </li>
-                                                    <li><a href="#">
-                                                    <h4>Sunny Olszewski</h4>
-                                                    <img src="img/SampleProfileImage2.jpg" class="img-polaroid" style="height:inherit; width:150px;">                                     
-                                                    <br/> 
-                                                    <br/><strong>Major(s): </strong>Electrical Engineering	
-                                                    <br/><strong>Interests:</strong> smoking weed, robbing banks
-                                                    </a></li>
-                                                    <li><a href="#">
-                                                    <h4>Adnan Aziz</h4>
-                                                    	Computer Science
-                                                    <br/>3rd Year
-                                                    <br/>Interests: smoking weed, all things jewish</a></li>												</ul>
+                                                    </ul>
                                                </div>
                                             </div>   
                                             
                                         </div>
                                         
    <script>
-   function findMentors(thisObj, thisEvent) {
-	   
-	    var email = $('#email').val();
-
-		var major = $('#optionsMajor').val();
-		var hometown = $('#optionsHometown').val();
-		var activities = $('#optionsActivities').val();
-		
-		var jsonObj = new Object();
-		jsonObj.email = email;
-		jsonObj.major = major;
-		jsonObj.hometown = hometown;
-		jsonObj.activities = activities;
-		var jsonData = JSON.stringify(jsonObj);
-		
-
-		$.post("search", {json: jsonData}, function(data){
-			
-			// Display the data as required.
-		
-		}, 'json');
-		
-		
-		return false;  // prevents the page from refreshing before JSON is read from server response
-	}
-   </script>
-                                        
+/* attach a submit handler to the form */
+$("#search-form").submit(function(event) {
+ 
+  /* stop form from submitting normally */
+  event.preventDefault();
+ 
+  /* get some values from elements on the page: */
+  var $form = $( this ),
+  	  email = "test@test.com",
+      majors = $form.find('input[name="search-options-majors"]').is(':checked')? "true":"false",
+      home = $form.find('input[name="search-options-zipcode"]').is(':checked')? "true":"false",
+      act = $form.find('input[name="search-options-interests"]').is(':checked')? "true":"false",
+      classes = $form.find('input[name="search-options-classes"]').is(':checked')? "true":"false",
+      url = $form.attr( 'action' );
+  
+  var json = {}
+ 
+  /* Send the data using post */
+  var posting = $.post( url, { email: email, 
+	  majors: majors,
+	  zipcode: home,
+	  interests: act,
+	  classes: classes,
+	  } );
+ 
+  /* Put the results in a div
+  		You've got json coming back at you with
+  		all the fields from a mentor in the matches
+  		field, so process and insert into HTML as you wish */
+  posting.done(function( data ) {
+    var matches = $( data ).find( '#matches' );
+    $( "#search-result" ).empty().append( matches );
+  });
+});
+</script>                                  
                                         
                                         
 <%@include file="footer.jsp" %>   

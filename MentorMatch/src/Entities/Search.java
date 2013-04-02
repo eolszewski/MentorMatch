@@ -1,5 +1,4 @@
 package Entities;
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import com.google.gson.Gson;
 import com.googlecode.objectify.annotation.Entity;
@@ -11,15 +10,20 @@ public class Search {
 	@Id String email;
 	public static SearchResult performSearch( SearchRequest sr) {
 		//TODO: alter order based on user input
-		Query<Mentee> q = ofy().load().type(Mentee.class).filter("major in", sr.getMajors() );
 		
-		if ( sr.getHometown() != null ) {
-			q = q.filter("hometown in", sr.getHometown() );
+		Mentee mentee = OfyService.ofy().load().type(Mentee.class).id( sr.mentee ).get();
+		Query<Mentor> q = OfyService.ofy().load().type(Mentor.class);
+		
+		if ( sr.majors ) {
+			q = q.filter("majors in", mentee.getMajors());			
+		}		
+		if ( sr.zipcode ) {
+			q = q.filter("zipcode", mentee.getZipCode() );
+		}		
+		if ( sr.interests ) {
+			q = q.filter("interests in", mentee.getInterests() );
 		}
 		
-		if ( sr.getActivities() != null ) {
-			q = q.filter("activities in", sr.getActivities() );
-		}		
 		SearchResult result = new SearchResult();
 		result.setMatches( q.list() );
 		return result;

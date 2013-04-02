@@ -5,7 +5,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FindMentorServlet</servlet-name>
-		<url-pattern>/findmentor</url-pattern>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>

@@ -8,12 +8,13 @@ import com.googlecode.objectify.annotation.*;
 @Cache @Unindex @Entity
 public class Mentee {
 	
-	private String FirstName, LastName, Biography, Classification;
+	private String FirstName, LastName, Biography;
+	@Index private String Classification;
 	@Index private int ZipCode;
 	@Id private String Email;
 	private String Password;
 	@Index private ArrayList <String> Interests, Current_Courses, Past_Courses;
-	List<String> Majors;
+	@Index List<String> Majors;
 	private ArrayList <Message> Messages;
 	ArrayList <Relationship> Relationships;
 	
@@ -55,4 +56,12 @@ public class Mentee {
 	public Mentee setEmail(String email) { Email = email; return this; }
 	public List<String> getMajors() { return Majors; }
 	public Mentee setMajors(List<String> list) { Majors = list; return this;}
+	public Mentee setMajor(String major) { 
+		Majors = new ArrayList<String>();
+		Majors.add(major); 
+		return this;
+		}
+	public Mentee setZipCode(int zipcode) { ZipCode = zipcode; return this; }
+	public int getZipCode() { return ZipCode; }
+	public ArrayList<String> getInterests() { return Interests; }
 }
