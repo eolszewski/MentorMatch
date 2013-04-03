@@ -1,15 +1,40 @@
 <%@include file="master.jsp" %>
                                  <title>MentorMatch - Registration</title>
-                                 
-                                 <script>   
-                                 js_cols.require('js_cols.Queue');  
-								</script>
+
 								
 								<script type="text/javascript">
 								
 									function submitRegistration(){
 										//validate data
 										
+										var majorArray = [];
+										var index = 0;
+										$('label.major').each(function(){
+											//alert($(this).attr('value'));
+											majorArray[index] = $(this).attr('value');
+											index++;
+										});
+										
+										var interestArray = []; index = 0;
+										$('label.interest').each(function(){
+											//alert($(this).attr('value'));
+											interestArray[index] = $(this).attr('value');
+											index++;
+										});
+										
+										var curcourseArray = []; index = 0;
+										$('label.curcourse').each(function(){
+											//alert($(this).attr('value'));
+											curcourseArray[index] = $(this).attr('value');
+											index++;
+										});
+										
+										var pastcourseArray = []; index = 0;
+										$('label.pastcourse').each(function(){
+											//alert($(this).attr('value'));
+											pastcourseArray[index] = $(this).attr('value');
+											index++;
+										});
 										
 										//build json
 										var jsonObj = new Object();
@@ -18,8 +43,12 @@
 										jsonObj.firstName = $('#fname').val();
 										jsonObj.lastName = $('#lname').val();
 										jsonObj.zipcode = $('#zip').val();
+										jsonObj.majors = majorArray;
+										jsonObj.interests = interestArray;
+										jsonObj.currentCourses = curcourseArray;
+										jsonObj.pastCourses = pastcourseArray;
 										var jsonData = JSON.stringify(jsonObj);
-										
+										alert(jsonData);
 									
 										$.post("register", {json: jsonData}, function(data){
 											
@@ -42,27 +71,16 @@
 									}
 									
 									function removeChoice(item) {
-										
 										element = document.getElementById(item);
 										element.parentNode.removeChild(element);
-										
-									} 
-									
-									function getMajors()
-									{
-										var majorArray = new Array();
-										var index = 0;
-										$('label.major').each(function(){
-											//alert($(this).attr('value'));
-											majorArray[index] = $(this).attr('value');
-										});
 									}
 								
 								 	function addMajor() {
 										var major = $('#majors').val();
-										$('#majors').val("")
+										$('#majors').val("");
+										$('#majors').focus();
 										
-										if ($("#" + major).get(0))
+										if ($("#m" + major).get(0))
 										{
 											alert("You've already added this major.");
 											return false;	
@@ -73,7 +91,7 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="'+ major +'"class="well well-small" style="width:200px;">' +
+										var listItem = '<div id="m'+ major +'"class="well well-small" style="width:200px;">' +
 										'<label class="major" value="' + major + '">' + major + 
 										'<button class="close" onClick="removeChoice(&quot;' +
 										major + 
@@ -85,8 +103,9 @@
 								 	
 									function addInterest() {
 										var interest = $('#interests').val();
-										$('#interests').val("")
-										if ($("#" + interest).get(0))
+										$('#interests').val("");
+										$('#interests').focus();
+										if ($("#i" + interest).get(0))
 										{
 											alert("You've already added this interest.");
 											return false;	
@@ -97,19 +116,19 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="'+ interest +'"class="well well-small" style="width:200px;">' +
+										var listItem = '<div id="i'+ interest +'"class="well well-small" style="width:200px;">' +
 										'<label class="interest" value="' + interest + '">' + interest + 
 										'<button class="close" onClick="removeChoice(&quot;' +
 										interest + 
 										'&quot;);return false;">&times;</button></label></div>';
 										
 										document.getElementById("selectedInterests").innerHTML += listItem;
-											
 									}
 									function addCurrentCourse() {
 										var curcourse = $('#currentcourses').val();
-										$('#currentcourses').val("")
-										if ($("#" + curcourse).get(0))
+										$('#currentcourses').val("");
+										$('#currentcourses').focus();
+										if ($("#cc" + curcourse).get(0))
 										{
 											alert("You've already added this course.");
 											return false;	
@@ -120,19 +139,19 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="'+ curcourse +'"class="well well-small" style="width:200px;">' +
+										var listItem = '<div id="cc'+ curcourse +'"class="well well-small" style="width:200px;">' +
 										'<label class="curcourse" value="' + curcourse + '">' + curcourse + 
 										'<button class="close" onClick="removeChoice(&quot;' +
 										curcourse + 
 										'&quot;);return false;">&times;</button></label></div>';
 										
 										document.getElementById("selectedCurCourses").innerHTML += listItem;
-											
 									}
 									function addPastCourse() {
 										var pastcourse = $('#pastcourses').val();
-										$('#pastcourses').val("")
-										if ($("#" + pastcourse).get(0))
+										$('#pastcourses').val("");
+										$('#pastcourses').focus();
+										if ($("#pc" + pastcourse).get(0))
 										{
 											alert("You've already added this course.");
 											return false;	
@@ -143,7 +162,7 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="'+ pastcourse +'"class="well well-small" style="width:200px;">' +
+										var listItem = '<div id="pc'+ pastcourse +'"class="well well-small" style="width:200px;">' +
 										'<label class="pastcourse" value="' + pastcourse + '">' + pastcourse + 
 										'<button class="close" onClick="removeChoice(&quot;' +
 										pastcourse + 
@@ -162,9 +181,11 @@
                                                 <form autocomplete="off">
  												<fieldset>
  												<legend><h3>Registration</h3></legend>
+                                                 	
                                                  	<label>Email</label>
 													 	<input id="emailReg" type="text" placeholder="Type something">
                                                      <br/>
+
                                                      <label>Password</label>
 													 	<input id="passwordReg" type="password" placeholder="Password">
                                                      <br/>

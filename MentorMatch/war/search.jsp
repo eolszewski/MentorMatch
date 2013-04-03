@@ -14,7 +14,6 @@
                                             </div><!--/.well -->
                                         </div><!--/span-->
                                         
-                                        <!-- Main hero unit for a primary marketing message or call to action -->
                                         <div class="span8">
                                         	<div id="search-div" class="well" style="height:100px;">
                                                 <form id="search-form" class="navbar-search pull-left" action="/search">
