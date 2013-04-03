@@ -56,12 +56,14 @@ public class Mentee {
 	public Mentee setEmail(String email) { Email = email; return this; }
 	public List<String> getMajors() { return Majors; }
 	public Mentee setMajors(List<String> list) { Majors = list; return this;}
-	public Mentee setMajor(String major) { 
-		Majors = new ArrayList<String>();
-		Majors.add(major); 
-		return this;
-		}
+	public Mentee setMajor(String major) { Majors = new ArrayList<String>();
+		Majors.add(major); return this; }
 	public Mentee setZipCode(int zipcode) { ZipCode = zipcode; return this; }
 	public int getZipCode() { return ZipCode; }
 	public ArrayList<String> getInterests() { return Interests; }
+	public Mentee setInterests(List<String> list) { Interests = (ArrayList<String>) list; return this;}	
+	public ArrayList<String> getCurrentCourses() { return Current_Courses; }
+	public Mentee setCurrentCourses(List<String> list) { Current_Courses = (ArrayList<String>) list; return this;}	
+	public ArrayList<String> getPastCourses() { return Past_Courses; }
+	public Mentee setPastCourses(List<String> list) { Past_Courses = (ArrayList<String>) list; return this;}
 }

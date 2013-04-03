@@ -11,6 +11,9 @@ import Entities.Mentee;
 import Entities.Mentor;
 import Entities.OfyService;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
@@ -23,19 +26,22 @@ public class RegisterServlet extends HttpServlet {
 		doPost(req,resp);
 	}
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.setContentType("text/plain");
-		Mentee newUser;
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Gson gson = new Gson();
+
+		JsonParser jsonParser = new JsonParser();
+		JsonObject jo = (JsonObject)jsonParser.parse(req.getParameter("json"));
 		
-		if(request.getParameter("UserType").equals("Mentor"))
-			newUser = new Mentee(request.getParameter("Email"),request.getParameter("Password"));
-		else
-			newUser = new Mentor(request.getParameter("Email"), request.getParameter("Password"));
-		//newUser.setFirstName(request.getParameter("FirstName")).setLastName(request.getParameter("LastName")).setMajors(Arrays.asList(request.getParameter("Majors").split("\\s*,\\s*")));
-		newUser.setFirstName(request.getParameter("FirstName")).setLastName(request.getParameter("LastName"));
-		OfyService.ofy().save().entity(newUser).now();
-		//// This will return the Cat
-		//Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(email.id).get();
-;
+		Mentee temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", ""));
+		temp.setFirstName(jo.get("firstName").toString().replace("\"", "")).setLastName(jo.get("lastName").toString().replace("\"", "")).setZipCode(Integer.parseInt(jo.get("zipcode").toString().replace("\"", "")));
+		temp.setMajors(Arrays.asList(jo.get("majors").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
+		temp.setInterests(Arrays.asList(jo.get("interests").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
+		temp.setCurrentCourses(Arrays.asList(jo.get("currentCourses").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
+		temp.setPastCourses(Arrays.asList(jo.get("pastCourses").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
+		
+		OfyService.ofy().save().entity(temp).now();
+		
+		resp.setContentType("application/json");
+		resp.getWriter().write(gson.toJson(temp).toString());
 	}
 }
