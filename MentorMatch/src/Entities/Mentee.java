@@ -13,7 +13,8 @@ public class Mentee {
 	@Index private int ZipCode;
 	@Id private String Email;
 	private String Password;
-	@Index private ArrayList <String> Interests, Current_Courses, Past_Courses;
+	private String Error;
+	@Index private List <String> Interests, Current_Courses, Past_Courses;
 	@Index List<String> Majors;
 	private ArrayList <Message> Messages;
 	ArrayList <Relationship> Relationships;
@@ -60,10 +61,12 @@ public class Mentee {
 		Majors.add(major); return this; }
 	public Mentee setZipCode(int zipcode) { ZipCode = zipcode; return this; }
 	public int getZipCode() { return ZipCode; }
-	public ArrayList<String> getInterests() { return Interests; }
-	public Mentee setInterests(List<String> list) { Interests = (ArrayList<String>) list; return this;}	
-	public ArrayList<String> getCurrentCourses() { return Current_Courses; }
-	public Mentee setCurrentCourses(List<String> list) { Current_Courses = (ArrayList<String>) list; return this;}	
-	public ArrayList<String> getPastCourses() { return Past_Courses; }
-	public Mentee setPastCourses(List<String> list) { Past_Courses = (ArrayList<String>) list; return this;}
+	public List<String> getInterests() { return Interests; }
+	public Mentee setInterests(List<String> list) { Interests = (List<String>) list; return this;}	
+	public List<String> getCurrentCourses() { return Current_Courses; }
+	public Mentee setCurrentCourses(List<String> list) { Current_Courses = (List<String>) list; return this;}	
+	public List<String> getPastCourses() { return Past_Courses; }
+	public Mentee setPastCourses(List<String> list) { Past_Courses = (List<String>) list; return this;}
+	public String getError() { return Error; }
+	public void setError(String error) { Error = error; }
 }
