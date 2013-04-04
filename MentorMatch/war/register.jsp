@@ -6,6 +6,11 @@
 								
 									function submitRegistration(){
 										//validate data
+										var email5 = $('#emailReg').val();
+										if (email5.length <= 0)
+										{
+											document.getElementById("loginDiv").innerHTML="fuck";
+										}
 										
 										var majorArray = [];
 										var index = 0;
@@ -73,7 +78,6 @@
 									function removeChoice(item) {
 										
 										var element = document.getElementById(item);
-										alert(item);
 										element.parentNode.removeChild(element);
 										return false;
 									}
@@ -94,12 +98,13 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="m'+ major +'"class="well well-small" style="width:200px;">' +
+										
+										var listItem = '<div id="m'+ major +'" class="well well-tiny" style="width:200px;">' +
 										'<label class="major" value="' + major + '">' + major + 
 										'<button class="close" onClick="return removeChoice(&quot;m' +
 										major + 
 										'&quot;);">&times;</button></label></div>';
-										
+
 										document.getElementById("selectedMajors").innerHTML += listItem;
 								 	}
 								 	
@@ -118,7 +123,7 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="i'+ interest +'"class="well well-small" style="width:200px;">' +
+										var listItem = '<div id="i'+ interest +'"class="well well-tiny" style="width:200px;">' +
 										'<label class="interest" value="' + interest + '">' + interest + 
 										'<button class="close" onClick="return removeChoice(&quot;i' +
 										interest + 
@@ -141,7 +146,7 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="cc'+ curcourse +'"class="well well-small" style="width:200px;">' +
+										var listItem = '<div id="cc'+ curcourse +'"class="well well-tiny" style="width:200px;">' +
 										'<label class="curcourse" value="' + curcourse + '">' + curcourse + 
 										'<button class="close" onClick="return removeChoice(&quot;cc' +
 										curcourse + 
@@ -164,7 +169,7 @@
 											return false;	
 										}
 										
-										var listItem = '<div id="pc'+ pastcourse +'"class="well well-small" style="width:200px;">' +
+										var listItem = '<div id="pc'+ pastcourse +'"class="well well-tiny" style="width:200px;">' +
 										'<label class="pastcourse" value="' + pastcourse + '">' + pastcourse + 
 										'<button class="close" onClick="return removeChoice(&quot;pc' +
 										pastcourse + 
@@ -172,73 +177,135 @@
 										
 										document.getElementById("selectedPastCourses").innerHTML += listItem;
 									}
+									
+									//autocomplete stuff. later we can change this to pull from a datastore	
+									$(function() {
+									    var availableTags = [
+									      "Aerospace Engineering",
+									      "Electrical Engineering",
+									      "Chemical Engineering",
+									      "Civil Engineering",
+									      "Petroleum Engineering",
+									      "Mechanical Engineering"
+									    ];
+									    $( "#majors" ).autocomplete({
+									      source: availableTags
+									    });
+									  });
+									
+									$(function() {
+									    var availableTags = [
+									      "Football",
+									      "Basketball",
+									      "Baseball",
+									      "Hockey",
+									      "Greek Life",
+									      "Computers",
+									      "Weight Lifting"
+									    ];
+									    $( "#interests" ).autocomplete({
+									      source: availableTags
+									    });
+									  });
+									
+									$(function() {
+									    var availableTags = [
+									      "EE 123K",
+									      "EE 461L",
+									      "ASE 201",
+									      "TD 303",
+									      "MIS 301",
+									      "UGS 301"
+									    ];
+									    $( "#currentcourses" ).autocomplete({
+									      source: availableTags
+									    });
+									  });
+									
+									$(function() {
+									    var availableTags = [
+									      "EE 123K",
+									      "EE 461L",
+									      "ASE 201",
+									      "TD 303",
+									      "MIS 301",
+									      "UGS 301"
+									    ];
+									    $( "#pastcourses" ).autocomplete({
+									      source: availableTags
+									    });
+									  });
 
 									
 								</script>                                     
 
                                  <div class="container">
                                  
-                                     <div class="span11">
-                                     	<div class="well">
+                                     <div class="well span11">
+                                     
+                                     <legend><h3>Registration</h3></legend>
+                                     <div id="errorDiv"></div>
+                                     	<div class="span3">
  												<fieldset>
- 												<legend><h3>Registration</h3></legend>
+ 												
                                                  	
                                                  	<label>Email</label>
-													 	<input id="emailReg" type="text" placeholder="Type something">
+													 	<input id="emailReg" type="text" placeholder="example@example.com">
                                                      <br/>
 
                                                      <label>Password</label>
 													 	<input id="passwordReg" type="password" placeholder="Password">
                                                      <br/>
  													<label>First Name</label>
-													 	<input id="fname" type="text" placeholder="Type something">
+													 	<input id="fname" type="text" placeholder="Jane">
                                                      <br/>
                                                      <label>Last Name</label>
-													 	<input id="lname" type="text" placeholder="Type something">
+													 	<input id="lname" type="text" placeholder="Doe">
                                                      <br/>
                                                      <label>ZipCode</label>
 													 	<input id="zip" type="text" placeholder="Ex: 78705">
                                                      <br/>
-                                                     <label>Major(s)</label>
-                                                     <div class="input-append">
-                                                       <input id="majors" type="text" data-provide="typeahead">
-                                                       <button class="btn" type="button" onClick="addMajor()">Add</button>
-                                                     </div>
-                                                     
-                                                     <div id="selectedMajors"></div>
-                                                     
-                                                     <label>Interests</label>
-                                                     <div class="input-append">
-                                                       <input id="interests" type="text" data-provide="typeahead">
-                                                       <button class="btn" type="button" onClick="addInterest()">Add</button>
-                                                     </div>
-                                                     
-                                                     <div id="selectedInterests"></div> 
-                                                     
-                                                     <label>Current Courses</label>
-                                                     <div class="input-append">
-                                                       <input id="currentcourses" type="text" data-provide="typeahead">
-                                                       <button class="btn" type="button" onClick="addCurrentCourse()">Add</button>
-                                                     </div> 
-                                                     
-                                                     <div id="selectedCurCourses"></div>
-                                                     
-                                                     <label>Past Courses</label>
-                                                     <div class="input-append">
-                                                       <input id="pastcourses" type="text" data-provide="typeahead">
-                                                       <button class="btn" type="button" onClick="addPastCourse()">Add</button>
-                                                     </div> 
-                                                     
-                                                     <div id="selectedPastCourses"></div>
 
-                                                     <table class="table table-hover">
-                                                      
-                                                     </table>
+  
                                                                                                          
  											<br/><button class="btn" onClick="submitRegistration(); return false;">Submit</button>
  													</fieldset>
                                          </div>
                                           
+                                          <div class="span3">
+                                          
+	                                          <label>Major(s)</label>
+	                                          <div class="input-append">
+	                                             <input id="majors" type="text" placeholder="Type to find majors">
+	                                             <button class="btn" type="button" onClick="addMajor()">Add</button>
+	                                           </div>
+	                                          <div id="selectedMajors" ></div>
+	                                          
+	                                          <label>Interests</label>
+	                                          <div class="input-append">
+	                                                       <input id="interests" type="text" data-provide="typeahead" placeholder="Type to find interests">
+	                                                       <button class="btn" type="button" onClick="addInterest()">Add</button>
+	                                                     </div>
+	                                          <div id="selectedInterests"></div> 
+                                          </div>
+                                          
+                                          <div class="span3">
+                                          
+                                              <label>Current Courses</label>                               
+                                              <div class="input-append">
+                                                <input id="currentcourses" type="text" data-provide="typeahead" placeholder="Type to find courses">
+                                                <button class="btn" type="button" onClick="addCurrentCourse()">Add</button>
+                                              </div> 
+                                              
+                                              <div id="selectedCurCourses"></div>
+                                              
+                                              <label>Past Courses</label>
+                                              <div class="input-append">
+                                                <input id="pastcourses" type="text" data-provide="typeahead" placeholder="Type to find courses">
+                                                <button class="btn" type="button" onClick="addPastCourse()">Add</button>
+                                              </div>
+                                              <div id="selectedPastCourses"></div> 
+                                          </div>
                                         
                                       	
                                          

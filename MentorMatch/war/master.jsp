@@ -1,6 +1,8 @@
 <!DOCTYPE jsp>
 <html lang="en">
 <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />	
     <head>
         <meta charset="utf-8">
             

@@ -3132,6 +3132,17 @@ table th[class*="span"],
           border-radius: 3px;
 }
 
+.well-tiny {
+  padding: 3px 6px 1px 6px;
+  background-color: #808080;
+  color: white;
+  margin-bottom: 5px;
+  width:auto;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
 .fade {
   opacity: 0;
   -webkit-transition: opacity 0.15s linear;
