@@ -115,7 +115,8 @@ function submitForm(thisObj, thisEvent) {
 		{
 			setCookie('email', data.Email, 1);
 			setCookie('firstName', data.FirstName, 1);
-			return true;
+			//return true;
+			document.location = "dash.jsp";
 		}
 	
 	}, 'json');
@@ -136,10 +137,14 @@ if (getCookie('email') == null)
 else
 {
 	var firstName = getCookie('firstName');
-	document.getElementById("loginDiv").innerHTML='<h4 class="pull-right">Welcome, ' + firstName + '</h4>';
-	$('#ddl').html('<li><a id = "logout">Logout</a></li>');
+	document.getElementById("loginDiv").innerHTML='<div class="pull-right"><h4 style="color:white;">Welcome, ' + firstName + '</h4></div>';
+	$('#ddl').html('<li><a id = "logout" href="#">Logout</a></li>');
 }
 
-$('#logout').click();
+$('#logout').click(function(){
+	eraseCookie('email');
+	eraseCookie('firstName');
+	document.location = "home.jsp";
+});
 
 </script>
