@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<servlet>
-		<servlet-name>FindMentorServlet</servlet-name>
-		<servlet-class>Servlets.FindMentorServlet</servlet-class>
+		<servlet-name>SearchServlet</servlet-name>
+		<servlet-class>Servlets.SearchServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>FindMentorServlet</servlet-name>
+		<servlet-name>SearchServlet</servlet-name>
 		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 	<servlet>

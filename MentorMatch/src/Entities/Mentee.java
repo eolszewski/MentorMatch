@@ -5,7 +5,7 @@ import java.util.List;
 import com.googlecode.objectify.annotation.*;
 
 
-@Cache @Unindex @Entity
+@Cache @Index @Entity
 public class Mentee {
 	
 	private String FirstName, LastName, Biography;

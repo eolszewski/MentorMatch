@@ -12,16 +12,18 @@ public class Search {
 		//TODO: alter order based on user input
 		
 		Mentee mentee = OfyService.ofy().load().type(Mentee.class).id( sr.mentee ).get();
-		Query<Mentor> q = OfyService.ofy().load().type(Mentor.class);
+		System.out.println( mentee.getEmail() );
+		Query<Mentor> q = OfyService.ofy().load().type(Mentor.class); //TODO: Decide what happens when the user does not select anything.
 		
 		if ( sr.majors ) {
-			q = q.filter("majors in", mentee.getMajors());			
+			q = q.filter("Majors in", mentee.getMajors());
+			System.out.println(q.count());
 		}		
 		if ( sr.zipcode ) {
-			q = q.filter("zipcode", mentee.getZipCode() );
+			q = q.filter("ZipCode", mentee.getZipCode() );
 		}		
 		if ( sr.interests ) {
-			q = q.filter("interests in", mentee.getInterests() );
+			q = q.filter("Interests in", mentee.getInterests() );
 		}
 		
 		SearchResult result = new SearchResult();

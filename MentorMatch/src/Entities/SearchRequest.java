@@ -14,6 +14,7 @@ public class SearchRequest {
 	public boolean zipcode;
 	public boolean interests;
 	public boolean classes;
+	public boolean empty;
 
 	
 	

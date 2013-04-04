@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="App Engine JUnit" systemlibrary="false">
+        <archive path="C:/Users/Brad/.eclipse/org.eclipse.platform_4.2.0_1450227062/plugins/com.google.appengine.eclipse.sdkbundle_1.7.6/appengine-java-sdk-1.7.6/lib/impl/appengine-api.jar"/>
+        <archive path="C:/Users/Brad/.eclipse/org.eclipse.platform_4.2.0_1450227062/plugins/com.google.appengine.eclipse.sdkbundle_1.7.6/appengine-java-sdk-1.7.6/lib/impl/appengine-api-labs.jar"/>
+        <archive path="C:/Users/Brad/.eclipse/org.eclipse.platform_4.2.0_1450227062/plugins/com.google.appengine.eclipse.sdkbundle_1.7.6/appengine-java-sdk-1.7.6/lib/impl/appengine-api-stubs.jar"/>
+        <archive path="C:/Users/Brad/.eclipse/org.eclipse.platform_4.2.0_1450227062/plugins/com.google.appengine.eclipse.sdkbundle_1.7.6/appengine-java-sdk-1.7.6/lib/testing/appengine-testing.jar"/>
+    </library>
+</eclipse-userlibraries>

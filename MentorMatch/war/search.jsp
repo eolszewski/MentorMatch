@@ -70,7 +70,7 @@ $("#search-form").submit(function(event) {
  
   /* get some values from elements on the page: */
   var $form = $( this ),
-  	  email = "test@test.com",
+  	  email = getCookie('email'),
       majors = $form.find('input[name="search-options-majors"]').is(':checked')? "true":"false",
       home = $form.find('input[name="search-options-zipcode"]').is(':checked')? "true":"false",
       act = $form.find('input[name="search-options-interests"]').is(':checked')? "true":"false",

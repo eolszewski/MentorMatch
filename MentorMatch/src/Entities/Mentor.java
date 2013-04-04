@@ -3,7 +3,7 @@ import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.EntitySubclass;
 import com.googlecode.objectify.annotation.Unindex;
 
-@Cache @Unindex @EntitySubclass
+@Cache @EntitySubclass(index=true)
 public class Mentor extends Mentee {
 
 	private Mentor() { 
