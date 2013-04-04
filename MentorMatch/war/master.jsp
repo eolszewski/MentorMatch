@@ -89,14 +89,6 @@ function eraseCookie(name) {
 
 <script>
 
-/*
-$(document).ready(function(){
-	eraseCookie('email');
-	eraseCookie('firstName');
-	
-});
-*/
-
 function submitForm(thisObj, thisEvent) {
 
 	var email = $('#email').val();
@@ -119,8 +111,8 @@ function submitForm(thisObj, thisEvent) {
 		}
 		else
 		{
-			setCookie('email', obj.Email, 1);
-			setCookie('firstName', obj.FirstName, 1);
+			setCookie('email', data.Email, 1);
+			setCookie('firstName', data.FirstName, 1);
 			return true;
 		}
 	

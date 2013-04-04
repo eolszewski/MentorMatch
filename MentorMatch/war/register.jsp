@@ -58,8 +58,8 @@
 											}
 											else
 											{
-												setCookie('email', obj.Email, 1);
-												setCookie('firstName', obj.FirstName, 1);
+												setCookie('email', data.Email, 1);
+												setCookie('firstName', data.FirstName, 1);
 												document.location = "dash.jsp";
 											}
 										
@@ -71,8 +71,11 @@
 									}
 									
 									function removeChoice(item) {
-										element = document.getElementById(item);
+										
+										var element = document.getElementById(item);
+										alert(item);
 										element.parentNode.removeChild(element);
+										return false;
 									}
 								
 								 	function addMajor() {
@@ -93,11 +96,10 @@
 										
 										var listItem = '<div id="m'+ major +'"class="well well-small" style="width:200px;">' +
 										'<label class="major" value="' + major + '">' + major + 
-										'<button class="close" onClick="removeChoice(&quot;' +
+										'<button class="close" onClick="return removeChoice(&quot;m' +
 										major + 
-										'&quot;);return false;">&times;</button></label></div>';
+										'&quot;);">&times;</button></label></div>';
 										
-										//majorQueue.enqueue(major);
 										document.getElementById("selectedMajors").innerHTML += listItem;
 								 	}
 								 	
@@ -118,9 +120,9 @@
 										
 										var listItem = '<div id="i'+ interest +'"class="well well-small" style="width:200px;">' +
 										'<label class="interest" value="' + interest + '">' + interest + 
-										'<button class="close" onClick="removeChoice(&quot;' +
+										'<button class="close" onClick="return removeChoice(&quot;i' +
 										interest + 
-										'&quot;);return false;">&times;</button></label></div>';
+										'&quot;);">&times;</button></label></div>';
 										
 										document.getElementById("selectedInterests").innerHTML += listItem;
 									}
@@ -141,9 +143,9 @@
 										
 										var listItem = '<div id="cc'+ curcourse +'"class="well well-small" style="width:200px;">' +
 										'<label class="curcourse" value="' + curcourse + '">' + curcourse + 
-										'<button class="close" onClick="removeChoice(&quot;' +
+										'<button class="close" onClick="return removeChoice(&quot;cc' +
 										curcourse + 
-										'&quot;);return false;">&times;</button></label></div>';
+										'&quot;)">&times;</button></label></div>';
 										
 										document.getElementById("selectedCurCourses").innerHTML += listItem;
 									}
@@ -164,9 +166,9 @@
 										
 										var listItem = '<div id="pc'+ pastcourse +'"class="well well-small" style="width:200px;">' +
 										'<label class="pastcourse" value="' + pastcourse + '">' + pastcourse + 
-										'<button class="close" onClick="removeChoice(&quot;' +
+										'<button class="close" onClick="return removeChoice(&quot;pc' +
 										pastcourse + 
-										'&quot;);return false;">&times;</button></label></div>';
+										'&quot;)">&times;</button></label></div>';
 										
 										document.getElementById("selectedPastCourses").innerHTML += listItem;
 									}
@@ -178,7 +180,6 @@
                                  
                                      <div class="span11">
                                      	<div class="well">
-                                                <form autocomplete="off">
  												<fieldset>
  												<legend><h3>Registration</h3></legend>
                                                  	
@@ -236,7 +237,6 @@
                                                                                                          
  											<br/><button class="btn" onClick="submitRegistration(); return false;">Submit</button>
  													</fieldset>
- 												</form>
                                          </div>
                                           
                                         
