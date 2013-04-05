@@ -19,11 +19,12 @@ import Entities.SearchResult;
 		public void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws IOException {
 						
-			resp.setContentType("text/plain");			
+			resp.setContentType("text/plain");
+			System.out.println(req.getParameter("currentClasses"));
 			SearchRequest sr = new SearchRequest( req.getParameter("email") );
 			sr.empty = true;
 			
-			if ( req.getParameter("major") == "true" ){
+			if ( req.getParameter("majors") == "true" ){
 				sr.majors = true;
 				sr.empty = false;
 			} if ( req.getParameter("zipcode") == "true" ) {
@@ -32,13 +33,17 @@ import Entities.SearchResult;
 			} if ( req.getParameter("interests") == "true" ) {
 				sr.interests = true;
 				sr.empty = false;
-			} if ( req.getParameter("classes") == "true" ) {
+			} if ( req.getParameter("currentClasses") == "true" ) {
 				sr.classes = true;
+				sr.empty = false;				
+			} if ( req.getParameter("pastClasses") == "true" ){
+				sr.majors = true;
+				sr.empty = false;
+			} if ( req.getParameter("classification") == "true" ){
+				sr.majors = true;
 				sr.empty = false;
 			}
 			
-
-			// TODO: Sanitize inputs
 			SearchResult result = Search.performSearch( sr );	
 			System.out.println("Resp: " + result.toJson() );
 			resp.getWriter().write( result.toJson() );
