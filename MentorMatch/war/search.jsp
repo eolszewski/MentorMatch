@@ -1,6 +1,13 @@
 <%@include file="master.jsp" %>
+
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
 <script src="js/bootstrapSwitch.js"></script>
+
+<script>
+//redirect if not logged in
+if (getCookie('email') == null) { document.location = 'home.jsp';}
+</script>
+
 
                                     <title>MentorMatch - Search</title>
                                     <div class="container">
@@ -92,7 +99,9 @@
                                             </div>
                                            
                                          	<div>
+
                                             	<h3>Search Results</h3>
+
                                                 <div class="tabbable tabs-right">
                                         		<ul class="nav nav-tabs nav-stacked" id="search-result" style="width:100%;">
                                             		<li><a href="#">

@@ -1,4 +1,8 @@
 <%@include file="master.jsp" %>
+<script>
+//redirect if not logged in
+if (getCookie('email') == null) { document.location = 'home.jsp';}
+</script>
                                     <title>MentorMatch - Search</title>
                                     <div class="container">
                                         
@@ -26,7 +30,7 @@
                                                     <img src="img/SampleProfileImage.jpeg" class="img-polaroid" style="height:inherit; width:150px;">                                                   
                                                     <br/> 
                                                     <br/><strong>Major(s): </strong>Electrical Engineering	
-                                                    <br/><strong>Interests:</strong> smoking weed, playing raquetball
+                                                    <br/><strong>Interests:</strong> Football, Weight Lifting
                                                     </a>
                                                     </li>
                                                     <li><a href="#">
@@ -34,13 +38,13 @@
                                                     <img src="img/SampleProfileImage2.jpg" class="img-polaroid" style="height:inherit; width:150px;">                                     
                                                     <br/> 
                                                     <br/><strong>Major(s): </strong>Electrical Engineering	
-                                                    <br/><strong>Interests:</strong> smoking weed, robbing banks
+                                                    <br/><strong>Interests:</strong> Knitting, Underwater Basket Weaving
                                                     </a></li>
                                                     <li><a href="#">
                                                     <h4>Adnan Aziz</h4>
                                                     	Computer Science
                                                     <br/>3rd Year
-                                                    <br/>Interests: smoking weed, all things jewish</a></li>
+                                                    <br/>Interests: Food, Raquetball</a></li>
 												</ul>
                                                </div>
                                             </div>   

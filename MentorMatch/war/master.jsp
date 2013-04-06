@@ -2,6 +2,7 @@
 <html lang="en">
 <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="js/nod.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />	
     <head>
         <meta charset="utf-8">
@@ -36,7 +37,7 @@
                                                         <li><a href="#about">About</a></li>
                                                         <li><a href="#contact">Contact</a></li>
                                                         <li class="dropdown">
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
                                                             <ul id="ddl" class="dropdown-menu">
                                                                 <li><a href="#">Action</a></li>
                                                                 <li><a href="#">Another action</a></li>

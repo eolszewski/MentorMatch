@@ -4,39 +4,34 @@
 								
 								<script type="text/javascript">
 								
-									function submitRegistration(){
-										//validate data
-										var email5 = $('#emailReg').val();
-										if (email5.length <= 0)
-										{
-											document.getElementById("loginDiv").innerHTML="fuck";
-										}
+									
 										
+									
+											
+								
+									function submitRegistration(){
+
 										var majorArray = [];
 										var index = 0;
 										$('label.major').each(function(){
-											//alert($(this).attr('value'));
 											majorArray[index] = $(this).attr('value');
 											index++;
 										});
 										
 										var interestArray = []; index = 0;
 										$('label.interest').each(function(){
-											//alert($(this).attr('value'));
 											interestArray[index] = $(this).attr('value');
 											index++;
 										});
 										
 										var curcourseArray = []; index = 0;
 										$('label.curcourse').each(function(){
-											//alert($(this).attr('value'));
 											curcourseArray[index] = $(this).attr('value');
 											index++;
 										});
 										
 										var pastcourseArray = []; index = 0;
 										$('label.pastcourse').each(function(){
-											//alert($(this).attr('value'));
 											pastcourseArray[index] = $(this).attr('value');
 											index++;
 										});
@@ -53,13 +48,13 @@
 										jsonObj.currentCourses = curcourseArray;
 										jsonObj.pastCourses = pastcourseArray;
 										var jsonData = JSON.stringify(jsonObj);
-										alert(jsonData);
+										//alert(jsonData);
 									
 										$.post("register", {json: jsonData}, function(data){
 											
-											if (data.Email === 'null')
+											if (data.Error != null)
 											{
-												alert("Sorry, we had issues creating your account. Please try again.");	
+												alert(data.Error);	
 											}
 											else
 											{
@@ -245,31 +240,56 @@
                                      
                                      <legend><h3>Registration</h3></legend>
                                      <div id="errorDiv"></div>
-                                     	<div class="span3">
- 												<fieldset>
+                                     	<div class="span5">
  												
-                                                 	
-                                                 	<label>Email</label>
+												<form id="infoForm">
+												 <div class="control-group">
+                                                 	<label class="control-label">Email</label>
+													<div class="controls">
 													 	<input id="emailReg" type="text" placeholder="example@example.com">
-                                                     <br/>
-
-                                                     <label>Password</label>
+													</div></div>
+													
+													<div class="control-group">
+                                                     <label class="control-label">Password</label>
+                                                     <div class="controls">
 													 	<input id="passwordReg" type="password" placeholder="Password">
-                                                     <br/>
- 													<label>First Name</label>
+                                                    </div></div>
+													
+													<div class="control-group">
+                                                     <label class="control-label">First Name</label>
+                                                     <div class="controls">
 													 	<input id="fname" type="text" placeholder="Jane">
-                                                     <br/>
-                                                     <label>Last Name</label>
+                                                     </div></div>
+                                                     
+                                                     <div class="control-group">
+                                                     <label class="control-label">Last Name</label>
+                                                     <div class="controls">
 													 	<input id="lname" type="text" placeholder="Doe">
-                                                     <br/>
-                                                     <label>ZipCode</label>
+                                                     </div></div>
+                                                     
+                                                     <div class="control-group">
+                                                     <label class="control-label">Zipcode</label>
+                                                     <div class="controls">
 													 	<input id="zip" type="text" placeholder="Ex: 78705">
-                                                     <br/>
-
-  
-                                                                                                         
- 											<br/><button class="btn" onClick="submitRegistration(); return false;">Submit</button>
- 													</fieldset>
+                                                    </div></div>
+													
+													<div class="controls">
+													<button class="btn" type="submit" onClick="submitRegistration(); return false;">Submit</button>
+													</div>
+  												</form>
+  												<script>
+  												var metrics = [
+  												               [ '#emailReg', 'presence', 'Cannot be empty' ],
+  												               [ '#passwordReg', 'min-length:6', 'Must be at least 6 characters long' ],
+  												            	[ '#fname', 'presence', 'Cannot be empty' ],
+  												          		[ '#lname', 'presence', 'Cannot be empty' ],
+  												         		[ '#zip', 'integer', 'Must be a number' ],
+  												         		[ '#zip', 'exact-length:5', 'Must be 5 digits' ],
+  												         		
+  												             ];
+  															              
+  												             $("#infoForm").nod( metrics );	
+  												</script>
                                          </div>
                                           
                                           <div class="span3">

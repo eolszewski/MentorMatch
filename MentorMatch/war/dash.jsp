@@ -1,4 +1,12 @@
 <%@include file="master.jsp" %>
+
+<script>
+if (getCookie('email') == null)
+{
+	document.location = 'home.jsp';	
+}
+
+</script>
                                     <title>MentorMatch - Dashboard</title>
                                     <div class="container">
                                         
@@ -30,7 +38,7 @@
                                            
                                          	<div class="hero-unit">
                                             	<h3>Message from Brad Stewart</h3>
-                                                Fuck you nigga. I ain't tryna mentor your bitch ass.
+                                                I LUBZ CHIKIN.
                                                 <br/><br/>
                                             	<button class="btn btn-large btn-primary" type="button">Reply</button>
                                             </div>   
