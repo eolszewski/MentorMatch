@@ -16,7 +16,6 @@
                                     <!-- Placed at the end of the document so the pages load faster -->
                                     
    				 					<script src="js/bootstrap.min.js"></script>
-                                    <script src="js/js_cols.min.js"></script>
                                 </body>
 </html>
 	

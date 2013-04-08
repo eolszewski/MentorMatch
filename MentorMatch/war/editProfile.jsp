@@ -1,4 +1,9 @@
 <%@include file="master.jsp" %>
+<script>
+//redirect if not logged in
+if (getCookie('email') == null) { document.location = 'home.jsp';}
+</script>
+
                                     <title>MentorMatch - Edit Profile</title>
                                     <div class="container">
                                         

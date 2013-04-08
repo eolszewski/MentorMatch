@@ -7,6 +7,7 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 import com.googlecode.objectify.annotation.Unindex;
 
@@ -14,7 +15,8 @@ import com.googlecode.objectify.annotation.Unindex;
 public class Message {
 	
 	@Parent Key<Mentee> mentee;
-	@Id String email; // I think the ID should be left as a Long because you can have more than one message
+	@Index String email; // I think the ID should be left as a Long because you can have more than one message
+	@Id Long id;
 	private String Subject, Body, To, From;
 	private boolean Request;
 	private String Status;
@@ -37,6 +39,7 @@ public class Message {
 	
 	public void sendMessage() {
 		this.TimeStamp = new Date();
+		
 	}
 	
 	public String toJson() {

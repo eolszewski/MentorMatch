@@ -1,7 +1,14 @@
 <%@include file="master.jsp" %>
+
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
 <script src="js/bootstrapSwitch.js"></script>
 <script src="js/jqote2.js"></script>
+
+<script>
+//redirect if not logged in
+if (getCookie('email') == null) { document.location = 'home.jsp';}
+</script>
+
 
                                     <title>MentorMatch - Search</title>
                                     <div class="container">
