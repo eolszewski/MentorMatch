@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.*;
@@ -16,6 +17,7 @@ import Entities.SearchResult;
 	@SuppressWarnings("serial")
 	public class SearchServlet extends HttpServlet {
 		Gson gson = new Gson();
+		boolean TEST = true;
 		public void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws IOException {
 						
@@ -44,7 +46,30 @@ import Entities.SearchResult;
 				sr.empty = false;
 			}
 			
-			SearchResult result = Search.performSearch( sr );	
+			SearchResult result = new SearchResult();
+			
+			if (TEST) {
+				Mentee bob = new Mentee("testEasy@test.com", "password");
+				bob.setFirstName("Bob").setLastName("Smith")
+								.setMajors(Arrays.asList("ECE", "CS"))
+								.setInterests(Arrays.asList("Computers, Baseball"))
+								.setZipCode(78705);
+				
+				Mentee joe = new Mentee("testEasyMentor@test.com", "password");
+				joe.setFirstName("Joe").setLastName("Doe")
+								.setMajor("ECE")
+								.setZipCode(78705)
+								.setClassification("Senior");
+				
+				Mentee steve = new Mentee("testEasyMentor2@test.com", "password");
+				steve.setFirstName("Steve").setLastName("Smith").setMajor("ECE").setZipCode(70000);
+				
+				result.setMatches(Arrays.asList(bob, joe, steve));
+				
+			} else {			
+				result = Search.performSearch( sr );
+			}
+			
 			System.out.println("Resp: " + result.toJson() );
 			resp.getWriter().write( result.toJson() );
 		}

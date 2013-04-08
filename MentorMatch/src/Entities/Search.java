@@ -13,7 +13,7 @@ public class Search {
 		
 		Mentee mentee = OfyService.ofy().load().type(Mentee.class).id( sr.mentee ).get();
 		System.out.println( mentee.getEmail() );
-		Query<Mentor> q = OfyService.ofy().load().type(Mentor.class); //TODO: Decide what happens when the user does not select anything.
+		Query<Mentee> q = OfyService.ofy().load().type(Mentee.class); //TODO: Decide what happens when the user does not select anything.
 		
 		if ( sr.majors ) {
 			q = q.filter("Majors in", mentee.getMajors());

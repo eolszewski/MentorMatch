@@ -49,6 +49,8 @@ public class Mentee {
 	}
 	public String getFirstName() { return FirstName; }
 	public Mentee setFirstName(String firstName) { FirstName = firstName; return this;}
+	public String getClassification() { return Classification; }
+	public Mentee setClassification(String classification) { Classification = classification; return this;}
 	public String getLastName() { return LastName; }
 	public Mentee setLastName(String lastName) { LastName = lastName; return this; }
 	public String getPassword() { return Password; }

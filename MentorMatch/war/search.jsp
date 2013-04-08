@@ -1,6 +1,7 @@
 <%@include file="master.jsp" %>
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
 <script src="js/bootstrapSwitch.js"></script>
+<script src="js/jqote2.js"></script>
 
                                     <title>MentorMatch - Search</title>
                                     <div class="container">
@@ -18,123 +19,111 @@
                                         </div><!--/span-->
                                         
                                         <div class="span8">
-                                        	<div id="search-div" class="well" style="height:250px;" >
-                                        	<h3>Find Your Match</h3>
-                                                <form id="search-form" class="form row" action="/search">
-                                                <div class="control-group span2">
-											        <label id="majors-sw"class="control-label" for="majors"><strong>Majors</strong></label>
-											        <div class="controls">
-											            <div class="switch" tabindex="0" style="height:30px;">
-											                <input id="majors" type="checkbox" />
-											            </div>
-											        </div>
+                                        	<div id="search-div" class="well" >
+                                        	<h3>Find Your Match <small>Select your search criteria</small></h3>
+                                                <form id="search-form" class="form" action="/search">
+                                                <div class="row">
+	                                                <div class="control-group span2">
+												        <label id="majors-sw" class="control-label" for="majors"><strong>Majors</strong></label>
+												        <div class="controls">
+												            <div class="switch" tabindex="0" style="height:30px;">
+												                <input id="majors" type="checkbox" />
+												            </div>
+												        </div>
+												    </div>
+												    <div id="current-classes-sw" class="control-group span2">
+												        <label class="control-label" for="current-classes"><strong>Current Classes</strong></label>
+												        <div class="controls">
+												            <div  class="switch" tabindex="0" style="height:30px;">
+												                <input name="current-classes" id="current-classes" type="checkbox" />
+												            </div>
+												        </div>
+												    </div>
+												    <div id="past-classes-sw" class="control-group span2">
+												        <label class="control-label" for="past-classes"><strong>Past Classes</strong></label>
+												        <div class="controls">
+												            <div class="switch" tabindex="0" style="height:30px;">
+												                <input id="past-classes" type="checkbox" />
+												            </div>
+												        </div>
+												    </div>
 											    </div>
-											    <div id="current-classes-sw" class="control-group span2">
-											        <label class="control-label" for="current-classes"><strong>Current Classes</strong></label>
-											        <div class="controls">
-											            <div  class="switch" tabindex="0" style="height:30px;">
-											                <input name="current-classes" id="current-classes" type="checkbox" />
-											            </div>
-											        </div>
-											    </div>
-											    <div id="past-classes-sw" class="control-group span2">
-											        <label class="control-label" for="past-classes"><strong>Past Classes</strong></label>
-											        <div class="controls">
-											            <div class="switch" tabindex="0" style="height:30px;">
-											                <input id="past-classes" type="checkbox" />
-											            </div>
-											        </div>
-											    </div>
-											    <div id="hometown-sw" class="control-group span2">
-											        <label class="control-label" for="hometown"><strong>Hometown</strong></label>
-											        <div class="controls">
-											            <div class="switch" tabindex="0" style="height:30px;">
-											                <input id="hometown" type="checkbox" />
-											            </div>
-											        </div>
-											    </div>
-											    <div id="interests-sw" class="control-group span2">
-											        <label class="control-label" for="interests"><strong>Interests</strong></label>
-											        <div class="controls">
-											            <div class="switch" tabindex="0" style="height:30px;">
-											                <input id="interests" type="checkbox" />
-											            </div>
-											        </div>
-											    </div>
-											    <div id="classification-sw" class="control-group span2">
-											        <label class="control-label" for="classification"><strong>Classification</strong></label>
-											        <div class="controls">
-											            <div class="switch" tabindex="0" style="height:30px;">
-											                <input id="classification" type="checkbox" />
-											            </div>
-											        </div>
-											    </div>   													
-   												 
-												<label class="checkbox inline">
-												  <input type="checkbox" name="search-options-zipcode" value="zipcode" >
-												  Zipcode
-												</label>
-												<label class="checkbox inline">
-												  <input type="checkbox" name="search-options-interests" value="interests" >
-												  Interests
-												</label>
-												<label class="checkbox inline">
-												  <input type="checkbox" name="search-options-classes" value="classes" >
-												  Classes
-												</label>
-												<p>
-												<br/>
-    											<input type="submit" value="Go" class="btn btn-large btn-primary" />
-    											</p>
+											    <div class="row">
+												    <div id="hometown-sw" class="control-group span2">
+												        <label class="control-label" for="hometown"><strong>Hometown</strong></label>
+												        <div class="controls">
+												            <div class="switch" tabindex="0" style="height:30px;">
+												                <input id="hometown" type="checkbox" />
+												            </div>
+												        </div>
+												    </div>
+												    <div id="interests-sw" class="control-group span2">
+												        <label class="control-label" for="interests"><strong>Interests</strong></label>
+												        <div class="controls">
+												            <div class="switch" tabindex="0" style="height:30px;">
+												                <input id="interests" type="checkbox" />
+												            </div>
+												        </div>
+												    </div>
+												    <div id="classification-sw" class="control-group span2">
+												        <label class="control-label" for="classification"><strong>Classification</strong></label>
+												        <div class="controls">
+												            <div class="switch" tabindex="0" style="height:30px;">
+												                <input id="classification" type="checkbox" />
+												            </div>
+												        </div>
+												    </div>	
+											   </div>		
+													<div class="row">
+													
+														<div class="span2 pull-right">
+														
+	    													<input type="submit" value="Go" class="btn btn-large btn-block btn-primary span" />
+	    												
+	    												</div>
+	    											
+	    											</div>
+    											
 
                                                 </form>
                                              
                                             </div>
                                            
-                                         	<div>
-                                            	<h3>Search Results</h3>
-                                                <div class="tabbable tabs-right">
-                                        		<ul class="nav nav-tabs nav-stacked" id="search-result" style="width:100%;">
-                                            		<li><a href="#">
-                                                    	<h4>Asad Malik</h4>
-                                                    	<img src="img/SampleProfileImage.jpeg" class="img-polaroid" style="height:inherit; width:150px;">                                                   
-                                                    	<br/> 
-                                                    	<br/><strong>Major(s): </strong>Electrical Engineering	
-                                                    	<br/><strong>Interests:</strong> smoking weed, playing raquetball
-                                                    	</a>
-                                                    </li>
-                                                    </ul>
-                                               </div>
+                                         	<div id="search-results">
+                                            	
                                             </div>   
                                             
                                         </div>
-                                        
+                                     </div> <!-- /container -->
+   <!-- TODO:
+   		HTML TEMPLATES, PAGINATION, AUTOMATIC RESULT LOADING 
+   -->
+                                     
    <script>
+   
 /* attach a submit handler to the form */
 $("#search-form").submit(function(event) {
  
   /* stop form from submitting normally */
   event.preventDefault();
- 
+//function doSearch() { 
   /* get some values from elements on the page: */
-  var $form = $( this ),
-  	  email = "test@test.com", 
+  var $form = $( '#search-form' ),
+  	  email = getCookie('email'), 
   	  current = $('#current-classes-sw').bootstrapSwitch('status'),
   	  past = $('#past-classes-sw').bootstrapSwitch('status'),
   	  majors = $('#majors-classes-sw').bootstrapSwitch('status'),
   	  classification = $('#classification-sw').bootstrapSwitch('status'),
   	  interests = $('#interests-sw').bootstrapSwitch('status'),
   	  hometown = $('#hometown-sw').bootstrapSwitch('status')
-  	  /*//getCookie('email'),
+  	  /*//
   	  
       majors = $form.find('input[name="search-options-majors"]').is(':checked')? "true":"false",
       home = $form.find('input[name="search-options-zipcode"]').is(':checked')? "true":"false",
       act = $form.find('input[name="search-options-interests"]').is(':checked')? "true":"false",
       current-classes = "hi", //, //$form.find('input[name="search-options-classes"]').is(':checked')? "true":"false", */
       url = $form.attr( 'action' );
-  
-  var json = {}
- 
+   
   /* Send the data using post */
   var posting = $.post( url, { email: email, 
 	  majors: majors,
@@ -150,12 +139,32 @@ $("#search-form").submit(function(event) {
   		all the fields from a mentor in the matches
   		field, so process and insert into HTML as you wish */
   posting.done(function( data ) {
-    var matches = $( data ).find( '#matches' );
-    $( "#search-result" ).empty().append( matches );
+    var result = jQuery.parseJSON(data);
+    if (result.matches.length != "0") {
+    	var resultTitle = '<h3>Search Results</h3><div class="tabbable tabs-right">'+
+							'<ul class="nav nav-tabs nav-stacked" id="search-results-item" style="width:100%;">'+
+    						'</ul></div>';    	
+    	document.getElementById("search-results").innerHTML = resultTitle; 
+    }
+    for (var i=0; i<result.matches.length; i++) {
+    	var resultItem = '<li><a href="#"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4><br/>'+ 
+    						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+	
+    						'<br/><strong>ZipCode:</strong>' +result.matches[i].ZipCode+'</a></li>';
+
+    	   document.getElementById("search-results-item").innerHTML += resultItem;    	
+    }    
   });
 });
-</script>                                  
-                                        
+</script> 
+
+
+<script>
+//$('#majors').change( alert("majors changed") );
+</script>
+<script>
+//$('#hometown').on('switch-change', doSearch());
+</script>                      
+                                      
                                         
 <%@include file="footer.jsp" %>   
 	

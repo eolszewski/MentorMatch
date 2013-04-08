@@ -46,11 +46,11 @@ public class TestSearch {
 		bob.setFirstName("Bob").setLastName("Smith").setMajor("ECE").setZipCode(78705);
 		OfyService.ofy().save().entity(bob).now();
 		
-		Mentor joe = new Mentor("testEasyMentor@test.com", "password");
+		Mentee joe = new Mentee("testEasyMentor@test.com", "password");
 		joe.setFirstName("Joe").setLastName("Smith").setMajor("ECE").setZipCode(78705);
 		OfyService.ofy().save().entity(joe).now();
 		
-		Mentor steve = new Mentor("testEasyMentor2@test.com", "password");
+		Mentee steve = new Mentee("testEasyMentor2@test.com", "password");
 		steve.setFirstName("Steve").setLastName("Smith").setMajor("ECE").setZipCode(70000);
 		OfyService.ofy().save().entity(steve).now();
 		

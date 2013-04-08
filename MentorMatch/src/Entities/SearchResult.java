@@ -16,10 +16,12 @@ public class SearchResult {
 	
 	@Index @Parent Key<Mentee> mentee; //Index this so we can recall and display past results
 	//@Index private ArrayList <String> Search_Parameters, Results; // Index params, results? Previous search functionality? Persist Seach objects?
-	private List<Mentor> matches;
+	private List<Mentee> matches;
+	private int length;
 	
-	public SearchResult setMatches( List<Mentor> list ) {
+	public SearchResult setMatches( List<Mentee> list ) {
 		this.matches = list;
+		this.length = list.size();
 		return this;
 	}
 	
@@ -33,11 +35,10 @@ public class SearchResult {
 	
 	public static SearchResult fromJson(String json) {
 		Gson gson = new Gson();
-		return gson.fromJson(json, SearchResult.class);
-		
+		return gson.fromJson(json, SearchResult.class);		
 	}
 
-	public List<Mentor> getMatches() {
+	public List<Mentee> getMatches() {
 		return matches;
 	}
 
