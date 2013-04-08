@@ -1,11 +1,8 @@
 <%@include file="master.jsp" %>
 
 <script>
-if (getCookie('email') == null)
-{
-	document.location = 'home.jsp';	
-}
-
+//redirect if not logged in
+if (getCookie('email') == null) { document.location = 'home.jsp';}
 </script>
                                     <title>MentorMatch - Dashboard</title>
                                     <div class="container">
