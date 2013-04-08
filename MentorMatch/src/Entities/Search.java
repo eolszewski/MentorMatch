@@ -10,22 +10,35 @@ public class Search {
 	@Id String email;
 	public static SearchResult performSearch( SearchRequest sr) {
 		//TODO: alter order based on user input
+		//TODO: disallow searching on input not filled out in a user profile
+		//TODO: call method by string name to get rid of if statemetns
 		
 		Mentee mentee = OfyService.ofy().load().type(Mentee.class).id( sr.mentee ).get();
-		System.out.println( mentee.getEmail() );
 		Query<Mentee> q = OfyService.ofy().load().type(Mentee.class); //TODO: Decide what happens when the user does not select anything.
+		q = q.filter("Email !=", sr.mentee); //TODO: optimize this
 		
-		if ( sr.majors ) {
-			q = q.filter("Majors in", mentee.getMajors());
-			System.out.println(q.count());
-		}		
-		if ( sr.zipcode ) {
-			q = q.filter("ZipCode", mentee.getZipCode() );
-		}		
-		if ( sr.interests ) {
-			q = q.filter("Interests in", mentee.getInterests() );
-		}
-		
+		for ( String param : sr.getParameters() ) {
+
+			if ( param.equals("Majors") ) {
+				q = q.filter("Majors in", mentee.getMajors());
+				System.out.println(q.count());
+			}		
+			if ( param.equals("ZipCode") ) {
+				q = q.filter("ZipCode", mentee.getZipCode() );
+			}		
+			if ( param.equals("Interests") ) {
+				q = q.filter("Interests in", mentee.getInterests() );
+			}
+			if ( param.equals("Current_Courses") ) {
+				q = q.filter("Current_Courses in", mentee.getCurrentCourses() );
+			}
+			if ( param.equals("Past_Courses") ) {
+				q = q.filter("Past_Courses in", mentee.getPastCourses() );
+			}
+			if ( param.equals("Classification") ) {
+				q = q.filter("Classification", mentee.getClassification() );
+			}
+		}	
 		SearchResult result = new SearchResult();
 		result.setMatches( q.list() );
 		return result;

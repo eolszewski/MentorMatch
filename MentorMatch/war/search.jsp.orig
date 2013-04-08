@@ -30,27 +30,27 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                         	<h3>Find Your Match <small>Select your search criteria</small></h3>
                                                 <form id="search-form" class="form" action="/search">
                                                 <div class="row">
-	                                                <div id="majors-sw" class="control-group span2">
-												        <label  class="control-label" for="majors"><strong>Majors</strong></label>
+	                                                <div class="control-group span2">
+												        <label id="majors-sw" class="control-label" for="majors"><strong>Majors</strong></label>
 												        <div class="controls">
 												            <div class="switch" tabindex="0" style="height:30px;">
 												                <input id="majors" type="checkbox" />
 												            </div>
 												        </div>
 												    </div>
-												    <div id="current-courses-sw" class="control-group span2">
-												        <label class="control-label" for="current-courses"><strong>Current Courses</strong></label>
+												    <div id="current-classes-sw" class="control-group span2">
+												        <label class="control-label" for="current-classes"><strong>Current Classes</strong></label>
 												        <div class="controls">
 												            <div  class="switch" tabindex="0" style="height:30px;">
-												                <input name="current-courses" id="current-courses" type="checkbox" />
+												                <input name="current-classes" id="current-classes" type="checkbox" />
 												            </div>
 												        </div>
 												    </div>
-												    <div id="past-courses-sw" class="control-group span2">
-												        <label class="control-label" for="past-courses"><strong>Past Courses</strong></label>
+												    <div id="past-classes-sw" class="control-group span2">
+												        <label class="control-label" for="past-classes"><strong>Past Classes</strong></label>
 												        <div class="controls">
 												            <div class="switch" tabindex="0" style="height:30px;">
-												                <input id="past-courses" type="checkbox" />
+												                <input id="past-classes" type="checkbox" />
 												            </div>
 												        </div>
 												    </div>
@@ -96,8 +96,27 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                              
                                             </div>
                                            
+<<<<<<< HEAD
                                          	<div id="search-results">
                                             	
+=======
+                                         	<div>
+
+                                            	<h3>Search Results</h3>
+
+                                                <div class="tabbable tabs-right">
+                                        		<ul class="nav nav-tabs nav-stacked" id="search-result" style="width:100%;">
+                                            		<li><a href="#">
+                                                    	<h4>Asad Malik</h4>
+                                                    	<img src="img/SampleProfileImage.jpeg" class="img-polaroid" style="height:inherit; width:150px;">                                                   
+                                                    	<br/> 
+                                                    	<br/><strong>Major(s): </strong>Electrical Engineering	
+                                                    	<br/><strong>Interests:</strong> smoking weed, playing raquetball
+                                                    	</a>
+                                                    </li>
+                                                    </ul>
+                                               </div>
+>>>>>>> 2c0ba04d5aa841cbe041fd815055121377125c3b
                                             </div>   
                                             
                                         </div>
@@ -113,79 +132,54 @@ $("#search-form").submit(function(event) {
  
   /* stop form from submitting normally */
   event.preventDefault();
- 
+//function doSearch() { 
   /* get some values from elements on the page: */
-  var params = "";
-  /*var $form = $( '#search-form' );  
-	  past = $('#past-courses-sw').bootstrapSwitch('status'),
-	  majors = $('#majors-courses-sw').bootstrapSwitch('status'),
-	  classification = $('#classification-sw').bootstrapSwitch('status'),
-	  interests = $('#interests-sw').bootstrapSwitch('status'),
-	  hometown = $('#hometown-sw').bootstrapSwitch('status'),  	  
-  	  majors = $form.find('input[name="search-options-majors"]').is(':checked')? "true":"false",
-  	  home = $form.find('input[name="search-options-zipcode"]').is(':checked')? "true":"false",
-  	  act = $form.find('input[name="search-options-interests"]').is(':checked')? "true":"false",
-  	  current-courses = "hi", //, //$form.find('input[name="search-options-courses"]').is(':checked')? "true":"false", */
-  
-  /* get some values from elements on the page: */
-  var params = new Array(),  	
-  	  email = getCookie('email'),   	
-      url = $('#search-form').attr( 'action' );
-  
-  if ( $('#majors-sw').bootstrapSwitch('status') ) { params.push('Majors')};
-  if ( $('#current-courses-sw').bootstrapSwitch('status') ) { params.push('Current_Courses')};
-  if ( $('#classification-sw').bootstrapSwitch('status') ) { params.push('Classification')};
-  if ( $('#hometown-sw').bootstrapSwitch('status') ) { params.push('ZipCode')};
-  if ( $('#interests-sw').bootstrapSwitch('status') ) { params.push('Interests')};
-  if ( $('#past-courses-sw').bootstrapSwitch('status') ) { params.push('Past_Courses')};
-  
-  if ( params.length == 0 ) {
-	  var result = '<div class="alert alert-block">Please select search criteria.</div>';    	
-		document.getElementById("search-results").innerHTML = result;
-  } else {
+  var $form = $( '#search-form' ),
+  	  email = getCookie('email'), 
+  	  current = $('#current-classes-sw').bootstrapSwitch('status'),
+  	  past = $('#past-classes-sw').bootstrapSwitch('status'),
+  	  majors = $('#majors-classes-sw').bootstrapSwitch('status'),
+  	  classification = $('#classification-sw').bootstrapSwitch('status'),
+  	  interests = $('#interests-sw').bootstrapSwitch('status'),
+  	  hometown = $('#hometown-sw').bootstrapSwitch('status')
+  	  /*//
+  	  
+      majors = $form.find('input[name="search-options-majors"]').is(':checked')? "true":"false",
+      home = $form.find('input[name="search-options-zipcode"]').is(':checked')? "true":"false",
+      act = $form.find('input[name="search-options-interests"]').is(':checked')? "true":"false",
+      current-classes = "hi", //, //$form.find('input[name="search-options-classes"]').is(':checked')? "true":"false", */
+      url = $form.attr( 'action' );
    
-	  var out = JSON.stringify(params);
   /* Send the data using post */
-  	var posting = $.post( url, { email: email, 
-	/*  majors: majors,
+  var posting = $.post( url, { email: email, 
+	  majors: majors,
 	 zipcode: hometown,
 	 interests: interests,
-	 currentcourses: current,
-	 pastcourses: past,
-	 classification: classification, */
-	 	params: out,
-	 });
+	 currentClasses: current,
+	 pastClasses: past,
+	 classification: classification
+	  } );
  
   /* Put the results in a div
   		You've got json coming back at you with
   		all the fields from a mentor in the matches
   		field, so process and insert into HTML as you wish */
-  	posting.done(function( data ) {
-   	 var result = jQuery.parseJSON(data);
-    	if (result.matches.length != "0") {
-    		var resultTitle = '<h3>Search Results</h3><div class="tabbable tabs-right">'+
-							'<ul class="thumbnails" id="search-results-item" style="width:100%;">'+
-    						'</ul></div>';    	
-    		document.getElementById("search-results").innerHTML = resultTitle; 
-    	} else {
-    		var resultTitle = '<h3>No Results Found</h3><div class="tabbable tabs-right">'+
+  posting.done(function( data ) {
+    var result = jQuery.parseJSON(data);
+    if (result.matches.length != "0") {
+    	var resultTitle = '<h3>Search Results</h3><div class="tabbable tabs-right">'+
 							'<ul class="nav nav-tabs nav-stacked" id="search-results-item" style="width:100%;">'+
-							'</ul></div>';    	
-			document.getElementById("search-results").innerHTML = resultTitle;
-    	}
+    						'</ul></div>';    	
+    	document.getElementById("search-results").innerHTML = resultTitle; 
+    }
     for (var i=0; i<result.matches.length; i++) {
-    	var resultItem = '<li class=><div class="well"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ 
-    						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+
-    						'<br/><strong>Current Courses: </strong>' +result.matches[i].Current_Courses+
-    						'<br/><strong>Past Courses: </strong>' +result.matches[i].Past_Courses+
-    						'<br/><strong>Interests: </strong>' +result.matches[i].Interests+
-    						'<br/><strong>ZipCode: </strong>' +result.matches[i].ZipCode+
-    						'</a></div></li>';
+    	var resultItem = '<li><a href="#"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4><br/>'+ 
+    						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+	
+    						'<br/><strong>ZipCode:</strong>' +result.matches[i].ZipCode+'</a></li>';
 
     	   document.getElementById("search-results-item").innerHTML += resultItem;    	
     }    
   });
-  } // else
 });
 </script> 
 

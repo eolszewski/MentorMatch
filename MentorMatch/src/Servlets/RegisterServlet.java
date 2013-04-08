@@ -42,13 +42,13 @@ public class RegisterServlet extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.getWriter().write(gson.toJson(temp).toString());
 	}
-
+	//You tards had the second .replace( [ ) bracket the wrong way.
 	private Object AddFields(Mentee temp, JsonObject jo) {
 		temp.setFirstName(jo.get("firstName").toString().replace("\"", "")).setLastName(jo.get("lastName").toString().replace("\"", "")).setZipCode(Integer.parseInt(jo.get("zipcode").toString().replace("\"", "")));
-		temp.setMajors(Arrays.asList(jo.get("majors").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
-		temp.setInterests(Arrays.asList(jo.get("interests").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
-		temp.setCurrentCourses(Arrays.asList(jo.get("currentCourses").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
-		temp.setPastCourses(Arrays.asList(jo.get("pastCourses").toString().replace("\"", "").replace("[", "").replace("[", "").split(",")));
+		temp.setMajors(Arrays.asList(jo.get("majors").toString().replace("\"", "").replace("[", "").replace("]", "").split(",")));
+		temp.setInterests(Arrays.asList(jo.get("interests").toString().replace("\"", "").replace("[", "").replace("]", "").split(",")));
+		temp.setCurrentCourses(Arrays.asList(jo.get("currentCourses").toString().replace("\"", "").replace("[", "").replace("]", "").split(",")));
+		temp.setPastCourses(Arrays.asList(jo.get("pastCourses").toString().replace("\"", "").replace("[", "").replace("]", "").split(",")));
 		return temp;
 	}
 
