@@ -18,6 +18,7 @@ import com.google.gson.JsonParser;
 
 @SuppressWarnings("serial")
 public class LogInServlet extends HttpServlet {
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		

@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-testing-1.7.5.jar"/>
 	<classpathentry kind="lib" path="E:/Saros Workspace/MentorMatch/MentorMatch/war/WEB-INF/lib/appengine-api-1.0-sdk-1.7.6.jar"/>
 	<classpathentry kind="lib" path="E:/Saros Workspace/MentorMatch/MentorMatch/war/WEB-INF/lib/appengine-api-labs.jar"/>
+	<classpathentry kind="lib" path="E:/Saros Workspace/MentorMatch/MentorMatch/war/WEB-INF/lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
