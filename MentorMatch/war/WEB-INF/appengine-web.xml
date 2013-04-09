@@ -17,5 +17,10 @@
 		data to the datastore: <async-session-persistence enabled="true" /> With 
 		this feature enabled, there is a very small chance your app will see stale 
 		session data. For details, see http://code.google.com/appengine/docs/java/config/appconfig.html#Enabling_Sessions -->
-
+ 
+  <inbound-services>
+    <service>xmpp_message</service>
+  <!--   <service>xmpp_presence</service>         For future use maybe-->
+  </inbound-services>
+  
 </appengine-web-app>
