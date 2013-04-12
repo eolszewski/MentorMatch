@@ -1,5 +1,6 @@
 package Entities;
 import java.util.Date;
+
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import com.google.gson.Gson;
@@ -10,48 +11,31 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 import com.googlecode.objectify.annotation.Unindex;
+import com.google.appengine.api.xmpp.Message;
+import com.google.appengine.api.xmpp.JID;
 
 @Cache @Unindex @Entity
-public class Message {
+public class UserMessage {
 	
 	@Parent Key<Mentee> mentee;
 	@Index String email; // I think the ID should be left as a Long because you can have more than one message
-	@Id Long id;
+	@Id String id;
 	private String Subject, Body, To, From;
 	private boolean Request;
 	private String Status;
 	private Date TimeStamp;
+	//Message message;
 	
-	public Message()
-	{
-		Status = "Pending";
+	public void createMessage(Message receivedMessage){
+		
+		TimeStamp = new Date();
+		JID ID = receivedMessage.getRecipientJids()[0];
+		id = ID.toString() + TimeStamp;
+		Body = receivedMessage.getBody();
+		To = ID.toString();
+		From = receivedMessage.getFromJid().toString();
+	
 	}
 	
-	public void createMessage(String sub, String body, String from, String to){
-		
-		Subject = sub;
-		Body = body;
-		To = to;
-		From = from;
-		
-		
-	}
-	
-	public void sendMessage() {
-		this.TimeStamp = new Date();
-		
-	}
-	
-	public String toJson() {
-		Gson gson = new Gson();
-		return gson.toJson(this);
-	}
-	
-	public static Message fromJson(String json) {
-		Gson gson = new Gson();
-		return gson.fromJson(json, Message.class);
-		
-	}
 
-	
 }

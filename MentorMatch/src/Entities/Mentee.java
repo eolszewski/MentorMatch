@@ -16,7 +16,7 @@ public class Mentee {
 	private String Error;
 	@Index private List <String> Interests, Current_Courses, Past_Courses;
 	@Index List<String> Majors;
-	private ArrayList <Message> Messages;
+	private ArrayList <UserMessage> Messages;
 	ArrayList <Relationship> Relationships;
 	
 	protected Mentee() {};
@@ -25,7 +25,7 @@ public class Mentee {
 	public boolean LogOutEmail() { return true; }
 	public boolean LogInFacebook() { return true; }
 	public boolean LogOutFacebook() { return true; }
-	public boolean SendMessage(Message message){ message.sendMessage(); return true; }
+	public boolean SendMessage(UserMessage message){/* message.sendMessage();*/ return true; } //Took out the send message for now
 	public boolean EditProfile(String firstName, String lastName, String password, String biography, String classification, int zipCode, String email, ArrayList <String> interests, ArrayList <String> majors, ArrayList <String> current_courses, ArrayList <String> past_courses)
 	{
 		this.FirstName = firstName;

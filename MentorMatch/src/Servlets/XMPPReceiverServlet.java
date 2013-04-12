@@ -11,7 +11,7 @@ import com.google.appengine.api.xmpp.JID;
 import com.google.appengine.api.xmpp.Message;
 import com.google.appengine.api.xmpp.XMPPService;
 import com.google.appengine.api.xmpp.XMPPServiceFactory;
-
+import Entities.UserMessage;
 
 @SuppressWarnings("serial")
 public class XMPPReceiverServlet extends HttpServlet {
@@ -20,9 +20,11 @@ public class XMPPReceiverServlet extends HttpServlet {
           throws IOException {
     	
         XMPPService xmpp = XMPPServiceFactory.getXMPPService();
+  
         Message message = xmpp.parseMessage(req);
-        
-        Entity entity = new Entity("Message");
+        UserMessage receivedMessage = new UserMessage();
+        receivedMessage.createMessage(message);
+    
         
         StringBuilder to = new StringBuilder();
         
@@ -31,14 +33,14 @@ public class XMPPReceiverServlet extends HttpServlet {
         	to.append("; ");
         }
         
-        entity.setProperty("from", "" + message.getFromJid());
-        entity.setProperty("body", message.getBody());
-        entity.setProperty("Timestamp", new Date());
+    
         
         
-        OfyService.ofy().save().entity(entity).now();
+        OfyService.ofy().save().entity(receivedMessage).now();
+        System.out.print("Message is saved. From " + message.getFromJid() + " and to: " + to + " message is: " + message.getBody());
         
-        xmpp.sendMessage(message);
+        
+        //xmpp.sendMessage(message);
         // ...
     }
     
