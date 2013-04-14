@@ -30,11 +30,24 @@ public class UserMessage {
 		
 		TimeStamp = new Date();
 		JID ID = receivedMessage.getRecipientJids()[0];
-		id = ID.toString() + TimeStamp;
+		id = ID.getId() + " " + TimeStamp;
 		Body = receivedMessage.getBody();
-		To = ID.toString();
-		From = receivedMessage.getFromJid().toString();
+		To = ID.getId();
+		From = receivedMessage.getFromJid().getId();
+
 	
+	}
+	
+	public String getFrom(){
+		return From;
+	}
+	
+	public String getTo(){
+		return To;
+	}
+
+	public String getBody() {
+		return Body;
 	}
 	
 

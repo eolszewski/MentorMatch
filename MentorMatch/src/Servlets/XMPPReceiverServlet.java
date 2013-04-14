@@ -37,7 +37,7 @@ public class XMPPReceiverServlet extends HttpServlet {
         
         
         OfyService.ofy().save().entity(receivedMessage).now();
-        System.out.print("Message is saved. From " + message.getFromJid() + " and to: " + to + " message is: " + message.getBody());
+        System.out.print("Message is saved. From " + receivedMessage.getFrom() + " and to: " + receivedMessage.getTo() + " message is: " + receivedMessage.getBody());
         
         
         //xmpp.sendMessage(message);
