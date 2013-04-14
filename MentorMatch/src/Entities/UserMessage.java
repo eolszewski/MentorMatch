@@ -18,13 +18,12 @@ import com.google.appengine.api.xmpp.JID;
 public class UserMessage {
 	
 	@Parent Key<Mentee> mentee;
-	@Index String email; // I think the ID should be left as a Long because you can have more than one message
+	@Index String email; 
 	@Id String id;
 	private String Subject, Body, To, From;
 	private boolean Request;
 	private String Status;
 	private Date TimeStamp;
-	//Message message;
 	
 	public void createMessage(Message receivedMessage){
 		
@@ -34,6 +33,11 @@ public class UserMessage {
 		Body = receivedMessage.getBody();
 		To = ID.getId();
 		From = receivedMessage.getFromJid().getId();
+		
+		if(To.compareTo(From) > 0){
+			email = To + " " + From;
+		}
+		else email = From + " " + To;
 
 	
 	}

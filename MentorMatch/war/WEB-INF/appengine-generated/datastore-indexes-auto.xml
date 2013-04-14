@@ -1,4 +1,11 @@
-<!-- Indices written at Sun, 14 Apr 2013 15:10:46 CDT -->
+<!-- Indices written at Sun, 14 Apr 2013 16:19:52 CDT -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="UserMessage" ancestor="false" source="auto">
+        <property name="email" direction="asc"/>
+        <property name="TimeStamp" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>
