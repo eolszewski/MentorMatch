@@ -12,7 +12,7 @@ public class Mentee {
 	@Index private String Classification;
 	@Index private int ZipCode;
 	@Id private String Email;
-	private String Password;
+	private int Password;
 	private String Error;
 	@Index private List <String> Interests, Current_Courses, Past_Courses;
 	@Index List<String> Majors;
@@ -20,13 +20,13 @@ public class Mentee {
 	ArrayList <Relationship> Relationships;
 	
 	protected Mentee() {};
-	public Mentee(String email, String password) { this.Email = email; this.Password = password; }	
+	public Mentee(String email, int password) { this.Email = email; this.Password = password; }	
 	public boolean LogInEmail() { return true; }
 	public boolean LogOutEmail() { return true; }
 	public boolean LogInFacebook() { return true; }
 	public boolean LogOutFacebook() { return true; }
 	public boolean SendMessage(UserMessage message){/* message.sendMessage();*/ return true; } //Took out the send message for now
-	public boolean EditProfile(String firstName, String lastName, String password, String biography, String classification, int zipCode, String email, ArrayList <String> interests, ArrayList <String> majors, ArrayList <String> current_courses, ArrayList <String> past_courses)
+	public boolean EditProfile(String firstName, String lastName, int password, String biography, String classification, int zipCode, String email, ArrayList <String> interests, ArrayList <String> majors, ArrayList <String> current_courses, ArrayList <String> past_courses)
 	{
 		this.FirstName = firstName;
 		this.LastName = lastName;
@@ -53,8 +53,8 @@ public class Mentee {
 	public Mentee setClassification(String classification) { Classification = classification; return this;}
 	public String getLastName() { return LastName; }
 	public Mentee setLastName(String lastName) { LastName = lastName; return this; }
-	public String getPassword() { return Password; }
-	public void setPassword(String password) { this.Password = password; }
+	public int getPassword() { return Password; }
+	public void setPassword(int password) { this.Password = password; }
 	public String getEmail() { return Email; }
 	public Mentee setEmail(String email) { Email = email; return this; }
 	public List<String> getMajors() { return Majors; }

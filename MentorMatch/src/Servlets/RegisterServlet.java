@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jo = (JsonObject)jsonParser.parse(req.getParameter("json"));
 		
-		Mentee temp = new Mentee(" ", " ");
+		Mentee temp = new Mentee(" ", 0);
 
 		if(!EmailPassword(jo))
 			temp.setError("No Username and Password input");
@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 			temp.setError("Email is already in use");
 		else
 		{
-			temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", ""));
+			temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", "").hashCode());
 			OfyService.ofy().save().entity(AddFields(temp, jo)).now();
 		}
 		

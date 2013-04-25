@@ -42,15 +42,16 @@ public class TestSearch {
 
 	public SearchResult testBasicSearch( SearchRequest sr) {
 		
-		Mentee bob = new Mentee("testEasy@test.com", "password");
+		String Password = "password";
+		Mentee bob = new Mentee("testEasy@test.com", Password.hashCode());
 		bob.setFirstName("Bob").setLastName("Smith").setMajor("ECE").setZipCode(78705);
 		OfyService.ofy().save().entity(bob).now();
 		
-		Mentee joe = new Mentee("testEasyMentor@test.com", "password");
+		Mentee joe = new Mentee("testEasyMentor@test.com", Password.hashCode());
 		joe.setFirstName("Joe").setLastName("Smith").setMajor("ECE").setZipCode(78705);
 		OfyService.ofy().save().entity(joe).now();
 		
-		Mentee steve = new Mentee("testEasyMentor2@test.com", "password");
+		Mentee steve = new Mentee("testEasyMentor2@test.com", Password.hashCode());
 		steve.setFirstName("Steve").setLastName("Smith").setMajor("ECE").setZipCode(70000);
 		OfyService.ofy().save().entity(steve).now();
 		
