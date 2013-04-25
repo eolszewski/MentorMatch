@@ -1,6 +1,7 @@
 package Servlets;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.*;
 
@@ -44,13 +45,13 @@ public class XMPPReceiverServlet extends HttpServlet {
         String ID;
         
         if(receivedMessage.getTo().compareTo(receivedMessage.getFrom()) > 0){
-        	ID = receivedMessage.getTo() + " " + receivedMessage.getFrom();
-        } else ID = receivedMessage.getFrom() + " " + receivedMessage.getTo();
+        	ID = receivedMessage.getTo()  + receivedMessage.getFrom();
+        } else ID = receivedMessage.getFrom()  + receivedMessage.getTo();
         
 		Query<UserMessage> allMessages = OfyService.ofy().load().type(UserMessage.class).filter("email", ID);  
-		System.out.println(allMessages.order("TimeStamp").limit(5).list());
-		
-        
+		for (UserMessage um: allMessages) {
+		    System.out.println(um.toString());
+		}
         //xmpp.sendMessage(message);
         // ...
     }

@@ -19,6 +19,7 @@ public class UserMessage {
 	
 	@Parent Key<Mentee> mentee;
 	@Index String email; 
+	@Index String check;
 	@Id String id;
 	private String Subject, Body, To, From;
 	private boolean Request;
@@ -26,18 +27,20 @@ public class UserMessage {
 	private Date TimeStamp;
 	
 	public void createMessage(Message receivedMessage){
-		
+		check = "1";
 		TimeStamp = new Date();
 		JID ID = receivedMessage.getRecipientJids()[0];
 		id = ID.getId() + " " + TimeStamp;
 		Body = receivedMessage.getBody();
 		To = ID.getId();
+		To = To.trim();
 		From = receivedMessage.getFromJid().getId();
+		From = From.trim();
 		
 		if(To.compareTo(From) > 0){
-			email = To + " " + From;
+			email = To  + From;
 		}
-		else email = From + " " + To;
+		else email = From + To;
 
 	
 	}
