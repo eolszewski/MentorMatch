@@ -3,12 +3,6 @@
 
 								
 								<script type="text/javascript">
-								
-									
-										
-									
-											
-								
 									function submitRegistration(){
 
 										var majorArray = [];

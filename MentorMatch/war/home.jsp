@@ -6,11 +6,11 @@
             <div class="hero-unit">
                 <h1>MentorMatch</h1>
                 <p>You've met your match.</p>
-                <p>
-                <button type="button" id = "register" class="btn btn-large btn-primary" onclick="window.location = '/register.jsp'">Register</button>
-                
+                <p></p>
+                <div id="regButton">
+                	
+                </div>
              
-                </p>
             </div>
             
             <!-- Example row of columns -->
@@ -32,6 +32,16 @@
                 </div>
             </div>
             
-            
+  <script>
+  if (getCookie('email') == null)
+  {
+  	document.getElementById("regButton").innerHTML='<button type="button" id = "register" class="btn btn-large btn-primary" onclick="window.location = &#39;/register.jsp&#39;">Register</button>'; 
+  }
+  else
+  {
+	  document.getElementById("regButton").innerHTML="";
+  }
+  
+  </script>          
             
 <%@include file="footer.jsp" %>   

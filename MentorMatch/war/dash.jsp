@@ -14,7 +14,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                                     <li class="active"><a href="dash.jsp">Dashboard</a></li>
                                                     <li><a href="search.jsp">Find Mentors</a></li>
                                                     <li><a href="relationships.jsp">Relationships</a></li>
-                                                    <li><a href="profile.jsp">My Profile</a></li>
+                                                    <li><a href="editProfile.jsp">Edit Profile</a></li>
                                                 </ul>
                                             </div><!--/.well -->
                                         </div><!--/span-->
