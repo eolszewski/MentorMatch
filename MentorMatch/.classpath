@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (2)"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry exported="true" kind="lib" path="war/WEB-INF/lib/gson-2.2.2.jar"/>
@@ -11,8 +11,5 @@
 	<classpathentry exported="true" kind="lib" path="war/WEB-INF/lib/json-simple-1.1.1.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/App Engine JUnit"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-testing-1.7.5.jar"/>
-	<classpathentry kind="lib" path="E:/Saros Workspace/MentorMatch/MentorMatch/war/WEB-INF/lib/appengine-api-1.0-sdk-1.7.6.jar"/>
-	<classpathentry kind="lib" path="E:/Saros Workspace/MentorMatch/MentorMatch/war/WEB-INF/lib/appengine-api-labs.jar"/>
-	<classpathentry kind="lib" path="E:/Saros Workspace/MentorMatch/MentorMatch/war/WEB-INF/lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

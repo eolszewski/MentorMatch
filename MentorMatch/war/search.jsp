@@ -196,7 +196,7 @@ $("#search-form").submit(function(event) {
 			document.getElementById("search-results").innerHTML = resultTitle;
     	}
     for (var i=0; i<result.matches.length; i++) {
-    	var resultItem = '<li class=><div class="well row"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#example" role="button" class="btn" data-toggle="modal">Message</a>'+ 
+    	var resultItem = '<li class=><div class="well row"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#example" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+ 
     						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+
     						'<br/><strong>Current Courses: </strong>' +result.matches[i].Current_Courses+
     						'<br/><strong>Past Courses: </strong>' +result.matches[i].Past_Courses+
