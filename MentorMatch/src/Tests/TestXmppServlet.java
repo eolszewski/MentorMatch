@@ -1,5 +1,5 @@
 package Tests;
-
+/*
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.io.*;
@@ -28,4 +28,4 @@ public class TestXmppServlet{
     }
     
     
-}
+}*/
