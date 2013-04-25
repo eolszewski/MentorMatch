@@ -108,7 +108,7 @@ function submitForm(thisObj, thisEvent) {
 		{
 			alert("Sorry, we don't have an account associated with the email address you entered.");	
 		}
-		else if (data.Password === 'null')
+		else if (data.Password === 0)
 		{
 			alert("The password you entered is incorrect.");
 		}
