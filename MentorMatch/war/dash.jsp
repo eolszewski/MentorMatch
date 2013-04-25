@@ -4,7 +4,7 @@
 //redirect if not logged in
 if (getCookie('email') == null) { document.location = 'home.jsp';}
 </script>
-                                    <title>MentorMatch - Dashboard</title>
+                                    <title>Matched Up - Dashboard</title>
                                     <div class="container">
                                         
                                         <div class="span2">

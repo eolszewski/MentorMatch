@@ -6,7 +6,7 @@
                                         <hr>
                                         
                                         <footer>
-                                            <p>&copy; MentorMatch 2013</p>
+                                            <p>&copy; Matched Up 2013</p>
                                         </footer>
                                         
                                     </div> <!-- /container -->
