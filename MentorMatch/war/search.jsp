@@ -11,7 +11,6 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 
 
 <title>MentorMatch - Search</title>
-<div class="container">
 
 	<div class="span2">
 		<div class="tabbable tabs-left">
@@ -20,7 +19,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 				<li><a href="dash.jsp">Dashboard</a></li>
 				<li class="active"><a href="search.jsp">Find Mentors</a></li>
 				<li><a href="relationships.jsp">Relationships</a></li>
-				<li><a href="profile.jsp">My Profile</a></li>
+                                                    <li><a href="editProfile.jsp">Edit Profile</a></li>
 			</ul>
 		</div>
 		<!--/.well -->
