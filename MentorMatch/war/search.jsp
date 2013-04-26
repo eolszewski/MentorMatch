@@ -113,22 +113,59 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
    		HTML TEMPLATES, PAGINATION, AUTOMATIC RESULT LOADING 
    -->
 
-<div id="example" class="modal hide fade in" style="display: none;">
+<div id="message-sender" class="modal hide fade in" style="display: none;">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>Dat dere recipient</h3>
+		<a class="close" data-dismiss="modal">Ã</a>
+		<div id="message-recipient"></div>
+		
+		
 	</div>
+	<div hidden="true" id="recipient-email"></div>
 	<div class="modal-body">
-			<textarea name="comments" id="comments" rows="7" cols="30" ></textarea>
+			<textarea name="comments" id="message-text" rows="7" cols="30" ></textarea>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary">Send Message</a> <a href="#"
+		<a href="#" class="btn btn-primary" data-dismiss="modal">Send Message</a> <a href="#"
 			class="btn" data-dismiss="modal">Cancel</a>
 	</div>
 </div>
 
 <script>
-   
+   $('#message-sender').on('hidden', function () {
+  	var recipient = document.getElementById("recipient-email").value;
+  	var message = document.getElementById("message-text").value;
+  	var sender = getCookie('email');
+  	var jsonObj = new Object();
+	jsonObj.recipient = recipient;
+	jsonObj.sender = sender;
+	jsonObj.message = message;
+	var jsonData = JSON.stringify(jsonObj);
+	
+
+	$.post("message", {json: jsonData}, function(data){
+		
+		if (data.Email === 'null')
+		{
+			alert("Sorry, we don't have an account associated with the email address you entered.");	
+		}
+		else if (data.Password === 0)
+		{
+			alert("The password you entered is incorrect.");
+		}
+		else
+		{
+			setCookie('email', data.Email, 1);
+			setCookie('firstName', data.FirstName, 1);
+			//return true;
+			document.location = "dash.jsp";
+		}
+	
+	}, 'json');
+	
+	
+	return false;  // prevents the page from refreshing before JSON is read from server response
+	})
+
 /* attach a submit handler to the form */
 $("#search-form").submit(function(event) {
  
@@ -195,25 +232,23 @@ $("#search-form").submit(function(event) {
 			document.getElementById("search-results").innerHTML = resultTitle;
     	}
     for (var i=0; i<result.matches.length; i++) {
-    	var resultItem = '<li class=><div class="well row"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#example" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+ 
+    	var resultItem = '<li class=><div class="well row"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+ 
     						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+
     						'<br/><strong>Current Courses: </strong>' +result.matches[i].Current_Courses+
     						'<br/><strong>Past Courses: </strong>' +result.matches[i].Past_Courses+
     						'<br/><strong>Interests: </strong>' +result.matches[i].Interests+
     						'<br/><strong>ZipCode: </strong>' +result.matches[i].ZipCode+
     						'</a></div></li>';
-
-    	   document.getElementById("search-results-item").innerHTML += resultItem;    	
+    						
+    	 document.getElementById("search-results-item").innerHTML += resultItem;    
+    	 document.getElementById("message-recipient").innerHTML += '<h3>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h3>'; 
+    	 document.getElementById("recipient-email").value = result.matches[i].Email;	
     }    
   });
   } // else
 });
 </script>
 
-<script>
-
-//$('#majors').change( alert("majors changed") );
-</script>
 <script>
 //$('#hometown').on('switch-change', doSearch());
 </script>

@@ -53,21 +53,21 @@ import Entities.SearchResult;
 //			}
 			
 			SearchResult result = new SearchResult();
-			
+			String password = "password";
 			if (TEST) {
-				Mentee bob = new Mentee("testEasy@test.com", 12345);
+				Mentee bob = new Mentee("testEasy@test.com", password.hashCode());
 				bob.setFirstName("Bob").setLastName("Smith")
 								.setMajors(Arrays.asList("ECE", "CS"))
 								.setInterests(Arrays.asList("Computers, Baseball"))
 								.setZipCode(78705);
 				
-				Mentee joe = new Mentee("testEasyMentor@test.com", 12345);
+				Mentee joe = new Mentee("testEasyMentor@test.com", password.hashCode());
 				joe.setFirstName("Joe").setLastName("Doe")
 								.setMajor("ECE")
 								.setZipCode(78705)
 								.setClassification("Senior");
 				
-				Mentee steve = new Mentee("testEasyMentor2@test.com", 12345);
+				Mentee steve = new Mentee("testEasyMentor2@test.com", password.hashCode());
 				steve.setFirstName("Steve").setLastName("Smith").setMajor("ECE").setZipCode(70000);
 				
 				result.setMatches(Arrays.asList(bob, joe, steve));
