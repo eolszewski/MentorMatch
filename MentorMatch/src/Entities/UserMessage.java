@@ -57,5 +57,25 @@ public class UserMessage {
 		return Body;
 	}
 	
+	
+	public void setFrom(String m){
+		From = m;
+	}
+	
+	public void setTo(String m){
+		 To = m;
+	}
 
+	public void setBody(String m) {
+		 Body = m;
+	}
+	
+	public void setEmail(){
+		TimeStamp = new Date();
+		if(To.compareTo(From) > 0){
+			email = To  + From;
+		}
+		else email = From + To;
+
+	}
 }

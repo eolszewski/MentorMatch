@@ -30,20 +30,16 @@ public class XMPPReceiverServlet extends HttpServlet {
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jo = (JsonObject)jsonParser.parse(req.getParameter("json"));
 		System.out.println(jo.toString());
-        /*XMPPService xmpp = XMPPServiceFactory.getXMPPService();
-  
-        System.out.println(jo.toString());
-        Message message = xmpp.parseMessage(req);
-        UserMessage receivedMessage = new UserMessage();
-        receivedMessage.createMessage(message);
-    
-        
-        StringBuilder to = new StringBuilder();
-        
-        for(JID jid: message.getRecipientJids()){
-        	to.append(jid.toString());
-        	to.append("; ");
-        }
+		UserMessage receivedMessage = new UserMessage();
+		
+		receivedMessage.setFrom(jo.get("sender").toString().replace("\"", ""));
+		receivedMessage.setTo(jo.get("recipient").toString().replace("\"", ""));
+		receivedMessage.setBody(jo.get("message").toString().replace("\"", ""));
+		receivedMessage.setEmail();
+		System.out.println(receivedMessage.getBody());
+		System.out.println(receivedMessage.getFrom());
+		System.out.println(receivedMessage.getTo());
+     
         
     
         
@@ -60,9 +56,7 @@ public class XMPPReceiverServlet extends HttpServlet {
 		Query<UserMessage> allMessages = OfyService.ofy().load().type(UserMessage.class).filter("email", ID);  
 		for (UserMessage um: allMessages) {
 		    System.out.println(um.toString());
-		}*/
-        //xmpp.sendMessage(message);
-        // ...
+		}
     }
     
     
