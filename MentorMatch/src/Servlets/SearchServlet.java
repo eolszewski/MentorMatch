@@ -55,19 +55,19 @@ import Entities.SearchResult;
 			SearchResult result = new SearchResult();
 			
 			if (TEST) {
-				Mentee bob = new Mentee("testEasy@test.com", "password");
+				Mentee bob = new Mentee("testEasy@test.com", 12345);
 				bob.setFirstName("Bob").setLastName("Smith")
 								.setMajors(Arrays.asList("ECE", "CS"))
 								.setInterests(Arrays.asList("Computers, Baseball"))
 								.setZipCode(78705);
 				
-				Mentee joe = new Mentee("testEasyMentor@test.com", "password");
+				Mentee joe = new Mentee("testEasyMentor@test.com", 12345);
 				joe.setFirstName("Joe").setLastName("Doe")
 								.setMajor("ECE")
 								.setZipCode(78705)
 								.setClassification("Senior");
 				
-				Mentee steve = new Mentee("testEasyMentor2@test.com", "password");
+				Mentee steve = new Mentee("testEasyMentor2@test.com", 12345);
 				steve.setFirstName("Steve").setLastName("Smith").setMajor("ECE").setZipCode(70000);
 				
 				result.setMatches(Arrays.asList(bob, joe, steve));

@@ -27,14 +27,14 @@ public class LogInServlet extends HttpServlet {
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jo = (JsonObject)jsonParser.parse(req.getParameter("json"));
 		
-		Mentee temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", ""));
+		Mentee temp = new Mentee(jo.get("email").toString().replace("\"", ""), jo.get("password").toString().replace("\"", "").hashCode());
 		Mentee fetched = OfyService.ofy().load().type(Mentee.class).id(temp.getEmail()).get();
 		
 		if(fetched != null && fetched.getEmail() != null) {
-			if(!fetched.getPassword().equals(temp.getPassword()))
-				fetched.setPassword("null"); }
+			if(fetched.getPassword() != (temp.getPassword()))
+				fetched.setPassword(0); }
 		else
-			fetched = new Mentee("null", "null");
+			fetched = new Mentee("null", 0);
 		
 		resp.setContentType("application/json");
 		resp.getWriter().write(gson.toJson(fetched).toString());
