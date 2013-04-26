@@ -23,6 +23,14 @@
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>EditServlet</servlet-name>
+		<servlet-class>Servlets.EditServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditServlet</servlet-name>
+		<url-pattern>/editProfile</url-pattern>
+	</servlet-mapping>
 <servlet>
 	<servlet-name>XMPPReceiverServlet</servlet-name>
 	<servlet-class>Servlets.XMPPReceiverServlet</servlet-class>
