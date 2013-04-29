@@ -115,7 +115,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 
 <div id="message-sender" class="modal hide fade in" style="display: none;">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">Ã</a>
+		<a class="close" data-dismiss="modal">x</a>
 		<div id="message-recipient"></div>
 		
 		
@@ -125,7 +125,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 			<textarea name="comments" id="message-text" rows="7" cols="30" ></textarea>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary" data-dismiss="modal">Send Message</a> <a href="#"
+		<input type="submit" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
 			class="btn" data-dismiss="modal">Cancel</a>
 	</div>
 </div>
@@ -235,7 +235,7 @@ $("#search-form").submit(function(event) {
     						'</a></div></li>';
     						
     	 document.getElementById("search-results-item").innerHTML += resultItem;    
-    	 document.getElementById("message-recipient").innerHTML += '<h3>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h3>'; 
+    	 document.getElementById("message-recipient").innerHTML = '<h3>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h3>'; 
     	 document.getElementById("recipient-email").value = result.matches[i].Email;	
     }    
   });
