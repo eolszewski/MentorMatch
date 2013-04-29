@@ -205,12 +205,6 @@ $("#search-form").submit(function(event) {
 	  var out = JSON.stringify(params);
   /* Send the data using post */
   	var posting = $.post( url, { email: email, 
-	/*  majors: majors,
-	 zipcode: hometown,
-	 interests: interests,
-	 currentcourses: current,
-	 pastcourses: past,
-	 classification: classification, */
 	 	params: out,
 	 });
  

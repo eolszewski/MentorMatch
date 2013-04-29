@@ -36,8 +36,7 @@ public class SearchRequest {
 	
 	public SearchRequest fromJson(String json) {
 		Gson gson = new Gson();
-		return gson.fromJson(json, SearchRequest.class);
-		
+		return gson.fromJson(json, SearchRequest.class);		
 	}
 
 	public List<String> getParameters() {
