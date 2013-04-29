@@ -29,7 +29,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										jsonObj.email = getCookie("email");
 										jsonObj.flag = "fill";
 										var jsonData = JSON.stringify(jsonObj);
-										alert(jsonData);
+										//alert(jsonData);
 									
 										$.post("editProfile", {json: jsonData}, function(data){
 											
@@ -47,7 +47,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 									
 									function populateFields(data){
 										//$'#passwordReg').val(data.Password);
-										alert(data.Password);
+										//alert(data.Password);
 										$('#fname').val(data.FirstName);
 										$('#lname').val(data.LastName);
 										$("#zip").val(data.ZipCode);
@@ -317,13 +317,13 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                      	<div class="span5">
  												
 												<form id="infoForm">
-													
+													<!-- 
 													<div class="control-group">
                                                      <label class="control-label">Password</label>
                                                      <div class="controls">
 													 	<input id="passwordReg" type="password" placeholder="Password">
                                                     </div></div>
-													
+													-->
 													<div class="control-group">
                                                      <label class="control-label">First Name</label>
                                                      <div class="controls">
