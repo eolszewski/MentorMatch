@@ -31,6 +31,9 @@ public class EditServlet extends HttpServlet {
 		}
 		else
 		{
+			//TODO
+			//Find Mentee in datastore with email that matches the email im sending you
+			//Update mentees attributes with the ones I've sent you
 			fetched = new Mentee("null", 0);
 		}
 		resp.getWriter().write(gson.toJson(fetched).toString());
