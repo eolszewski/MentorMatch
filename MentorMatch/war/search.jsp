@@ -1,8 +1,11 @@
 <%@include file="master.jsp"%>
 
+<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
+<script src="js/jquery-ui-1.10.1.custom.min.js"></script>
 <script src="js/bootstrapSwitch.js"></script>
 <script src="js/jqote2.js"></script>
+<script src="js/jquery.autocomplete.js"></script>  
 
 <script>
 //redirect if not logged in
@@ -89,6 +92,13 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 				</div>
 				<div class="row">
 
+						<div class="input-append">
+	                      <input id="search-bar" type="text" placeholder="Search">
+	                       				 		<script>
+        					$("#search-bar").autocomplete("textsearch.jsp");
+   						</script>
+	                    </div>
+					
 					<div class="span2 pull-right">
 
 						<input type="submit" value="Go"
