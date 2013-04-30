@@ -135,13 +135,13 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 			<textarea name="comments" id="message-text" rows="7" cols="30" ></textarea>
 	</div>
 	<div class="modal-footer">
-		<input type="submit" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
+		<input type="submit" onClick="sendMessage(); return false;" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
 			class="btn" data-dismiss="modal">Cancel</a>
 	</div>
 </div>
 
 <script>
-   $('#message-sender').on('hidden', function () {
+   function sendMessage(){
   	var recipient = document.getElementById("recipient-email").value;
   	var message = document.getElementById("message-text").value;
   	var sender = getCookie('email');
@@ -174,7 +174,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	
 	
 	return false;  // prevents the page from refreshing before JSON is read from server response
-	})
+	}
 
 /* attach a submit handler to the form */
 $("#search-form").submit(function(event) {
