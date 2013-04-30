@@ -20,14 +20,28 @@ public class RegisterTest  {
         // driver.navigate().to("http://www.google.com");
 
         // Find the text input element by its name
-        WebElement element = driver.findElement(By.name("q"));
+        WebElement element = driver.findElement(By.id("register"));
 
         // Enter something to search for
-        element.sendKeys("Cheese!");
+       // element.sendKeys("Cheese!");
 
         // Now submit the form. WebDriver will find the form for us from the element
-        element.submit();
-
+       // element.submit();
+        element.click();
+        
+        element = driver.findElement((By.id("emailReg")));
+        element.sendKeys("john@gmail.com");
+        element = driver.findElement((By.id("passwordReg")));
+        element.sendKeys("123456");
+        element = driver.findElement((By.id("fname")));
+        element.sendKeys("John");
+        element = driver.findElement((By.id("lname")));
+        element.sendKeys("Doe");
+        element = driver.findElement((By.id("zip")));
+        element.sendKeys("78705");
+        element = driver.findElement((By.id("")));
+        element.sendKeys("John");
+        
         // Check the title of the page
         System.out.println("Page title is: " + driver.getTitle());
         
