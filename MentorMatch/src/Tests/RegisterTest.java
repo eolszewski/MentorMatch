@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegisterTest  {
@@ -12,10 +13,10 @@ public class RegisterTest  {
        
     	
     	
-    	String first_User = "emailReg,eric@gmail.com,passwordReg,123456,fname,Eric,lname,Olz,zip,78705";
+    	String first_User = "emailReg,abc@gmail.com,passwordReg,123456,fname,Eric,lname,Olz,zip,78705";
 		String first_Details = "majors,Electrical Engineering,majorb,interests,Football,interestb,currentcourses,EE 461L,ccourseb,pastcourses,ASE 201,pcourseb";
 
-		String second_User = "emailReg,asad@gmail.com,passwordReg,123456,fname,Asad,lname,Malik,zip,78705";
+		String second_User = "emailReg,abv@gmail.com,passwordReg,123456,fname,Asad,lname,Malik,zip,78705";
 		String second_Details = "majors,Electrical Engineering,majorb,interests,Soccer,interestb,currentcourses,EE 461L,ccourseb,pastcourses,ASE 201,pcourseb";
 
 		
@@ -28,20 +29,27 @@ public class RegisterTest  {
 		
 	
 		createUser(element,driver,first_User,first_Details);
-        
-		/* WebDriver driver2 = new FirefoxDriver();
-	     driver2.get("http://localhost:8888/");
+		
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"email\"]")));
+	    
+		element = driver.findElement(By.xpath("//*[@id=\"logout\"]"));
+		element.click();
+		
+		
+		/*
+	   driver.get("http://localhost:8888/");
 	        
-	    WebElement element2 = driver2.findElement(By.id("register"));
+	    WebElement element2 = driver.findElement(By.id("register"));
 		element.click();
 			
-		createUser(element2,driver2,second_User,second_Details);
+		createUser(element2,driver,second_User,second_Details);
 		
 		*/
 		
 		
         //Close the browser
-        driver.quit();
+       // driver.quit();
     }
     
     

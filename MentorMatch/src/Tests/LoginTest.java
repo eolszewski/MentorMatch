@@ -33,7 +33,7 @@ public class LoginTest  {
        
        
 		
-       element.click();
+      
 		
 	
 	
