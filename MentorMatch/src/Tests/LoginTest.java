@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.thoughtworks.selenium.Wait;
 
 public class LoginTest  {
     public static void main(String[] args) {
@@ -15,13 +18,22 @@ public class LoginTest  {
         WebDriver driver = new FirefoxDriver();
         driver.get("http://localhost:8888/");
         
+        WebDriverWait wait = new WebDriverWait(driver, 100);
 
-        WebElement element = driver.findElement(By.id("email"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"email\"]")));
+
+         WebElement element = driver.findElement(By.xpath("//*[@id=\"email\"]"));
         element.sendKeys("eric@gmail.com");
-        element = driver.findElement(By.id("password"));
+        
+        element = driver.findElement(By.xpath("//*[@id=\"password\"]"));
         element.sendKeys("123456");
-		element.findElement(By.id("submitb"));
+        
+        element = driver.findElement(By.xpath("//*[@id=\"submitb\"]"));
         element.click();
+       
+       
+		
+       element.click();
 		
 	
 	
@@ -38,7 +50,7 @@ public class LoginTest  {
 		
 		
         //Close the browser
-        driver.quit();
+       // driver.quit();
     }
     
     
