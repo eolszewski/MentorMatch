@@ -268,7 +268,7 @@
                                                     </div></div>
 													
 													<div class="controls">
-													<button class="btn" type="submit" onClick="submitRegistration(); return false;">Submit</button>
+													<button id="submitb" class="btn" type="submit" onClick="submitRegistration(); return false;">Submit</button>
 													</div>
   												</form>
   												<script>
@@ -291,14 +291,14 @@
 	                                          <label>Major(s)</label>
 	                                          <div class="input-append">
 	                                             <input id="majors" type="text" placeholder="Type to find majors">
-	                                             <button class="btn" type="button" onClick="addMajor()">Add</button>
+	                                             <button id="majorb" class="btn" type="button" onClick="addMajor()">Add</button>
 	                                           </div>
 	                                          <div id="selectedMajors" ></div>
 	                                          
 	                                          <label>Interests</label>
 	                                          <div class="input-append">
 	                                                       <input id="interests" type="text" data-provide="typeahead" placeholder="Type to find interests">
-	                                                       <button class="btn" type="button" onClick="addInterest()">Add</button>
+	                                                       <button id="interestb" class="btn" type="button" onClick="addInterest()">Add</button>
 	                                                     </div>
 	                                          <div id="selectedInterests"></div> 
                                           </div>
@@ -308,7 +308,7 @@
                                               <label>Current Courses</label>                               
                                               <div class="input-append">
                                                 <input id="currentcourses" type="text" data-provide="typeahead" placeholder="Type to find courses">
-                                                <button class="btn" type="button" onClick="addCurrentCourse()">Add</button>
+                                                <button id="ccourseb" class="btn" type="button" onClick="addCurrentCourse()">Add</button>
                                               </div> 
                                               
                                               <div id="selectedCurCourses"></div>
@@ -316,7 +316,7 @@
                                               <label>Past Courses</label>
                                               <div class="input-append">
                                                 <input id="pastcourses" type="text" data-provide="typeahead" placeholder="Type to find courses">
-                                                <button class="btn" type="button" onClick="addPastCourse()">Add</button>
+                                                <button id="pcourseb" class="btn" type="button" onClick="addPastCourse()">Add</button>
                                               </div>
                                               <div id="selectedPastCourses"></div> 
                                           </div>

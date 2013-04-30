@@ -29,7 +29,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										jsonObj.email = getCookie("email");
 										jsonObj.flag = "fill";
 										var jsonData = JSON.stringify(jsonObj);
-										alert(jsonData);
+										//alert(jsonData);
 									
 										$.post("editProfile", {json: jsonData}, function(data){
 											
@@ -39,12 +39,32 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 											}
 											else
 											{
-												alert(data);
-												//alert success
-												document.location = "dash.jsp";
+												populateFields(data);
 											}
 										
 										}, 'json');
+									}
+									
+									function populateFields(data){
+										//$'#passwordReg').val(data.Password);
+										//alert(data.Password);
+										$('#fname').val(data.FirstName);
+										$('#lname').val(data.LastName);
+										$("#zip").val(data.ZipCode);
+										
+									
+										$.each( data.Majors, function( key, value ) {
+												if (value != ""){addMajorElement(value);}
+											});
+										$.each( data.Interests, function( key, value ) {
+											if (value != ""){addInterestElement(value);}
+											});
+										$.each( data.Current_Courses, function( key, value ) {
+											if (value != ""){addCurCourseElement(value);}
+											});
+										$.each( data.Past_Courses, function( key, value ) {
+											if (value != ""){addPastCourseElement(value);}
+											});
 									}
 									
 									function submitRegistration(){
@@ -77,7 +97,8 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										//build json
 										var jsonObj = new Object();
 										jsonObj.flag = "save";
-										jsonObj.password = $('#passwordReg').val();
+										jsonObj.email = getCookie('email');
+										//jsonObj.password = $('#passwordReg').val();
 										jsonObj.firstName = $('#fname').val();
 										jsonObj.lastName = $('#lname').val();
 										jsonObj.zipcode = $('#zip').val();
@@ -96,6 +117,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 											}
 											else
 											{
+												alert('Save Successful!');
 												setCookie('email', data.Email, 1);
 												setCookie('firstName', data.FirstName, 1);
 												document.location = "dash.jsp";
@@ -109,7 +131,6 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 									}
 									
 									function removeChoice(item) {
-										
 										var element = document.getElementById(item);
 										element.parentNode.removeChild(element);
 										return false;
@@ -131,8 +152,12 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 											return false;	
 										}
 										
+										addMajorElement(major);
 										
-										var listItem = '<div id="m'+ major +'" class="well well-tiny" style="width:200px;">' +
+								 	}
+								 	
+								 	function addMajorElement(major){
+								 		var listItem = '<div id="m'+ major +'" class="well well-tiny" style="width:200px;">' +
 										'<label class="major" value="' + major + '">' + major + 
 										'<button class="close" onClick="return removeChoice(&quot;m' +
 										major + 
@@ -155,7 +180,12 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										{
 											return false;	
 										}
+										addInterestElement(interest);
 										
+									}
+									
+									function addInterestElement(interest)
+									{
 										var listItem = '<div id="i'+ interest +'"class="well well-tiny" style="width:200px;">' +
 										'<label class="interest" value="' + interest + '">' + interest + 
 										'<button class="close" onClick="return removeChoice(&quot;i' +
@@ -164,6 +194,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										
 										document.getElementById("selectedInterests").innerHTML += listItem;
 									}
+									
 									function addCurrentCourse() {
 										var curcourse = $('#currentcourses').val();
 										$('#currentcourses').val("");
@@ -178,7 +209,11 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										{
 											return false;	
 										}
-										
+										addCurCourseElement(curcourse);
+									}
+									
+									function addCurCourseElement(curcourse){
+
 										var listItem = '<div id="cc'+ curcourse +'"class="well well-tiny" style="width:200px;">' +
 										'<label class="curcourse" value="' + curcourse + '">' + curcourse + 
 										'<button class="close" onClick="return removeChoice(&quot;cc' +
@@ -201,7 +236,11 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										{
 											return false;	
 										}
+										addPastCourseElement(pastcourse);
 										
+									}
+									function addPastCourseElement(pastcourse){
+
 										var listItem = '<div id="pc'+ pastcourse +'"class="well well-tiny" style="width:200px;">' +
 										'<label class="pastcourse" value="' + pastcourse + '">' + pastcourse + 
 										'<button class="close" onClick="return removeChoice(&quot;pc' +
@@ -281,13 +320,13 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                      	<div class="span5">
  												
 												<form id="infoForm">
-													
+													<!-- 
 													<div class="control-group">
                                                      <label class="control-label">Password</label>
                                                      <div class="controls">
 													 	<input id="passwordReg" type="password" placeholder="Password">
                                                     </div></div>
-													
+													-->
 													<div class="control-group">
                                                      <label class="control-label">First Name</label>
                                                      <div class="controls">
@@ -307,7 +346,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                                     </div></div>
 													
 													<div class="controls">
-													<button class="btn" type="submit" onClick="submitRegistration(); return false;">Submit</button>
+													<button class="btn" type="submit" onClick="submitRegistration(); return false;">Save Profile</button>
 													</div>
   												</form>
   												<script>

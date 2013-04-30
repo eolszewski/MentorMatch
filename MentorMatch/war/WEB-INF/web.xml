@@ -23,6 +23,22 @@
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>DashboardServlet</servlet-name>
+		<servlet-class>Servlets.DashboardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DashboardServlet</servlet-name>
+		<url-pattern>/dashboard</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EditServlet</servlet-name>
+		<servlet-class>Servlets.EditServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditServlet</servlet-name>
+		<url-pattern>/editProfile</url-pattern>
+	</servlet-mapping>
 <servlet>
 	<servlet-name>XMPPReceiverServlet</servlet-name>
 	<servlet-class>Servlets.XMPPReceiverServlet</servlet-class>
