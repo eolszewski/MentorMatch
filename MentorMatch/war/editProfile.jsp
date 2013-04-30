@@ -52,17 +52,18 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 										$('#lname').val(data.LastName);
 										$("#zip").val(data.ZipCode);
 										
+									
 										$.each( data.Majors, function( key, value ) {
-											  addMajorElement(value);
+												if (value != ""){addMajorElement(value);}
 											});
 										$.each( data.Interests, function( key, value ) {
-											  addInterestElement(value);
+											if (value != ""){addInterestElement(value);}
 											});
 										$.each( data.Current_Courses, function( key, value ) {
-											  addCurCourseElement(value);
+											if (value != ""){addCurCourseElement(value);}
 											});
 										$.each( data.Past_Courses, function( key, value ) {
-											  addPastCourseElement(value);
+											if (value != ""){addPastCourseElement(value);}
 											});
 									}
 									
@@ -117,6 +118,8 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 											else
 											{
 												alert('Save Successful!');
+												setCookie('email', data.Email, 1);
+												setCookie('firstName', data.FirstName, 1);
 												document.location = "dash.jsp";
 											}
 										
