@@ -121,7 +121,7 @@ if (getCookie('email') == null)
 	document.getElementById("loginDiv").innerHTML='<form name="login" class="navbar-form pull-right" method="post" action="/login">' +
     '<input id="email" class="span2" type="text" placeholder="Email"> ' +
 	'<input id="password" class="span2" type="password" placeholder="Password">' +
-    '<input type="submit" class="btn" name="submit" value="Login" onclick="return submitForm(this, event);">' +
+    '<input id="submitb" type="submit" class="btn" name="submit" value="Login" onclick="return submitForm(this, event);">' +
     '</form>'; 
 }
 else

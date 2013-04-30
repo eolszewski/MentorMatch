@@ -1,8 +1,11 @@
 <%@include file="master.jsp"%>
 
+<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
+<script src="js/jquery-ui-1.10.1.custom.min.js"></script>
 <script src="js/bootstrapSwitch.js"></script>
 <script src="js/jqote2.js"></script>
+<script src="js/jquery.autocomplete.js"></script>  
 
 <script>
 //redirect if not logged in
@@ -89,6 +92,13 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 				</div>
 				<div class="row">
 
+						<div class="input-append">
+	                      <input id="search-bar" type="text" placeholder="Search">
+	                       				 		<script>
+        					$("#search-bar").autocomplete("textsearch.jsp");
+   						</script>
+	                    </div>
+					
 					<div class="span2 pull-right">
 
 						<input type="submit" value="Go"
@@ -115,7 +125,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 
 <div id="message-sender" class="modal hide fade in" style="display: none;">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">Ã</a>
+		<a class="close" data-dismiss="modal">x</a>
 		<div id="message-recipient"></div>
 		
 		
@@ -125,13 +135,13 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 			<textarea name="comments" id="message-text" rows="7" cols="30" ></textarea>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary" data-dismiss="modal">Send Message</a> <a href="#"
+		<input type="submit" onClick="sendMessage(); return false;" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
 			class="btn" data-dismiss="modal">Cancel</a>
 	</div>
 </div>
 
 <script>
-   $('#message-sender').on('hidden', function () {
+   function sendMessage(){
   	var recipient = document.getElementById("recipient-email").value;
   	var message = document.getElementById("message-text").value;
   	var sender = getCookie('email');
@@ -164,7 +174,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	
 	
 	return false;  // prevents the page from refreshing before JSON is read from server response
-	})
+	}
 
 /* attach a submit handler to the form */
 $("#search-form").submit(function(event) {
@@ -235,7 +245,7 @@ $("#search-form").submit(function(event) {
     						'</a></div></li>';
     						
     	 document.getElementById("search-results-item").innerHTML += resultItem;    
-    	 document.getElementById("message-recipient").innerHTML += '<h3>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h3>'; 
+    	 document.getElementById("message-recipient").innerHTML = '<h3>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h3>'; 
     	 document.getElementById("recipient-email").value = result.matches[i].Email;	
     }    
   });
