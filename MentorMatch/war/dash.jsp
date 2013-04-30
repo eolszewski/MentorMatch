@@ -23,8 +23,8 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                         <div class="span6">
                                         	<div class="well">
                                             	<h3><center>New Messages</center></h3>
-                                            	<div id="new-messages" class="tabbable tabs-right">
-                                        		    <ul class="nav nav-pills nav-stacked">
+                                            	<div class="tabbable tabs-right">
+                                        		    <ul id="new-messages" class="nav nav-pills nav-stacked">
                                                     	<li class="active"><a href="#">Brad Stewart has sent you a message</a></li>
                                                         <li><a href="#">Andrew Liu has replied to your message</a></li>
                                                         <li><a href="#"></a></li>
@@ -57,16 +57,16 @@ $(document).ready(function() {
 	  var email = getCookie('email');   	
       var url = "/dashboard";
 	  
-	  //var out = JSON.stringify(params);
-	  /* Send the data using post */
 	  var posting = $.post( url, { email: email, 
 		 	//params: out,
 	  });
 	 
-	  /* Put the results in a div
-	  		You've got json coming back at you with
-	  		all the fields from a mentor in the matches
-	  		field, so process and insert into HTML as you wish */
+	  /* You've got json coming back at you with two lists (read and unread) of UserMessage objects. Looks like this.
+	  {"email":"brad@test","unread":[
+	                          {"email":"test@testbrad@test","id":"10","Body":"Message Uno.","To":"brad@test","From":"test@test","Request":false,"TimeStamp":"Apr 30, 2013 4:11:53 PM","Unread":true},
+	                          {"email":"test@testbrad@test","id":"11","Body":"Message Dos.","To":"brad@test","From":"test@test","Request":false,"TimeStamp":"Apr 30, 2013 4:11:59 PM","Unread":true},
+	                          {"email":"test@testbrad@test","id":"12","Body":"And a third one.","To":"brad@ etc etc */
+	  }
 	  	posting.done(function(data) {
 	   	 result = jQuery.parseJSON(data);
 	   	 
@@ -78,13 +78,13 @@ $(document).ready(function() {
 	  	});
 });
 
+/* Click handler for the message li things we created above. */
+$("#message-threads").on("click", 'a.thread', function(e) {
+	e.preventDefault();
+	var id = e.target.id;
 
-	$("#message-threads").on("click", 'a.thread', function(e) {
-		e.preventDefault();
-		var id = e.target.id;
-		alert(i);
-		$('#current-thread').append('<h3'+e.value+'</h3>');
-	});
+	$('#new-messages').append('<h3>s'+id+'</h3>');
+});
 
 </script>                                        
                                         

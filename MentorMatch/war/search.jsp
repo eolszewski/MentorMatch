@@ -32,9 +32,16 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	<div class="span8">
 		<div id="search-div" class="well">
 			<h3>
-				Find Your Match <small>Select your search criteria</small>
+				Find Your Match <small>Enter your search criteria</small>
 			</h3>
+				<div class="input-append">
+                  <input id="search-bar" type="text" placeholder="Search">
+                  <script>
+   					$("#search-bar").autocomplete("textsearch.jsp");
+				  </script>
+                </div>
 			<form id="search-form" class="form" action="/search">
+			<h3><small>Or use your profile</small></h3>
 				<div class="row">
 					<div id="majors-sw" class="control-group span2">
 						<label class="control-label" for="majors"><strong>Majors</strong></label>
@@ -92,12 +99,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 				</div>
 				<div class="row">
 
-						<div class="input-append">
-	                      <input id="search-bar" type="text" placeholder="Search">
-	                       				 		<script>
-        					$("#search-bar").autocomplete("textsearch.jsp");
-   						</script>
-	                    </div>
+
 					
 					<div class="span2 pull-right">
 
@@ -132,7 +134,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	</div>
 	<div hidden="true" id="recipient-email"></div>
 	<div class="modal-body">
-			<textarea name="comments" id="message-text" rows="7" cols="30" ></textarea>
+			<textarea name="comments" id="message-text" rows="7" ></textarea>
 	</div>
 	<div class="modal-footer">
 		<input type="submit" onClick="sendMessage(); return false;" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"

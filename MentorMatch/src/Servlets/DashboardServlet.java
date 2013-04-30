@@ -21,15 +21,11 @@ public class DashboardServlet extends HttpServlet {
 			throws IOException {		
 					
 		resp.setContentType("text/plain");
-
-		//SearchRequest sr = new SearchRequest( req.getParameter("email") );
-		//sr.addParameters( Arrays.asList(gson.fromJson( req.getParameter("params"), String[].class)) );
 		
 		Dashboard dash = new Dashboard(req.getParameter("email"));
 		System.out.println("Input: " + req.getParameter("email"));
-		dash.getMessages();
-		
-		System.out.println(dash.getUnread().toArray());
+		dash.getMessages();	
+		System.out.println( dash.toJson() );
 		resp.getWriter().write( dash.toJson() );
 	}
 	

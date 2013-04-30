@@ -14,36 +14,29 @@ import com.googlecode.objectify.cmd.Query;
 @Cache @Index @Entity
 public class Dashboard {
 	private String email;
-	HashMap<String, List<UserMessage>> messageThreads;
-	private List<Thread> threads;
 	private List<UserMessage> unread;
-	private Gson gson;
+	private List<UserMessage> read;
 	
 	public Dashboard() {}
 	public Dashboard( String email) {
 		this.email = email;
-		this.gson = new Gson();
-		this.threads = new ArrayList<Thread>();
-		this.unread = new ArrayList<UserMessage>();
-		this.messageThreads = new HashMap<String, List<UserMessage>>();
-	}
-	
+	}	
 	
 	public void getMessages() {
-		Query<UserMessage> q = OfyService.ofy().load().type(UserMessage.class).filter("From", this.email).order("To");
-		setUnread(q.list());
-		System.out.println(q.list());
-		for (UserMessage um : q) {
-			//threads.add( new Thread( um.getFrom(), um.getBody()) );
-			//messageThreads.put(um.getFrom(), value)
-		}
+		Query<UserMessage> q = OfyService.ofy().load().type(UserMessage.class).filter("To", this.email).filter("Unread", true);
+		unread = q.list();
+		
+		Query<UserMessage> p = OfyService.ofy().load().type(UserMessage.class).filter("To", this.email).filter("Unread", false);
+		read = p.list();
 	}
 	
 	public Dashboard fromJson(String json) {
+		Gson gson = new Gson();
 		return gson.fromJson(json, Dashboard.class);
 	}
 	
 	public String toJson() {
+		Gson gson = new Gson();
 		return gson.toJson(this);
 	}
 	
@@ -53,17 +46,10 @@ public class Dashboard {
 	public void setUnread(List<UserMessage> unread) {
 		this.unread = unread;
 	}
-
-	public static class Thread {
-		public Thread(String from, String body) {
-			other = from;
-			threadMessages = new ArrayList<String>();
-			threadMessages.add(body);
-		}
-		public static void setThread(String from, String body) {
-			
-		}
-		String other;
-		List<String> threadMessages;
+	public List<UserMessage> getRead() {
+		return read;
+	}
+	public void setRead(List<UserMessage> read) {
+		this.read = read;
 	}
 }

@@ -35,6 +35,7 @@ public class XMPPReceiverServlet extends HttpServlet {
 		receivedMessage.setFrom(jo.get("sender").toString().replace("\"", ""));
 		receivedMessage.setTo(jo.get("recipient").toString().replace("\"", ""));
 		receivedMessage.setBody(jo.get("message").toString().replace("\"", ""));
+		receivedMessage.setUnread(true);
 		receivedMessage.setEmail();
 		System.out.println(receivedMessage.getBody());
 		System.out.println(receivedMessage.getFrom());
