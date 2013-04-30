@@ -39,8 +39,24 @@ public class RegisterTest  {
         element.sendKeys("Doe");
         element = driver.findElement((By.id("zip")));
         element.sendKeys("78705");
-        element = driver.findElement((By.id("")));
-        element.sendKeys("John");
+        element = driver.findElement((By.id("majors")));
+        element.sendKeys("Electrical Engineering");
+        element = driver.findElement((By.id("majorb")));
+        element.click();
+        element = driver.findElement((By.id("interests")));
+        element.sendKeys("Soccer");
+        element = driver.findElement((By.id("interestb")));
+        element.click();
+        element = driver.findElement((By.id("currentcourses")));
+        element.sendKeys("EE 461L");
+        element = driver.findElement((By.id("ccourseb")));
+        element.click();
+        element = driver.findElement((By.id("pastcourses")));
+        element.sendKeys("ASE 201");
+        element = driver.findElement((By.id("pcourseb")));
+        element.click();
+        element = driver.findElement((By.id("submitb")));
+        element.click();
         
         // Check the title of the page
         System.out.println("Page title is: " + driver.getTitle());
