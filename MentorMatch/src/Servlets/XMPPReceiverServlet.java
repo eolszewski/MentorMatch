@@ -38,11 +38,7 @@ public class XMPPReceiverServlet extends HttpServlet {
 		receivedMessage.setEmail();
 		System.out.println(receivedMessage.getBody());
 		System.out.println(receivedMessage.getFrom());
-		System.out.println(receivedMessage.getTo());
-     
-        
-    
-        
+		System.out.println(receivedMessage.getTo());       
         
         OfyService.ofy().save().entity(receivedMessage).now();
         System.out.println("Message is saved. From " + receivedMessage.getFrom() + " and to: " + receivedMessage.getTo() + " message is: " + receivedMessage.getBody());

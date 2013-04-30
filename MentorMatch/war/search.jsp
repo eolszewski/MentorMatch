@@ -11,7 +11,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 
 
 <title>MentorMatch - Search</title>
-
+<div class="container">
 	<div class="span2">
 		<div class="tabbable tabs-left">
 			<ul class="nav nav-tabs">
@@ -106,8 +106,8 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 		<div id="search-results"></div>
 
 	</div>
-</div>
-<!-- /container -->
+	<%@include file="footer.jsp"%>
+</div><!-- /container -->
 
 <!-- TODO:
    		HTML TEMPLATES, PAGINATION, AUTOMATIC RESULT LOADING 
@@ -128,6 +128,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 		<a href="#" class="btn btn-primary" data-dismiss="modal">Send Message</a> <a href="#"
 			class="btn" data-dismiss="modal">Cancel</a>
 	</div>
+
 </div>
 
 <script>
@@ -232,7 +233,7 @@ $("#search-form").submit(function(event) {
 			document.getElementById("search-results").innerHTML = resultTitle;
     	}
     for (var i=0; i<result.matches.length; i++) {
-    	var resultItem = '<li class=><div class="well row"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+ 
+    	var resultItem = '<li class=><div class="well"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+ 
     						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+
     						'<br/><strong>Current Courses: </strong>' +result.matches[i].Current_Courses+
     						'<br/><strong>Past Courses: </strong>' +result.matches[i].Past_Courses+
@@ -254,4 +255,4 @@ $("#search-form").submit(function(event) {
 </script>
 
 
-<%@include file="footer.jsp"%>
+

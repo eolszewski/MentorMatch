@@ -22,7 +22,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                         <!-- Main hero unit for a primary marketing message or call to action -->
                                         <div class="span6">
                                         	<div class="well">
-                                            	<h3><center>Notification Center</center></h3>
+                                            	<h3 align="center">Recent Conversationsr</h3>
                                             	<div class="tabbable tabs-right">
                                         		    <ul class="nav nav-pills nav-stacked">
                                                     	<li class="active"><a href="#">Brad Stewart has sent you a message</a></li>
