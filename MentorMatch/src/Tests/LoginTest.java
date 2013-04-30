@@ -42,33 +42,6 @@ public class LoginTest  {
     }
     
     
-    public static void createUser(WebElement element,  WebDriver driver, String User, String Details){
-    	String [] first = User.split(",");
-    	String [] fDetails = Details.split(",");
-    	
-    	
-    	 for(int i = 0; i < first.length-1; i++){
-
-         	element = driver.findElement(By.id(first[i]));
-         	element.sendKeys(first[++i]);
-         	
-         }
-         
-         for(int i = 0; i < fDetails.length-2; i++){
-
-         	element = driver.findElement(By.id(fDetails[i]));
-         	element.sendKeys(fDetails[++i]);
-         	element = driver.findElement(By.id(fDetails[++i]));
-             element.click();
-
-         	
-         }
-         
-
-         element = driver.findElement((By.id("submitb")));
-         element.click();
-    }
-    
-    
+        
     
 }
