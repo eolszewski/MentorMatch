@@ -20,7 +20,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                         </div><!--/span-->
                                         
                                         <!-- Main hero unit for a primary marketing message or call to action -->
-                                        <div class="span6">
+                                        <div class="span8">
                                         	<div class="well">
                                             	<h3><center>New Messages</center></h3>
                                             	<div class="tabbable tabs-right">
@@ -30,21 +30,10 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                             </div>
                                            
                                          	<div id="current-thread" class="hero-unit">
-                                            	<h3>Message from Brad Stewart</h3>
-                                                I LUBZ CHIKIN.
-                                                <br/><br/>
-                                            	<button class="btn btn-large btn-primary" type="button">Reply</button>
-                                            </div>   
+                                            	 </div>   
                                         </div>
                                         
-                                        
-                                        <div class="span3">
-                                        	<div class="tabbable tabs-right">
-                                            	<h4>Messages</h4>
-                                        		<ul id="message-threads" class="nav nav-tabs nav-stacked" style="width:100%;">                                            		    
-												</ul>
-                                               </div>
-                                        </div>
+        
 <script>
 var result;
                                         
@@ -66,13 +55,13 @@ $(document).ready(function() {
 	  	posting.done(function(data) {
 	   	 result = jQuery.parseJSON(data);
 	   	 if (result.unread.length < 1)
-	   		{
+	   	 {
 	   		$('#new-messages').html('You have no new messages.');
-	   		}
+	   	 }
 	   	 else
 	   		 {
 			   	 for ( var i=0; i<result.unread.length; i++) {
-			   		 var insert = '<li><a id="'+i+'" class="thread" href="#">'+result.unread[i].From +' has sent you a message</a></li>';
+			   		 var insert = '<li><a  id="'+i+'" class="thread" href="#">'+result.unread[i].FromFirstName + ' ' + result.unread[i].FromLastName + ' has sent you a message</a></li>';
 			   		document.getElementById("new-messages").innerHTML += insert;
 			   	 }	   	
 	   		 }
@@ -83,11 +72,8 @@ $(document).ready(function() {
 $("#new-messages").on("click", 'a.thread', function(e) {
 	e.preventDefault();
 	var id = e.target.id;
-<<<<<<< HEAD
 
-	$('#new-messages').append('<h3>'+id+'</h3>');
-=======
-	var name = result.unread[id].From;
+	var name = result.unread[id].FromFirstName;
 	var message = result.unread[id].Body;
 	
 	$("#new-messages li").each(function(index){
@@ -100,8 +86,19 @@ $("#new-messages").on("click", 'a.thread', function(e) {
 	$('#current-thread').html('<h3>Message from ' + name + '</h3>');
 	$('#current-thread').append('<p>'+message+'</p><br/>');
 	$('#current-thread').append('<button class="btn btn-large btn-primary" type="button">Reply</button>');
->>>>>>> messages work
+	$('#current-thread').append('<button class="btn btn-large btn-danger" type="button" style="float:right;" onClick="removeChoice('+id+');"">Delete</button>');
 });
+
+function removeChoice(item) {
+	var element = document.getElementById(item);
+	element.parentNode.removeChild(element);
+	
+	$('#current-thread').html('Message Deleted');
+	
+	return false;
+	
+	
+}
 
 </script>                                        
                                         
