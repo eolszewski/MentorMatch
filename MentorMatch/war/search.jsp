@@ -1,15 +1,27 @@
 <%@include file="master.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
 <script src="js/jquery-ui-1.10.1.custom.min.js"></script>
 <script src="js/bootstrapSwitch.js"></script>
-<script src="js/jqote2.js"></script>
-<script src="js/jquery.autocomplete.js"></script>  
 
 <script>
 //redirect if not logged in
 if (getCookie('email') == null) { document.location = 'home.jsp';}
+
+	//autocomplete stuff. later we can change this to pull from a datastore	
+	$(function() {
+	    var availableTags = [
+	      "How to get an 'A' in 461L",
+	      "Should I pledge a fraternity?",
+	      "Who should I take for Algorithms?",
+	      "Are there any engineers that play squash?",
+	      "What is Professor Aziz's favorite company?",
+	      "Why does ACA smell?"
+	    ];
+	    $( "#search" ).autocomplete({
+	      source: availableTags
+	    });
+	  });
 </script>
 
 
@@ -34,12 +46,10 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 			<h3>
 				Find Your Match <small>Enter your search criteria</small>
 			</h3>
-				<div class="input-append">
-                  <input id="search-bar" type="text" placeholder="Search">
-                  <script>
-   					$("#search-bar").autocomplete("textsearch.jsp");
-				  </script>
-                </div>
+            <div class="input-append">
+               <input id="search" type="text" placeholder="Search">
+             </div>
+            <div id="selectedMajors" ></div>                        
 			<form id="search-form" class="form" action="/search">
 			<h3><small>Or use your profile</small></h3>
 				<div class="row">
@@ -178,7 +188,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	
 	return false;  // prevents the page from refreshing before JSON is read from server response
 	}
-
+									  
 /* attach a submit handler to the form */
 $("#search-form").submit(function(event) {
  
@@ -239,12 +249,13 @@ $("#search-form").submit(function(event) {
 			document.getElementById("search-results").innerHTML = resultTitle;
     	}
     for (var i=0; i<result.matches.length; i++) {
-    	var resultItem = '<li class=><div class="well"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+ 
+    	var resultItem = '<li class=><div class="well"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ 
     						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+
     						'<br/><strong>Current Courses: </strong>' +result.matches[i].Current_Courses+
     						'<br/><strong>Past Courses: </strong>' +result.matches[i].Past_Courses+
     						'<br/><strong>Interests: </strong>' +result.matches[i].Interests+
     						'<br/><strong>ZipCode: </strong>' +result.matches[i].ZipCode+
+    						'<a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+
     						'</a></div></li>';
     						
     	 document.getElementById("search-results-item").innerHTML += resultItem;    
