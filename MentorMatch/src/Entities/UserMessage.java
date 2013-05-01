@@ -27,6 +27,7 @@ public class UserMessage {
 	private String Status;
 	private Date TimeStamp;
 	@Index private boolean Unread;
+	private String FromFirstName, FromLastName;
 	
 	public void createMessage(Message receivedMessage){
 		check = "1";
@@ -89,5 +90,21 @@ public class UserMessage {
 	public UserMessage setUnread(boolean unread) {
 		this.Unread = unread;
 		return this;
+	}
+
+	public String getFromFirstName() {
+		return FromFirstName;
+	}
+
+	public void setFromFirstName(String fromFirstName) {
+		FromFirstName = fromFirstName;
+	}
+
+	public String getFromLastName() {
+		return FromLastName;
+	}
+
+	public void setFromLastName(String fromLastName) {
+		FromLastName = fromLastName;
 	}
 }

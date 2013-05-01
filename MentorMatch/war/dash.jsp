@@ -66,7 +66,7 @@ $(document).ready(function() {
 	                          {"email":"test@testbrad@test","id":"10","Body":"Message Uno.","To":"brad@test","From":"test@test","Request":false,"TimeStamp":"Apr 30, 2013 4:11:53 PM","Unread":true},
 	                          {"email":"test@testbrad@test","id":"11","Body":"Message Dos.","To":"brad@test","From":"test@test","Request":false,"TimeStamp":"Apr 30, 2013 4:11:59 PM","Unread":true},
 	                          {"email":"test@testbrad@test","id":"12","Body":"And a third one.","To":"brad@ etc etc */
-	  }
+	  
 	  	posting.done(function(data) {
 	   	 result = jQuery.parseJSON(data);
 	   	 
@@ -83,7 +83,7 @@ $("#message-threads").on("click", 'a.thread', function(e) {
 	e.preventDefault();
 	var id = e.target.id;
 
-	$('#new-messages').append('<h3>s'+id+'</h3>');
+	$('#new-messages').append('<h3>'+id+'</h3>');
 });
 
 </script>                                        

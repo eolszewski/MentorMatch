@@ -26,6 +26,17 @@ public class Dashboard {
 		Query<UserMessage> q = OfyService.ofy().load().type(UserMessage.class).filter("To", this.email).filter("Unread", true);
 		unread = q.list();
 		
+		Query<Mentee> mentees = OfyService.ofy().load().type(Mentee.class);
+		
+		for (UserMessage um : q) {
+			for (Mentee mentee : mentees) {
+				if (um.getFrom().equals(mentee.getEmail())) {
+					um.setFromFirstName( mentee.getFirstName() );
+					um.setFromLastName( mentee.getLastName() );
+				}
+			}
+		}
+		
 		Query<UserMessage> p = OfyService.ofy().load().type(UserMessage.class).filter("To", this.email).filter("Unread", false);
 		read = p.list();
 	}
