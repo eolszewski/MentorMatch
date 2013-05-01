@@ -1,7 +1,6 @@
 <%@include file="master.jsp"%>
 
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
-<script src="js/jquery-ui-1.10.1.custom.min.js"></script>
 <script src="js/bootstrapSwitch.js"></script>
 
 <script>
@@ -13,7 +12,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	    var availableTags = [
 	      "How to get an 'A' in 461L",
 	      "Should I pledge a fraternity?",
-	      "Who should I take for Algorithms?",
+	      "Who should I take for EE 360C?",
 	      "Are there any engineers that play squash?",
 	      "What is Professor Aziz's favorite company?",
 	      "Why does ACA smell?"
@@ -144,7 +143,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	</div>
 	<div hidden="true" id="recipient-email"></div>
 	<div class="modal-body">
-			<textarea name="comments" id="message-text" rows="7" ></textarea>
+			<textarea name="comments" id="message-text" rows="8" style="width:100%" ></textarea>
 	</div>
 	<div class="modal-footer">
 		<input type="submit" onClick="sendMessage(); return false;" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
@@ -197,16 +196,6 @@ $("#search-form").submit(function(event) {
  
   /* get some values from elements on the page: */
   var params = "";
-  /*var $form = $( '#search-form' );  
-	  past = $('#past-courses-sw').bootstrapSwitch('status'),
-	  majors = $('#majors-courses-sw').bootstrapSwitch('status'),
-	  classification = $('#classification-sw').bootstrapSwitch('status'),
-	  interests = $('#interests-sw').bootstrapSwitch('status'),
-	  hometown = $('#hometown-sw').bootstrapSwitch('status'),  	  
-  	  majors = $form.find('input[name="search-options-majors"]').is(':checked')? "true":"false",
-  	  home = $form.find('input[name="search-options-zipcode"]').is(':checked')? "true":"false",
-  	  act = $form.find('input[name="search-options-interests"]').is(':checked')? "true":"false",
-  	  current-courses = "hi", //, //$form.find('input[name="search-options-courses"]').is(':checked')? "true":"false", */
   
   /* get some values from elements on the page: */
   var params = new Array(),  	
@@ -219,6 +208,8 @@ $("#search-form").submit(function(event) {
   if ( $('#hometown-sw').bootstrapSwitch('status') ) { params.push('ZipCode')};
   if ( $('#interests-sw').bootstrapSwitch('status') ) { params.push('Interests')};
   if ( $('#past-courses-sw').bootstrapSwitch('status') ) { params.push('Past_Courses')};
+  var searchQuery = document.getElementById("search").value;
+  params.push(searchQuery);
   
   if ( params.length == 0 ) {
 	  var result = '<div class="alert alert-block">Please select search criteria.</div>';    	
@@ -250,12 +241,12 @@ $("#search-form").submit(function(event) {
     	}
     for (var i=0; i<result.matches.length; i++) {
     	var resultItem = '<li class=><div class="well"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ 
-    						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+
+    						'<strong>Major(s): </strong>'+result.matches[i].Majors+
     						'<br/><strong>Current Courses: </strong>' +result.matches[i].Current_Courses+
     						'<br/><strong>Past Courses: </strong>' +result.matches[i].Past_Courses+
     						'<br/><strong>Interests: </strong>' +result.matches[i].Interests+
     						'<br/><strong>ZipCode: </strong>' +result.matches[i].ZipCode+
-    						'<a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+
+    						'<br/><a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+
     						'</a></div></li>';
     						
     	 document.getElementById("search-results-item").innerHTML += resultItem;    

@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -37,6 +39,23 @@ public class Search {
 			}
 			if ( param.equals("Classification") ) {
 				q = q.filter("Classification", mentee.getClassification() );
+			}
+			if ( param.equals("Who should I take for EE 360C?") ) {
+				q = q.filter("Past_Courses", "EE 360C" );
+				Query<Mentee> q2 = OfyService.ofy().load().type(Mentee.class);
+				q2 = q2.filter("Current_Courses", "EE 360C" );
+				ArrayList<Mentee> union = new ArrayList<Mentee>();
+				for(Mentee m : q)
+					union.add(m);
+				for(Mentee m : q2)
+				{
+					if(!union.contains(m))
+						union.add(m);
+				}
+				SearchResult result = new SearchResult();
+				result.setMatches( q.list() );
+				return result;
+				
 			}
 		}	
 		SearchResult result = new SearchResult();
