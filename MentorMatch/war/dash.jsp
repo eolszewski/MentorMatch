@@ -33,8 +33,61 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                             	 </div>   
                                         </div>
                                         
+<div id="message-sender" class="modal hide fade in" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">x</a>
+		<div id="message-recipient"></div>
+		
+		
+	</div>
+	<div hidden="true" id="recipient-email"></div>
+	<div class="modal-body">
+			<textarea name="comments" id="message-text" rows="8" style="width:100%" ></textarea>
+	</div>
+	<div class="modal-footer">
+		<input type="submit" onClick="sendMessage(); return false;" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
+			class="btn" data-dismiss="modal">Cancel</a>
+	</div>
+
+</div>
         
 <script>
+
+   function sendMessage(){
+  	var recipient = document.getElementById("recipient-email").value;
+  	var message = document.getElementById("message-text").value;
+  	var sender = getCookie('email');
+  	var jsonObj = new Object();
+	jsonObj.recipient = recipient;
+	jsonObj.sender = sender;
+	jsonObj.message = message;
+	var jsonData = JSON.stringify(jsonObj);
+	
+	$('#message-text').val('');
+	$.post("message", {json: jsonData}, function(data){
+		
+		if (data.Email === 'null')
+		{
+			alert("Sorry, we don't have an account associated with the email address you entered.");	
+		}
+		else if (data.Password === 0)
+		{
+			alert("The password you entered is incorrect.");
+		}
+		else
+		{
+			setCookie('email', data.Email, 1);
+			setCookie('firstName', data.FirstName, 1);
+			//return true;
+			document.location = "dash.jsp";
+		}
+	
+	}, 'json');
+	
+	
+	return false;  // prevents the page from refreshing before JSON is read from server response
+	}
+	
 var result;
                                         
 $(document).ready(function() {
@@ -85,8 +138,10 @@ $("#new-messages").on("click", 'a.thread', function(e) {
 	
 	$('#current-thread').html('<h3>Message from ' + name + '</h3>');
 	$('#current-thread').append('<p>'+message+'</p><br/>');
-	$('#current-thread').append('<button class="btn btn-large btn-primary" type="button">Reply</button>');
+	$('#current-thread').append('<a data-target="#message-sender" role="button" class="btn-large btn-primary" data-toggle="modal">Reply</a>');
 	$('#current-thread').append('<button class="btn btn-large btn-danger" type="button" style="float:right;" onClick="removeChoice('+id+');"">Delete</button>');
+	document.getElementById("message-recipient").innerHTML = '<h3>'+result.unread[id].FromFirstName+' '+result.unread[id].FromLastName+'</h3>'; 
+    document.getElementById("recipient-email").value = result.unread[id].From;
 });
 
 function removeChoice(item) {

@@ -163,7 +163,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	jsonObj.message = message;
 	var jsonData = JSON.stringify(jsonObj);
 	
-
+	$('#message-text').val('');
 	$.post("message", {json: jsonData}, function(data){
 		
 		if (data.Email === 'null')
