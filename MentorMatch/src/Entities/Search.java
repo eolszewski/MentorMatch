@@ -1,6 +1,7 @@
 package Entities;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import com.google.gson.Gson;
 import com.googlecode.objectify.annotation.Entity;
@@ -23,6 +24,7 @@ public class Search {
 
 			if ( param.equals("Majors") ) {
 				q = q.filter("Majors in", mentee.getMajors());
+				System.out.println(q);
 				System.out.println(q.count());
 			}		
 			if ( param.equals("ZipCode") ) {
@@ -40,24 +42,38 @@ public class Search {
 			if ( param.equals("Classification") ) {
 				q = q.filter("Classification", mentee.getClassification() );
 			}
-			if ( param.equals("Who should I take for EE 360C?") ) {
-				q = q.filter("Past_Courses", "EE 360C" );
-				Query<Mentee> q2 = OfyService.ofy().load().type(Mentee.class);
-				q2 = q2.filter("Current_Courses", "EE 360C" );
-				ArrayList<Mentee> union = new ArrayList<Mentee>();
-				for(Mentee m : q)
-					union.add(m);
-				for(Mentee m : q2)
-				{
-					if(!union.contains(m))
-						union.add(m);
-				}
-				SearchResult result = new SearchResult();
-				result.setMatches( q.list() );
-				return result;
-				
+			ArrayList<String> SearchTerms = new ArrayList<String>();
+			StringTokenizer st = new StringTokenizer(param, " ");
+			while (st.hasMoreElements()) {
+				SearchTerms.add((st.nextElement().toString()).replaceAll("\\W", "").toLowerCase());
 			}
-		}	
+			if (SearchTerms.contains("muscle")) {
+				q = q.filter("Interests", "Weight Lifting" );
+			}
+			System.out.println(SearchTerms);
+			if ( SearchTerms.contains("ee") ) {
+				q = q.filter("Majors in", "Electrical Engineering");
+				System.out.println(q);
+				int prev = SearchTerms.indexOf("EE");
+				if(prev != (SearchTerms.size()-1)) {
+					q = q.filter("Past_Courses in", "EE " + SearchTerms.get((prev+1)));
+					Query<Mentee> q2 = OfyService.ofy().load().type(Mentee.class);
+					q2 = q2.filter("Current_Courses in", "EE " + SearchTerms.get((prev+1)));
+					ArrayList<Mentee> union = new ArrayList<Mentee>();
+					for(Mentee m : q)
+						union.add(m);
+					for(Mentee m : q2)
+					{
+						if(!union.contains(m))
+							union.add(m);
+					}
+					SearchResult result = new SearchResult();
+					result.setMatches(union);
+					return result;
+				}
+			}
+		}
+				
 		SearchResult result = new SearchResult();
 		result.setMatches( q.list() );
 		return result;

@@ -13,7 +13,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	      "How to get an 'A' in 461L",
 	      "Should I pledge a fraternity?",
 	      "Who should I take for EE 360C?",
-	      "Are there any engineers that play squash?",
+	      "How can I build muscle?",
 	      "What is Professor Aziz's favorite company?",
 	      "Why does ACA smell?"
 	    ];
