@@ -25,10 +25,6 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                             	<h3><center>New Messages</center></h3>
                                             	<div class="tabbable tabs-right">
                                         		    <ul id="new-messages" class="nav nav-pills nav-stacked">
-                                                    	<li class="active"><a href="#">Brad Stewart has sent you a message</a></li>
-                                                        <li><a href="#">Andrew Liu has replied to your message</a></li>
-                                                        <li><a href="#"></a></li>
-
     												</ul>
                                                </div>
                                             </div>
@@ -58,7 +54,7 @@ $(document).ready(function() {
       var url = "/dashboard";
 	  
 	  var posting = $.post( url, { email: email, 
-		 	//params: out,
+		 	//params: out
 	  });
 	 
 	  /* You've got json coming back at you with two lists (read and unread) of UserMessage objects. Looks like this.
@@ -69,21 +65,42 @@ $(document).ready(function() {
 	  
 	  	posting.done(function(data) {
 	   	 result = jQuery.parseJSON(data);
-	   	 
-	   	 for ( var i=0; i<result.unread.length; i++) {
-	   		 var insert = '<li><a id="'+result.unread[i].email +'"class="thread" href="#">'+result.unread[i].To+'</a></li>';
-	   		document.getElementById("message-threads").innerHTML += insert;
-	   	 }	   	
-	   	 
+	   	 if (result.unread.length < 1)
+	   		{
+	   		$('#new-messages').html('You have no new messages.');
+	   		}
+	   	 else
+	   		 {
+			   	 for ( var i=0; i<result.unread.length; i++) {
+			   		 var insert = '<li><a id="'+i+'" class="thread" href="#">'+result.unread[i].From +' has sent you a message</a></li>';
+			   		document.getElementById("new-messages").innerHTML += insert;
+			   	 }	   	
+	   		 }
 	  	});
 });
 
 /* Click handler for the message li things we created above. */
-$("#message-threads").on("click", 'a.thread', function(e) {
+$("#new-messages").on("click", 'a.thread', function(e) {
 	e.preventDefault();
 	var id = e.target.id;
+<<<<<<< HEAD
 
 	$('#new-messages').append('<h3>'+id+'</h3>');
+=======
+	var name = result.unread[id].From;
+	var message = result.unread[id].Body;
+	
+	$("#new-messages li").each(function(index){
+		$(this).attr('class','');
+	});
+	var element = document.getElementById(id);
+	$(element.parentNode).attr('class','active');
+	
+	
+	$('#current-thread').html('<h3>Message from ' + name + '</h3>');
+	$('#current-thread').append('<p>'+message+'</p><br/>');
+	$('#current-thread').append('<button class="btn btn-large btn-primary" type="button">Reply</button>');
+>>>>>>> messages work
 });
 
 </script>                                        
