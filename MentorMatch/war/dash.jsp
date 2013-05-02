@@ -20,71 +20,140 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                         </div><!--/span-->
                                         
                                         <!-- Main hero unit for a primary marketing message or call to action -->
-                                        <div class="span6">
+                                        <div class="span8">
                                         	<div class="well">
                                             	<h3><center>New Messages</center></h3>
-                                            	<div id="new-messages" class="tabbable tabs-right">
-                                        		    <ul class="nav nav-pills nav-stacked">
-                                                    	<li class="active"><a href="#">Brad Stewart has sent you a message</a></li>
-                                                        <li><a href="#">Andrew Liu has replied to your message</a></li>
-                                                        <li><a href="#"></a></li>
-
+                                            	<div class="tabbable tabs-right">
+                                        		    <ul id="new-messages" class="nav nav-pills nav-stacked">
     												</ul>
                                                </div>
                                             </div>
                                            
                                          	<div id="current-thread" class="hero-unit">
-                                            	<h3>Message from Brad Stewart</h3>
-                                                I LUBZ CHIKIN.
-                                                <br/><br/>
-                                            	<button class="btn btn-large btn-primary" type="button">Reply</button>
-                                            </div>                                              
+                                            	 </div>   
                                         </div>
-
                                         
-                                        <div class="span3">
-                                        	<div class="tabbable tabs-right">
-                                            	<h4>Messages</h4>
-                                        		<ul id="message-threads" class="nav nav-tabs nav-stacked" style="width:100%;">                                            		    
-												</ul>
-                                               </div>
-                                        </div>
-<script>
-var result;
+<div id="message-sender" class="modal hide fade in" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">x</a>
+		<div id="message-recipient"></div>
+		
+		
+	</div>
+	<div hidden="true" id="recipient-email"></div>
+	<div class="modal-body">
+			<textarea name="comments" id="message-text" rows="8" style="width:100%" ></textarea>
+	</div>
+	<div class="modal-footer">
+		<input type="submit" onClick="sendMessage(); return false;" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
+			class="btn" data-dismiss="modal">Cancel</a>
+	</div>
 
+</div>
+        
+<script>
+
+   function sendMessage(){
+  	var recipient = document.getElementById("recipient-email").value;
+  	var message = document.getElementById("message-text").value;
+  	var sender = getCookie('email');
+  	var jsonObj = new Object();
+	jsonObj.recipient = recipient;
+	jsonObj.sender = sender;
+	jsonObj.message = message;
+	var jsonData = JSON.stringify(jsonObj);
+	
+	$('#message-text').val('');
+	$.post("message", {json: jsonData}, function(data){
+		
+		if (data.Email === 'null')
+		{
+			alert("Sorry, we don't have an account associated with the email address you entered.");	
+		}
+		else if (data.Password === 0)
+		{
+			alert("The password you entered is incorrect.");
+		}
+		else
+		{
+			setCookie('email', data.Email, 1);
+			setCookie('firstName', data.FirstName, 1);
+			//return true;
+			document.location = "dash.jsp";
+		}
+	
+	}, 'json');
+	
+	
+	return false;  // prevents the page from refreshing before JSON is read from server response
+	}
+	
+var result;
+                                        
 $(document).ready(function() {
 
 	  var email = getCookie('email');   	
       var url = "/dashboard";
 	  
-	  //var out = JSON.stringify(params);
-	  /* Send the data using post */
 	  var posting = $.post( url, { email: email, 
-		 	//params: out,
+		 	//params: out
 	  });
 	 
-	  /* Put the results in a div
-	  		You've got json coming back at you with
-	  		all the fields from a mentor in the matches
-	  		field, so process and insert into HTML as you wish */
+	  /* You've got json coming back at you with two lists (read and unread) of UserMessage objects. Looks like this.
+	  {"email":"brad@test","unread":[
+	                          {"email":"test@testbrad@test","id":"10","Body":"Message Uno.","To":"brad@test","From":"test@test","Request":false,"TimeStamp":"Apr 30, 2013 4:11:53 PM","Unread":true},
+	                          {"email":"test@testbrad@test","id":"11","Body":"Message Dos.","To":"brad@test","From":"test@test","Request":false,"TimeStamp":"Apr 30, 2013 4:11:59 PM","Unread":true},
+	                          {"email":"test@testbrad@test","id":"12","Body":"And a third one.","To":"brad@ etc etc */
+	  
 	  	posting.done(function(data) {
 	   	 result = jQuery.parseJSON(data);
-	   	 
-	   	 for ( var i=0; i<result.unread.length; i++) {
-	   		 var insert = '<li><a id="'+result.unread[i].email +'"class="thread" href="#">'+result.unread[i].To+'</a></li>';
-	   		document.getElementById("message-threads").innerHTML += insert;
-	   	 }	   	
-	   	 
+	   	 if (result.unread.length < 1)
+	   	 {
+	   		$('#new-messages').html('You have no new messages.');
+	   	 }
+	   	 else
+	   		 {
+			   	 for ( var i=0; i<result.unread.length; i++) {
+			   		 var insert = '<li><a  id="'+i+'" class="thread" href="#">'+result.unread[i].FromFirstName + ' ' + result.unread[i].FromLastName + ' has sent you a message</a></li>';
+			   		document.getElementById("new-messages").innerHTML += insert;
+			   	 }	   	
+	   		 }
 	  	});
 });
 
+/* Click handler for the message li things we created above. */
+$("#new-messages").on("click", 'a.thread', function(e) {
+	e.preventDefault();
+	var id = e.target.id;
 
-	$("#message-threads").on("click", 'a.thread', function(e) {
-		e.preventDefault();
-		var id = e.target.id;
-		alert(i);
-		$('#current-thread').append('<h3'+e.value+'</h3>');
+	var name = result.unread[id].FromFirstName;
+	var message = result.unread[id].Body;
+	
+	$("#new-messages li").each(function(index){
+		$(this).attr('class','');
 	});
+	var element = document.getElementById(id);
+	$(element.parentNode).attr('class','active');
+	
+	
+	$('#current-thread').html('<h3>Message from ' + name + '</h3>');
+	$('#current-thread').append('<p>'+message+'</p><br/>');
+	$('#current-thread').append('<a data-target="#message-sender" role="button" class="btn-large btn-primary" data-toggle="modal">Reply</a>');
+	$('#current-thread').append('<button class="btn btn-large btn-danger" type="button" style="float:right;" onClick="removeChoice('+id+');"">Delete</button>');
+	document.getElementById("message-recipient").innerHTML = '<h3>'+result.unread[id].FromFirstName+' '+result.unread[id].FromLastName+'</h3>'; 
+    document.getElementById("recipient-email").value = result.unread[id].From;
+});
+
+function removeChoice(item) {
+	var element = document.getElementById(item);
+	element.parentNode.removeChild(element);
+	
+	$('#current-thread').html('Message Deleted');
+	
+	return false;
+	
+	
+}
 
 </script>                                        
                                         

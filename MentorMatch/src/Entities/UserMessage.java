@@ -26,7 +26,8 @@ public class UserMessage {
 	private boolean Request;
 	private String Status;
 	private Date TimeStamp;
-	private boolean unread;
+	@Index private boolean Unread;
+	private String FromFirstName, FromLastName;
 	
 	public void createMessage(Message receivedMessage){
 		check = "1";
@@ -38,7 +39,7 @@ public class UserMessage {
 		To = To.trim();
 		From = receivedMessage.getFromJid().getId();
 		From = From.trim();
-		unread = true;
+		Unread = true;
 		
 		if(To.compareTo(From) > 0){
 			email = To  + From;
@@ -83,11 +84,27 @@ public class UserMessage {
 	}
 
 	public boolean isUnread() {
-		return unread;
+		return Unread;
 	}
 
 	public UserMessage setUnread(boolean unread) {
-		this.unread = unread;
+		this.Unread = unread;
 		return this;
+	}
+
+	public String getFromFirstName() {
+		return FromFirstName;
+	}
+
+	public void setFromFirstName(String fromFirstName) {
+		FromFirstName = fromFirstName;
+	}
+
+	public String getFromLastName() {
+		return FromLastName;
+	}
+
+	public void setFromLastName(String fromLastName) {
+		FromLastName = fromLastName;
 	}
 }

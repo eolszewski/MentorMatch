@@ -1,5 +1,8 @@
 package Entities;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import com.google.gson.Gson;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -21,7 +24,6 @@ public class Search {
 
 			if ( param.equals("Majors") ) {
 				q = q.filter("Majors in", mentee.getMajors());
-				System.out.println(q.count());
 			}		
 			if ( param.equals("ZipCode") ) {
 				q = q.filter("ZipCode", mentee.getZipCode() );
@@ -38,7 +40,47 @@ public class Search {
 			if ( param.equals("Classification") ) {
 				q = q.filter("Classification", mentee.getClassification() );
 			}
-		}	
+			ArrayList<String> SearchTerms = new ArrayList<String>();
+			StringTokenizer st = new StringTokenizer(param, " ");
+			while (st.hasMoreElements()) {
+				SearchTerms.add((st.nextElement().toString()).replaceAll("\\W", "").toLowerCase());
+			}
+			if (SearchTerms.contains("muscle")) {
+				ArrayList<String> list = new ArrayList<String>();
+				list.add("Weight Lifting");
+				q = q.filter("Interests in", list );
+			}
+			if ( SearchTerms.contains("ee") ) {
+				ArrayList<String> list = new ArrayList<String>();
+				list.add("Electrical Engineering");
+				q = q.filter("Majors in", list);
+				list.remove(0);
+				if(SearchTerms.indexOf("ee") != (SearchTerms.size()-1)) {
+					list.add("EE " + SearchTerms.get((SearchTerms.indexOf("ee")+1)).toUpperCase());
+					q = q.filter("Past_Courses in", list);
+					Query<Mentee> q2 = OfyService.ofy().load().type(Mentee.class);
+					q2 = q2.filter("Current_Courses in", list);
+					ArrayList<Mentee> union = new ArrayList<Mentee>();
+					for(Mentee m : q)
+						union.add(m);
+					for(Mentee m : q2)
+					{
+						if(!union.contains(m))
+							union.add(m);
+					}
+					SearchResult result = new SearchResult();
+					result.setMatches(union);
+					return result;
+				}
+			}
+			if ( SearchTerms.contains("party") || SearchTerms.contains("frat") || SearchTerms.contains("greek") || SearchTerms.contains("social") || SearchTerms.contains("fraternity")) {
+				ArrayList<String> list = new ArrayList<String>();
+				list.add("Greek Life");
+				list.add("Partying");
+				q = q.filter("Interests in", list);
+			}
+		}
+				
 		SearchResult result = new SearchResult();
 		result.setMatches( q.list() );
 		return result;

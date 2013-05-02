@@ -1,11 +1,4 @@
-<!-- Indices written at Tue, 30 Apr 2013 00:36:19 CDT -->
+<!-- Indices written at Tue, 30 Apr 2013 19:52:07 CDT -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 2 times in query history -->
-    <datastore-index kind="UserMessage" ancestor="false" source="auto">
-        <property name="From" direction="asc"/>
-        <property name="To" direction="asc"/>
-    </datastore-index>
-
-</datastore-indexes>

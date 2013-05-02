@@ -1,20 +1,31 @@
 <%@include file="master.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <link href="css/bootstrapSwitch.css" rel="stylesheet">
-<script src="js/jquery-ui-1.10.1.custom.min.js"></script>
 <script src="js/bootstrapSwitch.js"></script>
-<script src="js/jqote2.js"></script>
-<script src="js/jquery.autocomplete.js"></script>  
 
 <script>
 //redirect if not logged in
 if (getCookie('email') == null) { document.location = 'home.jsp';}
+
+	//autocomplete stuff. later we can change this to pull from a datastore	
+	$(function() {
+	    var availableTags = [
+	      "How to get an 'A' in 461L",
+	      "Should I pledge a fraternity?",
+	      "Who should I take for EE 360C?",
+	      "How can I build muscle?",
+	      "What is Professor Aziz's favorite company?",
+	      "Why does ACA smell?"
+	    ];
+	    $( "#search" ).autocomplete({
+	      source: availableTags
+	    });
+	  });
 </script>
 
 
 <title>MentorMatch - Search</title>
-
+<div class="container">
 	<div class="span2">
 		<div class="tabbable tabs-left">
 			<ul class="nav nav-tabs">
@@ -32,9 +43,14 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	<div class="span8">
 		<div id="search-div" class="well">
 			<h3>
-				Find Your Match <small>Select your search criteria</small>
+				Find Your Match <small>Enter your search criteria</small>
 			</h3>
+            <div class="input-append">
+               <input id="search" type="text" placeholder="Search">
+             </div>
+            <div id="selectedMajors" ></div>                        
 			<form id="search-form" class="form" action="/search">
+			<h3><small>Or use your profile</small></h3>
 				<div class="row">
 					<div id="majors-sw" class="control-group span2">
 						<label class="control-label" for="majors"><strong>Majors</strong></label>
@@ -92,12 +108,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 				</div>
 				<div class="row">
 
-						<div class="input-append">
-	                      <input id="search-bar" type="text" placeholder="Search">
-	                       				 		<script>
-        					$("#search-bar").autocomplete("textsearch.jsp");
-   						</script>
-	                    </div>
+
 					
 					<div class="span2 pull-right">
 
@@ -116,8 +127,8 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 		<div id="search-results"></div>
 
 	</div>
-</div>
-<!-- /container -->
+	<%@include file="footer.jsp"%>
+</div><!-- /container -->
 
 <!-- TODO:
    		HTML TEMPLATES, PAGINATION, AUTOMATIC RESULT LOADING 
@@ -132,12 +143,13 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	</div>
 	<div hidden="true" id="recipient-email"></div>
 	<div class="modal-body">
-			<textarea name="comments" id="message-text" rows="7" cols="30" ></textarea>
+			<textarea name="comments" id="message-text" rows="8" style="width:100%" ></textarea>
 	</div>
 	<div class="modal-footer">
 		<input type="submit" onClick="sendMessage(); return false;" class="btn btn-primary" data-dismiss="modal" value="Send Message"/><a href="#"
 			class="btn" data-dismiss="modal">Cancel</a>
 	</div>
+
 </div>
 
 <script>
@@ -151,7 +163,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	jsonObj.message = message;
 	var jsonData = JSON.stringify(jsonObj);
 	
-
+	$('#message-text').val('');
 	$.post("message", {json: jsonData}, function(data){
 		
 		if (data.Email === 'null')
@@ -175,7 +187,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
 	
 	return false;  // prevents the page from refreshing before JSON is read from server response
 	}
-
+									  
 /* attach a submit handler to the form */
 $("#search-form").submit(function(event) {
  
@@ -184,16 +196,6 @@ $("#search-form").submit(function(event) {
  
   /* get some values from elements on the page: */
   var params = "";
-  /*var $form = $( '#search-form' );  
-	  past = $('#past-courses-sw').bootstrapSwitch('status'),
-	  majors = $('#majors-courses-sw').bootstrapSwitch('status'),
-	  classification = $('#classification-sw').bootstrapSwitch('status'),
-	  interests = $('#interests-sw').bootstrapSwitch('status'),
-	  hometown = $('#hometown-sw').bootstrapSwitch('status'),  	  
-  	  majors = $form.find('input[name="search-options-majors"]').is(':checked')? "true":"false",
-  	  home = $form.find('input[name="search-options-zipcode"]').is(':checked')? "true":"false",
-  	  act = $form.find('input[name="search-options-interests"]').is(':checked')? "true":"false",
-  	  current-courses = "hi", //, //$form.find('input[name="search-options-courses"]').is(':checked')? "true":"false", */
   
   /* get some values from elements on the page: */
   var params = new Array(),  	
@@ -206,6 +208,8 @@ $("#search-form").submit(function(event) {
   if ( $('#hometown-sw').bootstrapSwitch('status') ) { params.push('ZipCode')};
   if ( $('#interests-sw').bootstrapSwitch('status') ) { params.push('Interests')};
   if ( $('#past-courses-sw').bootstrapSwitch('status') ) { params.push('Past_Courses')};
+  var searchQuery = document.getElementById("search").value;
+  params.push(searchQuery);
   
   if ( params.length == 0 ) {
 	  var result = '<div class="alert alert-block">Please select search criteria.</div>';    	
@@ -236,12 +240,13 @@ $("#search-form").submit(function(event) {
 			document.getElementById("search-results").innerHTML = resultTitle;
     	}
     for (var i=0; i<result.matches.length; i++) {
-    	var resultItem = '<li class=><div class="well row"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ '<a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+ 
-    						'<br/><strong>Major(s): </strong>'+result.matches[i].Majors+
+    	var resultItem = '<li class=><div class="well"><h4>'+result.matches[i].FirstName+' '+result.matches[i].LastName+'</h4>'+ 
+    						'<strong>Major(s): </strong>'+result.matches[i].Majors+
     						'<br/><strong>Current Courses: </strong>' +result.matches[i].Current_Courses+
     						'<br/><strong>Past Courses: </strong>' +result.matches[i].Past_Courses+
     						'<br/><strong>Interests: </strong>' +result.matches[i].Interests+
     						'<br/><strong>ZipCode: </strong>' +result.matches[i].ZipCode+
+    						'<br/><a data-target="#message-sender" role="button" class="btn btn-primary" data-toggle="modal">Message</a>'+
     						'</a></div></li>';
     						
     	 document.getElementById("search-results-item").innerHTML += resultItem;    
@@ -258,4 +263,4 @@ $("#search-form").submit(function(event) {
 </script>
 
 
-<%@include file="footer.jsp"%>
+

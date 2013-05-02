@@ -32,26 +32,6 @@ import Entities.SearchResult;
 			sr.addParameters( Arrays.asList(gson.fromJson( req.getParameter("params"), String[].class)) );
 			sr.empty = true;
 			
-//			if ( req.getParameter("majors") == "true" ){
-//				sr.majors = true;
-//				sr.empty = false;
-//			} if ( req.getParameter("zipcode") == "true" ) {
-//				sr.zipcode = true;
-//				sr.empty = false;
-//			} if ( req.getParameter("interests") == "true" ) {
-//				sr.interests = true;
-//				sr.empty = false;
-//			} if ( req.getParameter("currentClasses") == "true" ) {
-//				sr.classes = true;
-//				sr.empty = false;				
-//			} if ( req.getParameter("pastClasses") == "true" ){
-//				sr.majors = true;
-//				sr.empty = false;
-//			} if ( req.getParameter("classification") == "true" ){
-//				sr.majors = true;
-//				sr.empty = false;
-//			}
-			
 			SearchResult result = new SearchResult();
 			String password = "password";
 			if (TEST) {
