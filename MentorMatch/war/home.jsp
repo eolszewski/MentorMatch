@@ -4,7 +4,7 @@
             
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
-                <h1>MentorMatch</h1>
+                <h1>Matched Up</h1>
                 <p>You've met your match.</p>
                 <p></p>
                 <div id="regButton">

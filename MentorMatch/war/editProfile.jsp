@@ -346,7 +346,7 @@ if (getCookie('email') == null) { document.location = 'home.jsp';}
                                                     </div></div>
 													
 													<div class="controls">
-													<button class="btn" type="submit" onClick="submitRegistration(); return false;">Save Profile</button>
+													<button class="btn btn-primary" type="submit" onClick="submitRegistration(); return false;">Save Profile</button>
 													</div>
   												</form>
   												<script>

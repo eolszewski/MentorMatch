@@ -50,6 +50,11 @@ public class Search {
 				list.add("Weight Lifting");
 				q = q.filter("Interests in", list );
 			}
+			if (SearchTerms.contains("lifts")) {
+				ArrayList<String> list = new ArrayList<String>();
+				list.add("Weight Lifting");
+				q = q.filter("Interests in", list );
+			}
 			if ( SearchTerms.contains("ee") ) {
 				ArrayList<String> list = new ArrayList<String>();
 				list.add("Electrical Engineering");
@@ -57,8 +62,8 @@ public class Search {
 				list.remove(0);
 				if(SearchTerms.indexOf("ee") != (SearchTerms.size()-1)) {
 					list.add("EE " + SearchTerms.get((SearchTerms.indexOf("ee")+1)).toUpperCase());
+					Query<Mentee> q2 = q;
 					q = q.filter("Past_Courses in", list);
-					Query<Mentee> q2 = OfyService.ofy().load().type(Mentee.class);
 					q2 = q2.filter("Current_Courses in", list);
 					ArrayList<Mentee> union = new ArrayList<Mentee>();
 					for(Mentee m : q)
